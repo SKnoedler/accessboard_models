@@ -19,15 +19,17 @@ class BlogPostDesign {
 
   factory BlogPostDesign.fromJson(Map<String, dynamic> json) {
     return BlogPostDesign(
-      primaryColor: json['primaryColor'] != null
-          ? Color(int.parse(json['primaryColor']))
+      primaryColor: json['primaryColor'] != null && json['primaryColor'] is int
+          ? Color(json['primaryColor'])
           : null,
-      secondaryColor: json['secondaryColor'] != null
-          ? Color(int.parse(json['secondaryColor']))
-          : null,
-      tertiaryColor: json['tertiaryColor'] != null
-          ? Color(int.parse(json['tertiaryColor']))
-          : null,
+      secondaryColor:
+          json['secondaryColor'] != null && json['secondaryColor'] is int
+              ? Color(json['secondaryColor'])
+              : null,
+      tertiaryColor:
+          json['tertiaryColor'] != null && json['tertiaryColor'] is int
+              ? Color(json['tertiaryColor'])
+              : null,
       borderRadius: _parseBorderRadius(json['borderRadius']),
       border: _parseBorder(json['border']),
       shadow: _parseShadow(json['shadow']),
@@ -36,12 +38,9 @@ class BlogPostDesign {
 
   Map<String, dynamic> toJson() {
     return {
-      'primaryColor':
-          primaryColor is Color ? primaryColor!.value.toString() : null,
-      'secondaryColor':
-          secondaryColor is Color ? secondaryColor!.value.toString() : null,
-      'tertiaryColor':
-          tertiaryColor is Color ? secondaryColor!.value.toString() : null,
+      'primaryColor': primaryColor is Color ? primaryColor!.value : null,
+      'secondaryColor': secondaryColor is Color ? secondaryColor!.value : null,
+      'tertiaryColor': tertiaryColor is Color ? tertiaryColor!.value : null,
       'borderRadius': _serializeBorderRadius(borderRadius),
       'border': _serializeBorder(border),
       'shadow': _serializeShadow(shadow),
