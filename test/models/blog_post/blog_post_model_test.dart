@@ -1,7 +1,5 @@
-import 'package:accessboard_models/models/blog_post/blog_post_design.dart';
 import 'package:accessboard_models/models/blog_post/blog_post_meta.dart';
 import 'package:accessboard_models/models/blog_post/blog_post_model.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
@@ -20,18 +18,6 @@ void main() {
           updatedAt: DateTime(2022, 1, 3),
           validUntil: DateTime(2022, 1, 4),
         ),
-        design: BlogPostDesign(
-          primaryColor: Colors.red,
-          secondaryColor: Colors.green,
-          tertiaryColor: Colors.blue,
-          borderRadius: BorderRadius.circular(8),
-          border: Border.all(width: 2, color: Colors.grey.shade300),
-          shadow: BoxShadow(
-            color: Colors.grey.shade300,
-            blurRadius: 8,
-            offset: const Offset(0, 4),
-          ),
-        ),
       );
 
       final json = post.toJson();
@@ -43,7 +29,6 @@ void main() {
       expect(json['imageUrl'], 'https://example.com/image.jpg');
       expect(json['htmlContent'], '<p>This is a test post</p>');
       expect(json['meta'], isA<Map<String, dynamic>>());
-      expect(json['design'], isA<Map<String, dynamic>>());
     });
 
     test('fromJson returns a valid BlogPost object', () {
@@ -60,14 +45,6 @@ void main() {
           'updatedAt': '2022-01-03T00:00:00.000',
           'validUntil': '2022-01-04T00:00:00.000',
         },
-        'design': {
-          'primaryColor': Colors.red.value,
-          'secondaryColor': Colors.green.value,
-          'tertiaryColor': Colors.blue.value,
-          'borderRadius': 'medium',
-          'border': 'medium',
-          'shadow': 'medium',
-        },
       };
 
       final post = BlogPost.fromJson(json);
@@ -78,7 +55,6 @@ void main() {
       expect(post.imageUrl, 'https://example.com/image.jpg');
       expect(post.htmlContent, '<p>This is a test post</p>');
       expect(post.meta, isA<BlogPostMeta>());
-      expect(post.design, isA<BlogPostDesign>());
     });
 
     test('isUnpublished returns true if isReleaseConfirmed is false', () {
