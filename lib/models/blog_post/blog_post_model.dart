@@ -1,4 +1,3 @@
-import 'package:accessboard_models/models/blog_post/blog_post_design.dart';
 import 'package:accessboard_models/models/blog_post/blog_post_feedback.dart';
 import 'package:accessboard_models/models/blog_post/blog_post_meta.dart';
 
@@ -11,7 +10,6 @@ class BlogPost {
   final String imageUrl;
   final String htmlContent;
   final BlogPostMeta meta;
-  final BlogPostDesign? design;
   final BlogPostFeedback? feedbackQuestion;
 
   BlogPost({
@@ -21,7 +19,6 @@ class BlogPost {
     required this.imageUrl,
     required this.htmlContent,
     required this.meta,
-    this.design,
     this.feedbackQuestion,
   });
 
@@ -33,9 +30,6 @@ class BlogPost {
       imageUrl: json['imageUrl'],
       htmlContent: json['htmlContent'],
       meta: BlogPostMeta.fromJson(json['meta']),
-      design: json['design'] != null
-          ? BlogPostDesign.fromJson(json['design'])
-          : null,
       feedbackQuestion: json['feedbackQuestion'],
     );
   }
@@ -48,7 +42,6 @@ class BlogPost {
       'imageUrl': imageUrl,
       'htmlContent': htmlContent,
       'meta': meta.toJson(),
-      'design': design?.toJson(),
       'feedbackQuestion': feedbackQuestion,
     };
   }
