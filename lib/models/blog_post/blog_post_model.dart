@@ -1,10 +1,11 @@
 import 'package:accessboard_models/models/blog_post/blog_post_design.dart';
 import 'package:accessboard_models/models/blog_post/blog_post_feedback_question.dart';
 import 'package:accessboard_models/models/blog_post/blog_post_meta.dart';
+import 'package:accessboard_models/models/feed/feed_item.dart';
 
 // collection name: blogPosts
 
-class BlogPost {
+class BlogPost extends FeedItem {
   final String blogPostId;
   final String title;
   final String description;
@@ -23,7 +24,10 @@ class BlogPost {
     required this.meta,
     this.feedbackQuestion,
     this.customDesign,
-  });
+  }) : super(
+          id: blogPostId,
+          type: typeName,
+        );
 
   factory BlogPost.fromJson(Map<String, dynamic> json) {
     return BlogPost(
@@ -39,6 +43,7 @@ class BlogPost {
     );
   }
 
+  @override
   Map<String, dynamic> toJson() {
     return {
       'blogPostId': blogPostId,
@@ -49,6 +54,7 @@ class BlogPost {
       'meta': meta.toJson(),
       'feedbackQuestion': feedbackQuestion?.toJson(),
       'customDesign': customDesign?.toJson(),
+      'type': type,
     };
   }
 
@@ -63,4 +69,6 @@ class BlogPost {
   bool get isExpired {
     return meta.validUntil != null && meta.validUntil!.isBefore(DateTime.now());
   }
+
+  static const String typeName = 'blog_post';
 }

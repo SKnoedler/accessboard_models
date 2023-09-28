@@ -1,3 +1,5 @@
+// collection: multipleChoiceSelections
+
 class UserMultipleChoiceSelection {
   final String multipleChoiceFeedbackId;
   final String userId;
