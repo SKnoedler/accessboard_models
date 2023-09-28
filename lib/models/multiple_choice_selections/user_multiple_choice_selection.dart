@@ -2,13 +2,13 @@
 
 class UserMultipleChoiceSelection {
   final String multipleChoiceFeedbackId;
-  final String userId;
+  final String deviceId;
   final String selectedAnswer;
   final DateTime selectedAt;
 
   UserMultipleChoiceSelection({
     required this.multipleChoiceFeedbackId,
-    required this.userId,
+    required this.deviceId,
     required this.selectedAnswer,
     required this.selectedAt,
   });
@@ -16,7 +16,7 @@ class UserMultipleChoiceSelection {
   factory UserMultipleChoiceSelection.fromJson(Map<String, dynamic> json) {
     return UserMultipleChoiceSelection(
       multipleChoiceFeedbackId: json['multipleChoiceFeedbackId'] as String,
-      userId: json['userId'] as String,
+      deviceId: json['deviceId'] as String,
       selectedAnswer: json['selectedAnswer'] as String,
       selectedAt: DateTime.parse(json['selectedAt'] as String),
     );
@@ -25,7 +25,7 @@ class UserMultipleChoiceSelection {
   Map<String, dynamic> toJson() {
     return {
       'multipleChoiceFeedbackId': multipleChoiceFeedbackId,
-      'userId': userId,
+      'deviceId': deviceId,
       'selectedAnswer': selectedAnswer,
       'selectedAt': selectedAt.toIso8601String(),
     };

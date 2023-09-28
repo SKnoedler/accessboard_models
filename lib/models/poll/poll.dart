@@ -1,9 +1,10 @@
 import 'package:accessboard_models/models/feed/feed_item.dart';
+import 'package:accessboard_models/models/poll/poll_choice.dart';
 
 class Poll extends FeedItem {
   final String pollId;
   final String question;
-  final List<String> choices;
+  final List<PollChoice> choices;
   final DateTime createdAt;
   final DateTime? updatedAt;
 
@@ -19,10 +20,14 @@ class Poll extends FeedItem {
         );
 
   factory Poll.fromJson(Map<String, dynamic> json) {
+    var choicesList = json['choices'] as List;
+    List<PollChoice> choices =
+        choicesList.map((choice) => PollChoice.fromJson(choice)).toList();
+
     return Poll(
       pollId: json['pollId'],
       question: json['question'],
-      choices: List<String>.from(json['choices']),
+      choices: choices,
       createdAt: DateTime.parse(json['createdAt']),
       updatedAt:
           json['updatedAt'] != null ? DateTime.parse(json['updatedAt']) : null,
@@ -31,13 +36,15 @@ class Poll extends FeedItem {
 
   @override
   Map<String, dynamic> toJson() {
+    List<Map<String, dynamic>> choicesJson =
+        choices.map((choice) => choice.toJson()).toList();
+
     return {
       'pollId': pollId,
       'question': question,
-      'choices': choices,
+      'choices': choicesJson,
       'createdAt': createdAt.toIso8601String(),
       'updatedAt': updatedAt?.toIso8601String(),
-      'id': id,
       'type': type,
     };
   }
