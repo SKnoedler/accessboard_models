@@ -2,17 +2,43 @@ import 'package:accessboard_models/models/design/custom_design.dart';
 import 'package:accessboard_models/models/feed/feed_item.dart';
 
 // collection: multipleChoiceItems
-class MultipleChoiceItem {
+class MultipleChoiceItem extends FeedItem {
   final String multipleChoiceItemId;
   final List<MultipleChoiceQuestion> multipleChoiceQuestions;
 
   MultipleChoiceItem({
     required this.multipleChoiceItemId,
     required this.multipleChoiceQuestions,
-  });
+  }) : super(id: multipleChoiceItemId, type: typeName);
+
+  factory MultipleChoiceItem.fromJson(Map<String, dynamic> json) {
+    var questionsList = json['multipleChoiceQuestions'] as List;
+    List<MultipleChoiceQuestion> questions = questionsList
+        .map((question) => MultipleChoiceQuestion.fromJson(question))
+        .toList();
+
+    return MultipleChoiceItem(
+      multipleChoiceItemId: json['multipleChoiceItemId'],
+      multipleChoiceQuestions: questions,
+    );
+  }
+
+  @override
+  Map<String, dynamic> toJson() {
+    List<Map<String, dynamic>> questionsJson =
+        multipleChoiceQuestions.map((question) => question.toJson()).toList();
+
+    return {
+      'multipleChoiceItemId': multipleChoiceItemId,
+      'multipleChoiceQuestions': questionsJson,
+      'type': type,
+    };
+  }
+
+  static const String typeName = 'multiple_choice_question';
 }
 
-class MultipleChoiceQuestion extends FeedItem {
+class MultipleChoiceQuestion {
   final String multipleChoiceQuestionId;
   final String question;
   final List<MultipleChoiceAnswerChoice> choices;
@@ -31,7 +57,7 @@ class MultipleChoiceQuestion extends FeedItem {
     required this.expiresAt,
     this.customDesign,
     this.multipleChoiceSelectionIds = const [],
-  }) : super(id: multipleChoiceQuestionId, type: typeName);
+  });
 
   factory MultipleChoiceQuestion.fromJson(Map<String, dynamic> json) {
     return MultipleChoiceQuestion(
@@ -50,7 +76,6 @@ class MultipleChoiceQuestion extends FeedItem {
     );
   }
 
-  @override
   Map<String, dynamic> toJson() {
     return {
       'multipleChoiceQuestionId': multipleChoiceQuestionId,
@@ -61,11 +86,8 @@ class MultipleChoiceQuestion extends FeedItem {
       'expiresAt': expiresAt.toIso8601String(),
       'multipleChoiceSelectionIds': multipleChoiceSelectionIds,
       'customDesign': customDesign?.toJson(),
-      'type': type,
     };
   }
-
-  static const String typeName = 'multiple_choice_question';
 }
 
 class MultipleChoiceAnswerChoice {

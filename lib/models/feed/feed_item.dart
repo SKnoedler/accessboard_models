@@ -17,8 +17,8 @@ abstract class FeedItem {
         return Poll.fromJson(json);
       case BlogPost.typeName:
         return BlogPost.fromJson(json);
-      case MultipleChoiceQuestion.typeName:
-        return MultipleChoiceQuestion.fromJson(json);
+      case MultipleChoiceItem.typeName:
+        return MultipleChoiceItem.fromJson(json);
       default:
         throw ArgumentError('Invalid type: ${json['type']}');
     }
@@ -30,8 +30,8 @@ abstract class FeedItem {
         return (this as Poll).toJson();
       case BlogPost.typeName:
         return (this as BlogPost).toJson();
-      case MultipleChoiceQuestion.typeName:
-        return (this as MultipleChoiceQuestion).toJson();
+      case MultipleChoiceItem.typeName:
+        return (this as MultipleChoiceItem).toJson();
       default:
         throw StateError('Invalid type: $type');
     }
