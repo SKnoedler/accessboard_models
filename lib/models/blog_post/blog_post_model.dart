@@ -1,6 +1,6 @@
-import 'package:accessboard_models/models/blog_post/blog_post_design.dart';
 import 'package:accessboard_models/models/blog_post/blog_post_feedback_question.dart';
 import 'package:accessboard_models/models/blog_post/blog_post_meta.dart';
+import 'package:accessboard_models/models/design/custom_design.dart';
 import 'package:accessboard_models/models/feed/feed_item.dart';
 
 // collection name: blogPosts
@@ -13,7 +13,7 @@ class BlogPost extends FeedItem {
   final String htmlContent;
   final BlogPostMeta meta;
   final BlogPostFeedbackQuestion? feedbackQuestion;
-  final BlogPostDesign? customDesign;
+  final CustomDesign? customDesign;
 
   BlogPost({
     required this.blogPostId,
@@ -37,9 +37,12 @@ class BlogPost extends FeedItem {
       imageUrl: json['imageUrl'],
       htmlContent: json['htmlContent'],
       meta: BlogPostMeta.fromJson(json['meta']),
-      feedbackQuestion:
-          BlogPostFeedbackQuestion.fromJson(json['feedbackQuestion']),
-      customDesign: BlogPostDesign.fromJson(json['customDesign']),
+      feedbackQuestion: json['feedbackQuestion'] != null
+          ? BlogPostFeedbackQuestion.fromJson(json['feedbackQuestion'])
+          : null,
+      customDesign: json['customDesign'] != null
+          ? CustomDesign.fromJson(json['customDesign'])
+          : null,
     );
   }
 

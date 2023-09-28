@@ -1,7 +1,9 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-class BlogPostDesign {
+// this design class can be used in individual widgets
+
+class CustomDesign {
   final Color? primaryColor;
   final Color? secondaryColor;
   final Color? tertiaryColor;
@@ -10,7 +12,7 @@ class BlogPostDesign {
   final BorderEnum? borderEnum;
   final ShadowEnum? shadowEnum;
 
-  BlogPostDesign({
+  CustomDesign({
     this.primaryColor,
     this.secondaryColor,
     this.tertiaryColor,
@@ -19,8 +21,8 @@ class BlogPostDesign {
     this.shadowEnum,
   });
 
-  factory BlogPostDesign.fromJson(Map<String, dynamic> json) {
-    return BlogPostDesign(
+  factory CustomDesign.fromJson(Map<String, dynamic> json) {
+    return CustomDesign(
       primaryColor: json['primaryColor'] != null
           ? Color(json['primaryColor'] as int)
           : null,

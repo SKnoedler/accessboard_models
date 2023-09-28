@@ -1,3 +1,4 @@
+import 'package:accessboard_models/models/design/custom_design.dart';
 import 'package:accessboard_models/models/feed/feed_item.dart';
 
 // collection: polls
@@ -8,6 +9,7 @@ class Poll extends FeedItem {
   final List<PollChoice> choices;
   final DateTime createdAt;
   final DateTime? updatedAt;
+  final CustomDesign? customDesign;
 
   Poll({
     required this.pollId,
@@ -15,6 +17,7 @@ class Poll extends FeedItem {
     required this.choices,
     required this.createdAt,
     this.updatedAt,
+    this.customDesign,
   }) : super(
           id: pollId,
           type: typeName,
@@ -30,6 +33,9 @@ class Poll extends FeedItem {
       question: json['question'],
       choices: choices,
       createdAt: DateTime.parse(json['createdAt']),
+      customDesign: json['customDesign'] != null
+          ? CustomDesign.fromJson(json['customDesign'])
+          : null,
       updatedAt:
           json['updatedAt'] != null ? DateTime.parse(json['updatedAt']) : null,
     );
@@ -46,6 +52,7 @@ class Poll extends FeedItem {
       'choices': choicesJson,
       'createdAt': createdAt.toIso8601String(),
       'updatedAt': updatedAt?.toIso8601String(),
+      'customDesign': customDesign?.toJson(),
       'type': type,
     };
   }

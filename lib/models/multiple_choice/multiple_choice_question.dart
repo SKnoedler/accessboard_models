@@ -1,3 +1,4 @@
+import 'package:accessboard_models/models/design/custom_design.dart';
 import 'package:accessboard_models/models/feed/feed_item.dart';
 
 // collection: multipleChoiceItems
@@ -19,6 +20,7 @@ class MultipleChoiceQuestion extends FeedItem {
   final DateTime updatedAt;
   final DateTime expiresAt;
   final List<String> multipleChoiceSelectionIds;
+  final CustomDesign? customDesign;
 
   MultipleChoiceQuestion({
     required this.multipleChoiceQuestionId,
@@ -27,6 +29,7 @@ class MultipleChoiceQuestion extends FeedItem {
     required this.createdAt,
     required this.updatedAt,
     required this.expiresAt,
+    this.customDesign,
     this.multipleChoiceSelectionIds = const [],
   }) : super(id: multipleChoiceQuestionId, type: typeName);
 
@@ -41,6 +44,9 @@ class MultipleChoiceQuestion extends FeedItem {
       expiresAt: DateTime.parse(json['expiresAt']),
       multipleChoiceSelectionIds:
           List<String>.from(json['multipleChoiceSelectionIds']),
+      customDesign: json['customDesign'] != null
+          ? CustomDesign.fromJson(json['customDesign'])
+          : null,
     );
   }
 
@@ -54,6 +60,7 @@ class MultipleChoiceQuestion extends FeedItem {
       'updatedAt': updatedAt.toIso8601String(),
       'expiresAt': expiresAt.toIso8601String(),
       'multipleChoiceSelectionIds': multipleChoiceSelectionIds,
+      'customDesign': customDesign?.toJson(),
       'type': type,
     };
   }
