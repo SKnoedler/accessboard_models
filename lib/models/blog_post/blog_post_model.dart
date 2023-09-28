@@ -1,4 +1,5 @@
-import 'package:accessboard_models/models/blog_post/blog_post_feedback.dart';
+import 'package:accessboard_models/models/blog_post/blog_post_design.dart';
+import 'package:accessboard_models/models/blog_post/blog_post_feedback_question.dart';
 import 'package:accessboard_models/models/blog_post/blog_post_meta.dart';
 
 // collection name: blogPosts
@@ -10,7 +11,8 @@ class BlogPost {
   final String imageUrl;
   final String htmlContent;
   final BlogPostMeta meta;
-  final BlogPostFeedback? feedbackQuestion;
+  final BlogPostFeedbackQuestion? feedbackQuestion;
+  final BlogPostDesign? customDesign;
 
   BlogPost({
     required this.blogPostId,
@@ -20,6 +22,7 @@ class BlogPost {
     required this.htmlContent,
     required this.meta,
     this.feedbackQuestion,
+    this.customDesign,
   });
 
   factory BlogPost.fromJson(Map<String, dynamic> json) {
@@ -30,7 +33,9 @@ class BlogPost {
       imageUrl: json['imageUrl'],
       htmlContent: json['htmlContent'],
       meta: BlogPostMeta.fromJson(json['meta']),
-      feedbackQuestion: json['feedbackQuestion'],
+      feedbackQuestion:
+          BlogPostFeedbackQuestion.fromJson(json['feedbackQuestion']),
+      customDesign: BlogPostDesign.fromJson(json['customDesign']),
     );
   }
 
@@ -42,16 +47,17 @@ class BlogPost {
       'imageUrl': imageUrl,
       'htmlContent': htmlContent,
       'meta': meta.toJson(),
-      'feedbackQuestion': feedbackQuestion,
+      'feedbackQuestion': feedbackQuestion?.toJson(),
+      'customDesign': customDesign?.toJson(),
     };
   }
 
   bool get isUnpublished {
-    return !meta.isReleaseConfirmed;
+    return !meta.isReleasedConfirmed;
   }
 
   bool get isPlanned {
-    return meta.releaseAt.isAfter(DateTime.now());
+    return meta.releasedAt.isAfter(DateTime.now());
   }
 
   bool get isExpired {

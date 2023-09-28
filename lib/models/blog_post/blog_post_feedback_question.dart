@@ -1,14 +1,14 @@
-class BlogPostFeedback {
+class BlogPostFeedbackQuestion {
   final String feedbackQuestionId;
   final String question;
 
-  BlogPostFeedback({
+  BlogPostFeedbackQuestion({
     required this.feedbackQuestionId,
     required this.question,
   });
 
-  factory BlogPostFeedback.fromJson(Map<String, dynamic> json) {
-    return BlogPostFeedback(
+  factory BlogPostFeedbackQuestion.fromJson(Map<String, dynamic> json) {
+    return BlogPostFeedbackQuestion(
       feedbackQuestionId: json['feedbackQuestionId'],
       question: json['question'],
     );

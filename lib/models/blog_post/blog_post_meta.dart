@@ -1,14 +1,14 @@
 class BlogPostMeta {
   final DateTime createdAt;
-  final bool isReleaseConfirmed;
-  final DateTime releaseAt;
+  final bool isReleasedConfirmed;
+  final DateTime releasedAt;
   final DateTime? updatedAt;
   final DateTime? validUntil;
 
   BlogPostMeta({
     required this.createdAt,
-    required this.isReleaseConfirmed,
-    required this.releaseAt,
+    required this.isReleasedConfirmed,
+    required this.releasedAt,
     this.updatedAt,
     this.validUntil,
   });
@@ -16,8 +16,8 @@ class BlogPostMeta {
   factory BlogPostMeta.fromJson(Map<String, dynamic> json) {
     return BlogPostMeta(
       createdAt: DateTime.parse(json['createdAt']),
-      isReleaseConfirmed: json['isReleaseConfirmed'],
-      releaseAt: DateTime.parse(json['releaseAt']),
+      isReleasedConfirmed: json['isReleasedConfirmed'],
+      releasedAt: DateTime.parse(json['releasedAt']),
       updatedAt:
           json['updatedAt'] != null ? DateTime.parse(json['updatedAt']) : null,
       validUntil: json['validUntil'] != null
@@ -29,8 +29,8 @@ class BlogPostMeta {
   Map<String, dynamic> toJson() {
     return {
       'createdAt': createdAt.toIso8601String(),
-      'isReleaseConfirmed': isReleaseConfirmed,
-      'releaseAt': releaseAt.toIso8601String(),
+      'isReleasedConfirmed': isReleasedConfirmed,
+      'releasedAt': releasedAt.toIso8601String(),
       'updatedAt': updatedAt?.toIso8601String(),
       'validUntil': validUntil?.toIso8601String(),
     };

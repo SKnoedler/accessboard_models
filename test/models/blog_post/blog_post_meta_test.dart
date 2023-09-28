@@ -6,8 +6,8 @@ void main() {
     test('toJson returns a valid JSON object', () {
       final meta = BlogPostMeta(
         createdAt: DateTime(2022, 1, 1),
-        isReleaseConfirmed: true,
-        releaseAt: DateTime(2022, 1, 2),
+        isReleasedConfirmed: true,
+        releasedAt: DateTime(2022, 1, 2),
         updatedAt: DateTime(2022, 1, 3),
         validUntil: DateTime(2022, 1, 4),
       );
@@ -34,8 +34,8 @@ void main() {
       final meta = BlogPostMeta.fromJson(json);
 
       expect(meta.createdAt, DateTime(2022, 1, 1));
-      expect(meta.isReleaseConfirmed, true);
-      expect(meta.releaseAt, DateTime(2022, 1, 2));
+      expect(meta.isReleasedConfirmed, true);
+      expect(meta.releasedAt, DateTime(2022, 1, 2));
       expect(meta.updatedAt, DateTime(2022, 1, 3));
       expect(meta.validUntil, DateTime(2022, 1, 4));
     });
