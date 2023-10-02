@@ -74,4 +74,26 @@ class BlogPost extends FeedItem {
   }
 
   static const String typeName = 'blog_post';
+
+  BlogPost copyWith({
+    String? blogPostId,
+    String? title,
+    String? description,
+    String? imageUrl,
+    String? htmlContent,
+    BlogPostMeta? meta,
+    BlogPostFeedbackQuestion? feedbackQuestion,
+    CustomDesign? customDesign,
+  }) {
+    return BlogPost(
+      blogPostId: blogPostId ?? this.blogPostId,
+      title: title ?? this.title,
+      description: description ?? this.description,
+      imageUrl: imageUrl ?? this.imageUrl,
+      htmlContent: htmlContent ?? this.htmlContent,
+      meta: meta ?? this.meta,
+      feedbackQuestion: feedbackQuestion ?? this.feedbackQuestion,
+      customDesign: customDesign ?? this.customDesign,
+    );
+  }
 }

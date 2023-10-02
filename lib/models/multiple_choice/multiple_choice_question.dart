@@ -45,7 +45,6 @@ class MultipleChoiceQuestion {
   final DateTime createdAt;
   final DateTime updatedAt;
   final DateTime expiresAt;
-  final List<String> multipleChoiceSelectionIds;
   final CustomDesign? customDesign;
 
   MultipleChoiceQuestion({
@@ -56,7 +55,6 @@ class MultipleChoiceQuestion {
     required this.updatedAt,
     required this.expiresAt,
     this.customDesign,
-    this.multipleChoiceSelectionIds = const [],
   });
 
   factory MultipleChoiceQuestion.fromJson(Map<String, dynamic> json) {
@@ -68,8 +66,6 @@ class MultipleChoiceQuestion {
       createdAt: DateTime.parse(json['createdAt']),
       updatedAt: DateTime.parse(json['updatedAt']),
       expiresAt: DateTime.parse(json['expiresAt']),
-      multipleChoiceSelectionIds:
-          List<String>.from(json['multipleChoiceSelectionIds']),
       customDesign: json['customDesign'] != null
           ? CustomDesign.fromJson(json['customDesign'])
           : null,
@@ -84,9 +80,30 @@ class MultipleChoiceQuestion {
       'createdAt': createdAt.toIso8601String(),
       'updatedAt': updatedAt.toIso8601String(),
       'expiresAt': expiresAt.toIso8601String(),
-      'multipleChoiceSelectionIds': multipleChoiceSelectionIds,
       'customDesign': customDesign?.toJson(),
     };
+  }
+
+  MultipleChoiceQuestion copyWith({
+    String? multipleChoiceQuestionId,
+    String? question,
+    List<MultipleChoiceAnswerChoice>? choices,
+    DateTime? createdAt,
+    DateTime? updatedAt,
+    DateTime? expiresAt,
+    List<String>? multipleChoiceSelectionIds,
+    CustomDesign? customDesign,
+  }) {
+    return MultipleChoiceQuestion(
+      multipleChoiceQuestionId:
+          multipleChoiceQuestionId ?? this.multipleChoiceQuestionId,
+      question: question ?? this.question,
+      choices: choices ?? this.choices,
+      createdAt: createdAt ?? this.createdAt,
+      updatedAt: updatedAt ?? this.updatedAt,
+      expiresAt: expiresAt ?? this.expiresAt,
+      customDesign: customDesign ?? this.customDesign,
+    );
   }
 }
 

@@ -58,6 +58,24 @@ class Poll extends FeedItem {
   }
 
   static const String typeName = 'poll';
+
+  Poll copyWith({
+    String? pollId,
+    String? question,
+    List<PollChoice>? choices,
+    DateTime? createdAt,
+    DateTime? updatedAt,
+    CustomDesign? customDesign,
+  }) {
+    return Poll(
+      pollId: pollId ?? this.pollId,
+      question: question ?? this.question,
+      choices: choices ?? this.choices,
+      createdAt: createdAt ?? this.createdAt,
+      updatedAt: updatedAt ?? this.updatedAt,
+      customDesign: customDesign ?? this.customDesign,
+    );
+  }
 }
 
 class PollChoice {
