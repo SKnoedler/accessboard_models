@@ -48,4 +48,22 @@ class InteractiveFeed {
       'feedItems': feedItemsJson,
     };
   }
+
+  InteractiveFeed copyWith({
+    String? feedId,
+    String? projectId,
+    String? projectSecret,
+    DateTime? createdAt,
+    DateTime? updatedAt,
+    List<FeedItem>? feedItems,
+  }) {
+    return InteractiveFeed(
+      feedId: feedId ?? this.feedId,
+      projectId: projectId ?? this.projectId,
+      projectSecret: projectSecret ?? this.projectSecret,
+      createdAt: createdAt ?? this.createdAt,
+      updatedAt: updatedAt ?? this.updatedAt,
+      feedItems: feedItems ?? this.feedItems,
+    );
+  }
 }
