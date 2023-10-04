@@ -12,6 +12,7 @@ class BlogPost extends FeedItem {
   final String imageUrl;
   final String htmlContent;
   final BlogPostMeta meta;
+  final List<Map<String, Object>> quillDocData;
   final BlogPostFeedbackQuestion? feedbackQuestion;
   final CustomDesign? customDesign;
 
@@ -22,6 +23,7 @@ class BlogPost extends FeedItem {
     required this.imageUrl,
     required this.htmlContent,
     required this.meta,
+    required this.quillDocData,
     this.feedbackQuestion,
     this.customDesign,
   }) : super(
@@ -31,6 +33,7 @@ class BlogPost extends FeedItem {
 
   factory BlogPost.fromJson(Map<String, dynamic> json) {
     return BlogPost(
+      quillDocData: json['quillDocData'],
       blogPostId: json['blogPostId'],
       title: json['title'],
       description: json['description'],
@@ -57,6 +60,7 @@ class BlogPost extends FeedItem {
       'meta': meta.toJson(),
       'feedbackQuestion': feedbackQuestion?.toJson(),
       'customDesign': customDesign?.toJson(),
+      'quillDocData': quillDocData,
       'type': type,
     };
   }
@@ -84,6 +88,7 @@ class BlogPost extends FeedItem {
     BlogPostMeta? meta,
     BlogPostFeedbackQuestion? feedbackQuestion,
     CustomDesign? customDesign,
+    List<Map<String, Object>>? quillDocData,
   }) {
     return BlogPost(
       blogPostId: blogPostId ?? this.blogPostId,
@@ -94,6 +99,7 @@ class BlogPost extends FeedItem {
       meta: meta ?? this.meta,
       feedbackQuestion: feedbackQuestion ?? this.feedbackQuestion,
       customDesign: customDesign ?? this.customDesign,
+      quillDocData: quillDocData ?? this.quillDocData,
     );
   }
 }
