@@ -12,7 +12,7 @@ class BlogPost extends FeedItem {
   final String imageUrl;
   final String htmlContent;
   final BlogPostMeta meta;
-  final List<Map<String, Object>>? quillDocData;
+  final List<dynamic>? quillDocData;
   final BlogPostFeedbackQuestion? feedbackQuestion;
   final CustomDesign? customDesign;
 
@@ -34,7 +34,7 @@ class BlogPost extends FeedItem {
   factory BlogPost.fromJson(Map<String, dynamic> json) {
     return BlogPost(
       quillDocData: json['quillDocData'] != null
-          ? (json['quillDocData'] as List<dynamic>).cast<Map<String, Object>>()
+          ? (json['quillDocData'] as List<dynamic>)
           : null,
       blogPostId: json['blogPostId'],
       title: json['title'],
