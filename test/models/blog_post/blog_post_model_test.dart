@@ -6,6 +6,7 @@ void main() {
   group('BlogPost', () {
     test('toJson returns a valid JSON object', () {
       final post = BlogPost(
+        quillDocData: [],
         blogPostId: '123',
         title: 'Test Post',
         description: 'This is a test post',
@@ -59,6 +60,7 @@ void main() {
 
     test('isUnpublished returns true if isReleaseConfirmed is false', () {
       final post = BlogPost(
+        quillDocData: [],
         blogPostId: '123',
         title: 'Test Post',
         description: 'This is a test post',
@@ -78,6 +80,7 @@ void main() {
 
     test('isPlanned returns true if releaseAt is in the future', () {
       final post = BlogPost(
+        quillDocData: [],
         blogPostId: '123',
         title: 'Test Post',
         description: 'This is a test post',
@@ -97,6 +100,7 @@ void main() {
 
     test('isExpired returns true if validUntil is in the past', () {
       final post = BlogPost(
+        quillDocData: [],
         blogPostId: '123',
         title: 'Test Post',
         description: 'This is a test post',
@@ -114,6 +118,7 @@ void main() {
       expect(post.isExpired, false);
 
       final expiredPost = BlogPost(
+        quillDocData: [],
         blogPostId: '123',
         title: 'Test Post',
         description: 'This is a test post',

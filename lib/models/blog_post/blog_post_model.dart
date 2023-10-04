@@ -12,7 +12,7 @@ class BlogPost extends FeedItem {
   final String imageUrl;
   final String htmlContent;
   final BlogPostMeta meta;
-  final List<Map<String, Object>> quillDocData;
+  final List<Map<String, Object>>? quillDocData;
   final BlogPostFeedbackQuestion? feedbackQuestion;
   final CustomDesign? customDesign;
 
@@ -23,7 +23,7 @@ class BlogPost extends FeedItem {
     required this.imageUrl,
     required this.htmlContent,
     required this.meta,
-    required this.quillDocData,
+    this.quillDocData,
     this.feedbackQuestion,
     this.customDesign,
   }) : super(
@@ -33,7 +33,8 @@ class BlogPost extends FeedItem {
 
   factory BlogPost.fromJson(Map<String, dynamic> json) {
     return BlogPost(
-      quillDocData: json['quillDocData'],
+      quillDocData:
+          json.containsKey('quillDocData') ? json['quillDocData'] : null,
       blogPostId: json['blogPostId'],
       title: json['title'],
       description: json['description'],
