@@ -33,8 +33,9 @@ class BlogPost extends FeedItem {
 
   factory BlogPost.fromJson(Map<String, dynamic> json) {
     return BlogPost(
-      quillDocData:
-          json.containsKey('quillDocData') ? json['quillDocData'] : null,
+      quillDocData: json['quillDocData'] != null
+          ? (json['quillDocData'] as List<dynamic>).cast<Map<String, Object>>()
+          : null,
       blogPostId: json['blogPostId'],
       title: json['title'],
       description: json['description'],
