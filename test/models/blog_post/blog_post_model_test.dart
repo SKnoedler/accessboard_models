@@ -14,7 +14,6 @@ void main() {
         htmlContent: '<p>This is a test post</p>',
         meta: BlogPostMeta(
           createdAt: DateTime(2022, 1, 1),
-          isReleasedConfirmed: true,
           releasedAt: DateTime(2022, 1, 2),
           updatedAt: DateTime(2022, 1, 3),
           validUntil: DateTime(2022, 1, 4),
@@ -68,7 +67,6 @@ void main() {
         htmlContent: '<p>This is a test post</p>',
         meta: BlogPostMeta(
           createdAt: DateTime(2022, 1, 1),
-          isReleasedConfirmed: false,
           releasedAt: DateTime(2022, 1, 2),
           updatedAt: DateTime(2022, 1, 3),
           validUntil: DateTime(2022, 1, 4),
@@ -88,7 +86,6 @@ void main() {
         htmlContent: '<p>This is a test post</p>',
         meta: BlogPostMeta(
           createdAt: DateTime(2022, 1, 1),
-          isReleasedConfirmed: true,
           releasedAt: DateTime(2099, 1, 2),
           updatedAt: DateTime(2022, 1, 3),
           validUntil: DateTime(2022, 1, 4),
@@ -108,7 +105,6 @@ void main() {
         htmlContent: '<p>This is a test post</p>',
         meta: BlogPostMeta(
           createdAt: DateTime(2022, 1, 1),
-          isReleasedConfirmed: true,
           releasedAt: DateTime(2022, 1, 2),
           updatedAt: DateTime(2022, 1, 3),
           validUntil: DateTime(2099, 1, 4),
@@ -126,7 +122,6 @@ void main() {
         htmlContent: '<p>This is a test post</p>',
         meta: BlogPostMeta(
           createdAt: DateTime(2022, 1, 1),
-          isReleasedConfirmed: true,
           releasedAt: DateTime(2022, 1, 2),
           updatedAt: DateTime(2022, 1, 3),
           validUntil: DateTime(2022, 1, 2),

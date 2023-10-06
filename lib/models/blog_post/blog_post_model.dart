@@ -68,11 +68,12 @@ class BlogPost extends FeedItem {
   }
 
   bool get isUnpublished {
-    return !meta.isReleasedConfirmed;
+    return meta.releasedAt == null;
   }
 
   bool get isPlanned {
-    return meta.releasedAt.isAfter(DateTime.now());
+    if (meta.releasedAt == null) return false;
+    return meta.releasedAt!.isAfter(DateTime.now());
   }
 
   bool get isExpired {
