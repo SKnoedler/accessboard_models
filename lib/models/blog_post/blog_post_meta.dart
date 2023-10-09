@@ -14,7 +14,9 @@ class BlogPostMeta {
   factory BlogPostMeta.fromJson(Map<String, dynamic> json) {
     return BlogPostMeta(
       createdAt: DateTime.parse(json['createdAt']),
-      releasedAt: DateTime.parse(json['releasedAt']),
+      releasedAt: json['releasedAt'] != null
+          ? DateTime.parse(json['releasedAt'])
+          : null,
       updatedAt:
           json['updatedAt'] != null ? DateTime.parse(json['updatedAt']) : null,
       validUntil: json['validUntil'] != null
