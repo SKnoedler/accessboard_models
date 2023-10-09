@@ -66,4 +66,32 @@ class InteractiveFeed {
       feedItems: feedItems ?? this.feedItems,
     );
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is InteractiveFeed &&
+          runtimeType == other.runtimeType &&
+          feedId == other.feedId &&
+          _listEquals(feedItems, other.feedItems);
+
+  @override
+  int get hashCode {
+    int result = 17;
+    result = 31 * result + feedId.hashCode;
+    result = 31 * result + feedItems.length;
+    return result;
+  }
+
+  bool _listEquals(List<FeedItem> a, List<FeedItem> b) {
+    if (a.length != b.length) {
+      return false;
+    }
+    for (var i = 0; i < a.length; i++) {
+      if (a[i] != b[i]) {
+        return false;
+      }
+    }
+    return true;
+  }
 }

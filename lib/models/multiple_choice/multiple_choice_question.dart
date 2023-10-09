@@ -36,6 +36,16 @@ class MultipleChoiceItem extends FeedItem {
   }
 
   static const String typeName = 'multiple_choice_question';
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is MultipleChoiceItem &&
+          runtimeType == other.runtimeType &&
+          multipleChoiceItemId == other.multipleChoiceItemId;
+
+  @override
+  int get hashCode => multipleChoiceItemId.hashCode;
 }
 
 class MultipleChoiceQuestion {
@@ -105,6 +115,16 @@ class MultipleChoiceQuestion {
       customDesign: customDesign ?? this.customDesign,
     );
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is MultipleChoiceQuestion &&
+          runtimeType == other.runtimeType &&
+          multipleChoiceQuestionId == other.multipleChoiceQuestionId;
+
+  @override
+  int get hashCode => multipleChoiceQuestionId.hashCode;
 }
 
 class MultipleChoiceAnswerChoice {

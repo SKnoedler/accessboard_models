@@ -76,6 +76,16 @@ class Poll extends FeedItem {
       customDesign: customDesign ?? this.customDesign,
     );
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is Poll &&
+          runtimeType == other.runtimeType &&
+          pollId == other.pollId;
+
+  @override
+  int get hashCode => pollId.hashCode;
 }
 
 class PollChoice {

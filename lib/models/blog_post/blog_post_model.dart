@@ -105,4 +105,14 @@ class BlogPost extends FeedItem {
       quillDocData: quillDocData ?? this.quillDocData,
     );
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is BlogPost &&
+          runtimeType == other.runtimeType &&
+          blogPostId == other.blogPostId;
+
+  @override
+  int get hashCode => blogPostId.hashCode;
 }
