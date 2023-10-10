@@ -42,6 +42,21 @@ class MultipleChoiceItem extends FeedItem {
 
   static const String typeName = 'multiple_choice_question';
 
+  bool get isUnpublished {
+    return meta.releasedAt == null;
+  }
+
+  bool get isPlanned {
+    if (meta.releasedAt == null) return false;
+    return meta.releasedAt!.isAfter(DateTime.now());
+  }
+
+  bool get isExpired {
+    return meta.validUntil != null && meta.validUntil!.isBefore(DateTime.now());
+  }
+
+  bool get isActive => !isUnpublished && !isPlanned && !isExpired;
+
   MultipleChoiceItem copyWith({
     String? multipleChoiceItemId,
     List<MultipleChoiceQuestion>? multipleChoiceQuestions,
