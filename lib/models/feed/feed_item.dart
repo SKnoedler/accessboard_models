@@ -132,7 +132,7 @@ class ExtendedPoll extends Poll {
       question: json['question'],
       choices: choices,
       createdAt: DateTime.parse(json['createdAt']),
-      isCompleted: json['isCompleted'],
+      isCompleted: json['isCompleted'] ?? false,
       customDesign: json['customDesign'] != null
           ? CustomDesign.fromJson(json['customDesign'])
           : null,
