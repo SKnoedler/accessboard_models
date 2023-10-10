@@ -129,7 +129,7 @@ class ExtendedPoll extends Poll {
       pollId: json['pollId'],
       question: json['question'],
       choices: choices,
-      meta: FeedItemMeta.fromJson(json['createdAt']),
+      meta: FeedItemMeta.fromJson(json['meta']),
       isCompleted: json['isCompleted'] ?? false,
       customDesign: json['customDesign'] != null
           ? CustomDesign.fromJson(json['customDesign'])

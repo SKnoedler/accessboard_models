@@ -31,7 +31,7 @@ class Poll extends FeedItem {
       pollId: json['pollId'],
       question: json['question'],
       choices: choices,
-      meta: FeedItemMeta.fromJson(json['createdAt']),
+      meta: FeedItemMeta.fromJson(json['meta']),
       customDesign: json['customDesign'] != null
           ? CustomDesign.fromJson(json['customDesign'])
           : null,
