@@ -16,7 +16,6 @@ class Poll extends FeedItem {
     required this.question,
     required this.choices,
     required this.createdAt,
-    super.isNew = false,
     this.updatedAt,
     this.customDesign,
   }) : super(
@@ -67,7 +66,6 @@ class Poll extends FeedItem {
     DateTime? createdAt,
     DateTime? updatedAt,
     CustomDesign? customDesign,
-    bool? isNew,
   }) {
     return Poll(
       pollId: pollId ?? this.pollId,
@@ -76,7 +74,6 @@ class Poll extends FeedItem {
       createdAt: createdAt ?? this.createdAt,
       updatedAt: updatedAt ?? this.updatedAt,
       customDesign: customDesign ?? this.customDesign,
-      isNew: isNew ?? this.isNew,
     );
   }
 

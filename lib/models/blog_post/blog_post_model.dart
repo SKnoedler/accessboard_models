@@ -23,7 +23,6 @@ class BlogPost extends FeedItem {
     required this.imageUrl,
     required this.htmlContent,
     required this.meta,
-    super.isNew = false,
     this.quillDocData,
     this.feedbackQuestion,
     this.customDesign,
@@ -93,7 +92,6 @@ class BlogPost extends FeedItem {
     BlogPostFeedbackQuestion? feedbackQuestion,
     CustomDesign? customDesign,
     List<Map<String, Object>>? quillDocData,
-    bool? isNew,
   }) {
     return BlogPost(
       blogPostId: blogPostId ?? this.blogPostId,
@@ -105,7 +103,6 @@ class BlogPost extends FeedItem {
       feedbackQuestion: feedbackQuestion ?? this.feedbackQuestion,
       customDesign: customDesign ?? this.customDesign,
       quillDocData: quillDocData ?? this.quillDocData,
-      isNew: isNew ?? this.isNew,
     );
   }
 

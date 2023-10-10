@@ -8,12 +8,10 @@ import 'package:accessboard_models/models/poll/poll.dart';
 abstract class FeedItem {
   final String id;
   final String type;
-  final bool isNew;
 
   FeedItem({
     required this.id,
     required this.type,
-    this.isNew = false,
   });
 
   factory FeedItem.fromJson(Map<String, dynamic> json) {
@@ -74,11 +72,10 @@ abstract class FeedItem {
       other is FeedItem &&
           runtimeType == other.runtimeType &&
           id == other.id &&
-          type == other.type &&
-          isNew == other.isNew;
+          type == other.type;
 
   @override
-  int get hashCode => id.hashCode ^ type.hashCode ^ isNew.hashCode;
+  int get hashCode => id.hashCode ^ type.hashCode;
 }
 
 class ExtendedPoll extends Poll {
@@ -88,16 +85,18 @@ class ExtendedPoll extends Poll {
     required super.choices,
     required super.createdAt,
     required super.customDesign,
-    required super.isNew,
+    required this.isNew,
     required super.updatedAt,
     required this.isCompleted,
   });
 
   final bool isCompleted;
+  final bool isNew;
 
   static ExtendedPoll fromPoll({
     required Poll poll,
     required bool isCompleted,
+    required bool isNew,
   }) {
     return ExtendedPoll(
       pollId: poll.pollId,
@@ -105,7 +104,7 @@ class ExtendedPoll extends Poll {
       choices: poll.choices,
       createdAt: poll.createdAt,
       customDesign: poll.customDesign,
-      isNew: poll.isNew,
+      isNew: isNew,
       updatedAt: poll.updatedAt,
       isCompleted: isCompleted,
     );
@@ -137,7 +136,7 @@ class ExtendedPoll extends Poll {
       customDesign: json['customDesign'] != null
           ? CustomDesign.fromJson(json['customDesign'])
           : null,
-      isNew: json['isNew'] ?? false,
+      isNew: false,
       updatedAt:
           json['updatedAt'] != null ? DateTime.parse(json['updatedAt']) : null,
     );
@@ -146,20 +145,24 @@ class ExtendedPoll extends Poll {
 
 class ExtendedMultipleChoiceItem extends MultipleChoiceItem {
   final bool isCompleted;
+  final bool isNew;
 
   ExtendedMultipleChoiceItem({
     required super.multipleChoiceItemId,
     required super.multipleChoiceQuestions,
     required this.isCompleted,
+    required this.isNew,
   });
   static ExtendedMultipleChoiceItem fromMultipleChoiceItem({
     required MultipleChoiceItem item,
     required bool isCompleted,
+    required bool isNew,
   }) {
     return ExtendedMultipleChoiceItem(
       multipleChoiceItemId: item.multipleChoiceItemId,
       multipleChoiceQuestions: item.multipleChoiceQuestions,
       isCompleted: isCompleted,
+      isNew: isNew,
     );
   }
 
@@ -185,6 +188,7 @@ class ExtendedMultipleChoiceItem extends MultipleChoiceItem {
       multipleChoiceItemId: json['multipleChoiceItemId'],
       multipleChoiceQuestions: questions,
       isCompleted: json['isCompleted'] ?? false,
+      isNew: false,
     );
   }
 }
@@ -199,15 +203,18 @@ class ExtendedBlogPost extends BlogPost {
     required super.meta,
     required super.quillDocData,
     required this.isCompleted,
+    required this.isNew,
     required super.feedbackQuestion,
     required super.customDesign,
   });
 
   final bool isCompleted;
+  final bool isNew;
 
   static ExtendedBlogPost fromBlogPost({
     required BlogPost blogPost,
     required bool isCompleted,
+    required bool isNew,
   }) {
     return ExtendedBlogPost(
       quillDocData: blogPost.quillDocData,
@@ -220,6 +227,7 @@ class ExtendedBlogPost extends BlogPost {
       isCompleted: isCompleted,
       feedbackQuestion: blogPost.feedbackQuestion,
       customDesign: blogPost.customDesign,
+      isNew: isNew,
     );
   }
 
@@ -257,6 +265,7 @@ class ExtendedBlogPost extends BlogPost {
       customDesign: json['customDesign'] != null
           ? CustomDesign.fromJson(json['customDesign'])
           : null,
+      isNew: false,
     );
   }
 }
