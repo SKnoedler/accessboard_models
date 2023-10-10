@@ -1,4 +1,7 @@
+import 'package:accessboard_models/models/blog_post/blog_post_feedback_question.dart';
+import 'package:accessboard_models/models/blog_post/blog_post_meta.dart';
 import 'package:accessboard_models/models/blog_post/blog_post_model.dart';
+import 'package:accessboard_models/models/design/custom_design.dart';
 import 'package:accessboard_models/models/multiple_choice/multiple_choice_question.dart';
 import 'package:accessboard_models/models/poll/poll.dart';
 
@@ -21,6 +24,19 @@ abstract class FeedItem {
         return BlogPost.fromJson(json);
       case MultipleChoiceItem.typeName:
         return MultipleChoiceItem.fromJson(json);
+      default:
+        throw ArgumentError('Invalid type: ${json['type']}');
+    }
+  }
+
+  factory FeedItem.fromStorageJson(Map<String, dynamic> json) {
+    switch (json['type']) {
+      case Poll.typeName:
+        return ExtendedPoll.fromJson(json);
+      case BlogPost.typeName:
+        return ExtendedBlogPost.fromJson(json);
+      case MultipleChoiceItem.typeName:
+        return ExtendedMultipleChoiceItem.fromJson(json);
       default:
         throw ArgumentError('Invalid type: ${json['type']}');
     }
@@ -71,6 +87,9 @@ class ExtendedPoll extends Poll {
     required super.question,
     required super.choices,
     required super.createdAt,
+    required super.customDesign,
+    required super.isNew,
+    required super.updatedAt,
     required this.isCompleted,
   });
 
@@ -85,6 +104,9 @@ class ExtendedPoll extends Poll {
       question: poll.question,
       choices: poll.choices,
       createdAt: poll.createdAt,
+      customDesign: poll.customDesign,
+      isNew: poll.isNew,
+      updatedAt: poll.updatedAt,
       isCompleted: isCompleted,
     );
   }
@@ -98,6 +120,26 @@ class ExtendedPoll extends Poll {
       'createdAt': createdAt.toIso8601String(),
       'isCompleted': isCompleted,
     };
+  }
+
+  factory ExtendedPoll.fromJson(Map<String, dynamic> json) {
+    var choicesList = json['choices'] as List;
+    List<PollChoice> choices =
+        choicesList.map((choice) => PollChoice.fromJson(choice)).toList();
+
+    return ExtendedPoll(
+      pollId: json['pollId'],
+      question: json['question'],
+      choices: choices,
+      createdAt: DateTime.parse(json['createdAt']),
+      isCompleted: json['isCompleted'],
+      customDesign: json['customDesign'] != null
+          ? CustomDesign.fromJson(json['customDesign'])
+          : null,
+      isNew: json['isNew'] ?? false,
+      updatedAt:
+          json['updatedAt'] != null ? DateTime.parse(json['updatedAt']) : null,
+    );
   }
 }
 
@@ -129,6 +171,20 @@ class ExtendedMultipleChoiceItem extends MultipleChoiceItem {
       'isCompleted': isCompleted,
     };
   }
+
+  @override
+  factory ExtendedMultipleChoiceItem.fromJson(Map<String, dynamic> json) {
+    var questionsList = json['multipleChoiceQuestions'] as List;
+    List<MultipleChoiceQuestion> questions = questionsList
+        .map((question) => MultipleChoiceQuestion.fromJson(question))
+        .toList();
+
+    return ExtendedMultipleChoiceItem(
+      multipleChoiceItemId: json['multipleChoiceItemId'],
+      multipleChoiceQuestions: questions,
+      isCompleted: json['isCompleted'] ?? false,
+    );
+  }
 }
 
 class ExtendedBlogPost extends BlogPost {
@@ -141,6 +197,8 @@ class ExtendedBlogPost extends BlogPost {
     required super.meta,
     required super.quillDocData,
     required this.isCompleted,
+    required super.feedbackQuestion,
+    required super.customDesign,
   });
 
   final bool isCompleted;
@@ -158,6 +216,8 @@ class ExtendedBlogPost extends BlogPost {
       htmlContent: blogPost.htmlContent,
       meta: blogPost.meta,
       isCompleted: isCompleted,
+      feedbackQuestion: blogPost.feedbackQuestion,
+      customDesign: blogPost.customDesign,
     );
   }
 
@@ -173,5 +233,27 @@ class ExtendedBlogPost extends BlogPost {
       'quillDocData': quillDocData,
       'isCompleted': isCompleted,
     };
+  }
+
+  @override
+  factory ExtendedBlogPost.fromJson(Map<String, dynamic> json) {
+    return ExtendedBlogPost(
+      quillDocData: json['quillDocData'] != null
+          ? (json['quillDocData'] as List<dynamic>)
+          : null,
+      blogPostId: json['blogPostId'],
+      title: json['title'],
+      description: json['description'],
+      imageUrl: json['imageUrl'],
+      htmlContent: json['htmlContent'],
+      meta: BlogPostMeta.fromJson(json['meta']),
+      isCompleted: json['isCompleted'] ?? false,
+      feedbackQuestion: json['feedbackQuestion'] != null
+          ? BlogPostFeedbackQuestion.fromJson(json['feedbackQuestion'])
+          : null,
+      customDesign: json['customDesign'] != null
+          ? CustomDesign.fromJson(json['customDesign'])
+          : null,
+    );
   }
 }
