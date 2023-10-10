@@ -1,6 +1,6 @@
 import 'package:accessboard_models/models/blog_post/blog_post_feedback_question.dart';
-import 'package:accessboard_models/models/blog_post/blog_post_meta.dart';
 import 'package:accessboard_models/models/blog_post/blog_post_model.dart';
+import 'package:accessboard_models/models/blog_post/feed_item_meta.dart';
 import 'package:accessboard_models/models/design/custom_design.dart';
 import 'package:accessboard_models/models/multiple_choice/multiple_choice_question.dart';
 import 'package:accessboard_models/models/poll/poll.dart';
@@ -83,10 +83,9 @@ class ExtendedPoll extends Poll {
     required super.pollId,
     required super.question,
     required super.choices,
-    required super.createdAt,
     required super.customDesign,
     required this.isNew,
-    required super.updatedAt,
+    required super.meta,
     required this.isCompleted,
   });
 
@@ -102,10 +101,9 @@ class ExtendedPoll extends Poll {
       pollId: poll.pollId,
       question: poll.question,
       choices: poll.choices,
-      createdAt: poll.createdAt,
       customDesign: poll.customDesign,
       isNew: isNew,
-      updatedAt: poll.updatedAt,
+      meta: poll.meta,
       isCompleted: isCompleted,
     );
   }
@@ -116,7 +114,7 @@ class ExtendedPoll extends Poll {
       'pollId': pollId,
       'question': question,
       'choices': choices.map((choice) => choice.toJson()).toList(),
-      'createdAt': createdAt.toIso8601String(),
+      'meta': meta.toJson(),
       'isCompleted': isCompleted,
       'type': type,
     };
@@ -131,14 +129,12 @@ class ExtendedPoll extends Poll {
       pollId: json['pollId'],
       question: json['question'],
       choices: choices,
-      createdAt: DateTime.parse(json['createdAt']),
+      meta: FeedItemMeta.fromJson(json['createdAt']),
       isCompleted: json['isCompleted'] ?? false,
       customDesign: json['customDesign'] != null
           ? CustomDesign.fromJson(json['customDesign'])
           : null,
       isNew: false,
-      updatedAt:
-          json['updatedAt'] != null ? DateTime.parse(json['updatedAt']) : null,
     );
   }
 }
@@ -150,6 +146,7 @@ class ExtendedMultipleChoiceItem extends MultipleChoiceItem {
   ExtendedMultipleChoiceItem({
     required super.multipleChoiceItemId,
     required super.multipleChoiceQuestions,
+    required super.meta,
     required this.isCompleted,
     required this.isNew,
   });
@@ -162,6 +159,7 @@ class ExtendedMultipleChoiceItem extends MultipleChoiceItem {
       multipleChoiceItemId: item.multipleChoiceItemId,
       multipleChoiceQuestions: item.multipleChoiceQuestions,
       isCompleted: isCompleted,
+      meta: item.meta,
       isNew: isNew,
     );
   }
@@ -188,6 +186,7 @@ class ExtendedMultipleChoiceItem extends MultipleChoiceItem {
       multipleChoiceItemId: json['multipleChoiceItemId'],
       multipleChoiceQuestions: questions,
       isCompleted: json['isCompleted'] ?? false,
+      meta: FeedItemMeta.fromJson(json['meta']),
       isNew: false,
     );
   }
@@ -257,7 +256,7 @@ class ExtendedBlogPost extends BlogPost {
       description: json['description'],
       imageUrl: json['imageUrl'],
       htmlContent: json['htmlContent'],
-      meta: BlogPostMeta.fromJson(json['meta']),
+      meta: FeedItemMeta.fromJson(json['meta']),
       isCompleted: json['isCompleted'] ?? false,
       feedbackQuestion: json['feedbackQuestion'] != null
           ? BlogPostFeedbackQuestion.fromJson(json['feedbackQuestion'])

@@ -1,3 +1,4 @@
+import 'package:accessboard_models/models/blog_post/feed_item_meta.dart';
 import 'package:accessboard_models/models/design/custom_design.dart';
 import 'package:accessboard_models/models/feed/feed_item.dart';
 
@@ -7,16 +8,14 @@ class Poll extends FeedItem {
   final String pollId;
   final String question;
   final List<PollChoice> choices;
-  final DateTime createdAt;
-  final DateTime? updatedAt;
+  final FeedItemMeta meta;
   final CustomDesign? customDesign;
 
   Poll({
     required this.pollId,
     required this.question,
     required this.choices,
-    required this.createdAt,
-    this.updatedAt,
+    required this.meta,
     this.customDesign,
   }) : super(
           id: pollId,
@@ -32,12 +31,10 @@ class Poll extends FeedItem {
       pollId: json['pollId'],
       question: json['question'],
       choices: choices,
-      createdAt: DateTime.parse(json['createdAt']),
+      meta: FeedItemMeta.fromJson(json['createdAt']),
       customDesign: json['customDesign'] != null
           ? CustomDesign.fromJson(json['customDesign'])
           : null,
-      updatedAt:
-          json['updatedAt'] != null ? DateTime.parse(json['updatedAt']) : null,
     );
   }
 
@@ -50,8 +47,7 @@ class Poll extends FeedItem {
       'pollId': pollId,
       'question': question,
       'choices': choicesJson,
-      'createdAt': createdAt.toIso8601String(),
-      'updatedAt': updatedAt?.toIso8601String(),
+      'meta': meta.toJson(),
       'customDesign': customDesign?.toJson(),
       'type': type,
     };
@@ -66,14 +62,14 @@ class Poll extends FeedItem {
     DateTime? createdAt,
     DateTime? updatedAt,
     CustomDesign? customDesign,
+    FeedItemMeta? meta,
   }) {
     return Poll(
       pollId: pollId ?? this.pollId,
       question: question ?? this.question,
       choices: choices ?? this.choices,
-      createdAt: createdAt ?? this.createdAt,
-      updatedAt: updatedAt ?? this.updatedAt,
       customDesign: customDesign ?? this.customDesign,
+      meta: meta ?? this.meta,
     );
   }
 

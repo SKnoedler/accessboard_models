@@ -1,5 +1,5 @@
-import 'package:accessboard_models/models/blog_post/blog_post_meta.dart';
 import 'package:accessboard_models/models/blog_post/blog_post_model.dart';
+import 'package:accessboard_models/models/blog_post/feed_item_meta.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
@@ -12,7 +12,7 @@ void main() {
         description: 'This is a test post',
         imageUrl: 'https://example.com/image.jpg',
         htmlContent: '<p>This is a test post</p>',
-        meta: BlogPostMeta(
+        meta: FeedItemMeta(
           createdAt: DateTime(2022, 1, 1),
           releasedAt: DateTime(2022, 1, 2),
           updatedAt: DateTime(2022, 1, 3),
@@ -54,7 +54,7 @@ void main() {
       expect(post.description, 'This is a test post');
       expect(post.imageUrl, 'https://example.com/image.jpg');
       expect(post.htmlContent, '<p>This is a test post</p>');
-      expect(post.meta, isA<BlogPostMeta>());
+      expect(post.meta, isA<FeedItemMeta>());
     });
 
     test('isUnpublished returns true if isReleaseConfirmed is false', () {
@@ -65,7 +65,7 @@ void main() {
         description: 'This is a test post',
         imageUrl: 'https://example.com/image.jpg',
         htmlContent: '<p>This is a test post</p>',
-        meta: BlogPostMeta(
+        meta: FeedItemMeta(
           createdAt: DateTime(2022, 1, 1),
           releasedAt: DateTime(2022, 1, 2),
           updatedAt: DateTime(2022, 1, 3),
@@ -84,7 +84,7 @@ void main() {
         description: 'This is a test post',
         imageUrl: 'https://example.com/image.jpg',
         htmlContent: '<p>This is a test post</p>',
-        meta: BlogPostMeta(
+        meta: FeedItemMeta(
           createdAt: DateTime(2022, 1, 1),
           releasedAt: DateTime(2099, 1, 2),
           updatedAt: DateTime(2022, 1, 3),
@@ -103,7 +103,7 @@ void main() {
         description: 'This is a test post',
         imageUrl: 'https://example.com/image.jpg',
         htmlContent: '<p>This is a test post</p>',
-        meta: BlogPostMeta(
+        meta: FeedItemMeta(
           createdAt: DateTime(2022, 1, 1),
           releasedAt: DateTime(2022, 1, 2),
           updatedAt: DateTime(2022, 1, 3),
@@ -120,7 +120,7 @@ void main() {
         description: 'This is a test post',
         imageUrl: 'https://example.com/image.jpg',
         htmlContent: '<p>This is a test post</p>',
-        meta: BlogPostMeta(
+        meta: FeedItemMeta(
           createdAt: DateTime(2022, 1, 1),
           releasedAt: DateTime(2022, 1, 2),
           updatedAt: DateTime(2022, 1, 3),

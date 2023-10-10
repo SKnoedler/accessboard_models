@@ -1,10 +1,10 @@
-import 'package:accessboard_models/models/blog_post/blog_post_meta.dart';
+import 'package:accessboard_models/models/blog_post/feed_item_meta.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   group('BlogPostMeta', () {
     test('toJson returns a valid JSON object', () {
-      final meta = BlogPostMeta(
+      final meta = FeedItemMeta(
         createdAt: DateTime(2022, 1, 1),
         releasedAt: DateTime(2022, 1, 2),
         updatedAt: DateTime(2022, 1, 3),
@@ -30,7 +30,7 @@ void main() {
         'validUntil': '2022-01-04T00:00:00.000',
       };
 
-      final meta = BlogPostMeta.fromJson(json);
+      final meta = FeedItemMeta.fromJson(json);
 
       expect(meta.createdAt, DateTime(2022, 1, 1));
       expect(meta.releasedAt, DateTime(2022, 1, 2));

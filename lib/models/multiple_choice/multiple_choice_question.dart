@@ -1,3 +1,4 @@
+import 'package:accessboard_models/models/blog_post/feed_item_meta.dart';
 import 'package:accessboard_models/models/design/custom_design.dart';
 import 'package:accessboard_models/models/feed/feed_item.dart';
 
@@ -5,10 +6,12 @@ import 'package:accessboard_models/models/feed/feed_item.dart';
 class MultipleChoiceItem extends FeedItem {
   final String multipleChoiceItemId;
   final List<MultipleChoiceQuestion> multipleChoiceQuestions;
+  final FeedItemMeta meta;
 
   MultipleChoiceItem({
     required this.multipleChoiceItemId,
     required this.multipleChoiceQuestions,
+    required this.meta,
   }) : super(id: multipleChoiceItemId, type: typeName);
 
   factory MultipleChoiceItem.fromJson(Map<String, dynamic> json) {
@@ -19,6 +22,7 @@ class MultipleChoiceItem extends FeedItem {
 
     return MultipleChoiceItem(
       multipleChoiceItemId: json['multipleChoiceItemId'],
+      meta: FeedItemMeta.fromJson(json['meta']),
       multipleChoiceQuestions: questions,
     );
   }
@@ -32,6 +36,7 @@ class MultipleChoiceItem extends FeedItem {
       'multipleChoiceItemId': multipleChoiceItemId,
       'multipleChoiceQuestions': questionsJson,
       'type': type,
+      'meta': meta.toJson(),
     };
   }
 
@@ -40,11 +45,13 @@ class MultipleChoiceItem extends FeedItem {
   MultipleChoiceItem copyWith({
     String? multipleChoiceItemId,
     List<MultipleChoiceQuestion>? multipleChoiceQuestions,
+    FeedItemMeta? meta,
   }) {
     return MultipleChoiceItem(
       multipleChoiceItemId: multipleChoiceItemId ?? this.multipleChoiceItemId,
       multipleChoiceQuestions:
           multipleChoiceQuestions ?? this.multipleChoiceQuestions,
+      meta: meta ?? this.meta,
     );
   }
 
@@ -63,18 +70,12 @@ class MultipleChoiceQuestion {
   final String multipleChoiceQuestionId;
   final String question;
   final List<MultipleChoiceAnswerChoice> choices;
-  final DateTime createdAt;
-  final DateTime updatedAt;
-  final DateTime expiresAt;
   final CustomDesign? customDesign;
 
   MultipleChoiceQuestion({
     required this.multipleChoiceQuestionId,
     required this.question,
     required this.choices,
-    required this.createdAt,
-    required this.updatedAt,
-    required this.expiresAt,
     this.customDesign,
   });
 
@@ -84,9 +85,6 @@ class MultipleChoiceQuestion {
       question: json['question'],
       choices: List<MultipleChoiceAnswerChoice>.from(json['choices']
           .map((choice) => MultipleChoiceAnswerChoice.fromJson(choice))),
-      createdAt: DateTime.parse(json['createdAt']),
-      updatedAt: DateTime.parse(json['updatedAt']),
-      expiresAt: DateTime.parse(json['expiresAt']),
       customDesign: json['customDesign'] != null
           ? CustomDesign.fromJson(json['customDesign'])
           : null,
@@ -98,9 +96,6 @@ class MultipleChoiceQuestion {
       'multipleChoiceQuestionId': multipleChoiceQuestionId,
       'question': question,
       'choices': choices.map((choice) => choice.toJson()).toList(),
-      'createdAt': createdAt.toIso8601String(),
-      'updatedAt': updatedAt.toIso8601String(),
-      'expiresAt': expiresAt.toIso8601String(),
       'customDesign': customDesign?.toJson(),
     };
   }
@@ -120,9 +115,6 @@ class MultipleChoiceQuestion {
           multipleChoiceQuestionId ?? this.multipleChoiceQuestionId,
       question: question ?? this.question,
       choices: choices ?? this.choices,
-      createdAt: createdAt ?? this.createdAt,
-      updatedAt: updatedAt ?? this.updatedAt,
-      expiresAt: expiresAt ?? this.expiresAt,
       customDesign: customDesign ?? this.customDesign,
     );
   }

@@ -1,18 +1,18 @@
-class BlogPostMeta {
+class FeedItemMeta {
   final DateTime createdAt;
   final DateTime? releasedAt;
   final DateTime? updatedAt;
   final DateTime? validUntil;
 
-  BlogPostMeta({
+  FeedItemMeta({
     required this.createdAt,
     this.releasedAt,
     this.updatedAt,
     this.validUntil,
   });
 
-  factory BlogPostMeta.fromJson(Map<String, dynamic> json) {
-    return BlogPostMeta(
+  factory FeedItemMeta.fromJson(Map<String, dynamic> json) {
+    return FeedItemMeta(
       createdAt: DateTime.parse(json['createdAt']),
       releasedAt: json['releasedAt'] != null
           ? DateTime.parse(json['releasedAt'])

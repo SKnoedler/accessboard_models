@@ -1,5 +1,5 @@
 import 'package:accessboard_models/models/blog_post/blog_post_feedback_question.dart';
-import 'package:accessboard_models/models/blog_post/blog_post_meta.dart';
+import 'package:accessboard_models/models/blog_post/feed_item_meta.dart';
 import 'package:accessboard_models/models/design/custom_design.dart';
 import 'package:accessboard_models/models/feed/feed_item.dart';
 
@@ -11,7 +11,7 @@ class BlogPost extends FeedItem {
   final String description;
   final String imageUrl;
   final String htmlContent;
-  final BlogPostMeta meta;
+  final FeedItemMeta meta;
   final List<dynamic>? quillDocData;
   final BlogPostFeedbackQuestion? feedbackQuestion;
   final CustomDesign? customDesign;
@@ -41,7 +41,7 @@ class BlogPost extends FeedItem {
       description: json['description'],
       imageUrl: json['imageUrl'],
       htmlContent: json['htmlContent'],
-      meta: BlogPostMeta.fromJson(json['meta']),
+      meta: FeedItemMeta.fromJson(json['meta']),
       feedbackQuestion: json['feedbackQuestion'] != null
           ? BlogPostFeedbackQuestion.fromJson(json['feedbackQuestion'])
           : null,
@@ -90,7 +90,7 @@ class BlogPost extends FeedItem {
     String? description,
     String? imageUrl,
     String? htmlContent,
-    BlogPostMeta? meta,
+    FeedItemMeta? meta,
     BlogPostFeedbackQuestion? feedbackQuestion,
     CustomDesign? customDesign,
     List<Map<String, Object>>? quillDocData,
