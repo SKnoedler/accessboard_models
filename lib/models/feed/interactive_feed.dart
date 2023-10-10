@@ -49,6 +49,20 @@ class InteractiveFeed {
     };
   }
 
+  Map<String, dynamic> toStorageJson() {
+    final List<Map<String, dynamic>> feedItemsJson =
+        feedItems.map((item) => item.toStorageJson()).toList();
+
+    return {
+      'feedId': feedId,
+      'projectId': projectId,
+      'projectSecret': projectSecret,
+      'createdAt': createdAt.toIso8601String(),
+      'updatedAt': updatedAt.toIso8601String(),
+      'feedItems': feedItemsJson,
+    };
+  }
+
   InteractiveFeed copyWith({
     String? feedId,
     String? projectId,
