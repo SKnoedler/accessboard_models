@@ -60,9 +60,9 @@ abstract class FeedItem {
       case Poll.typeName:
         return (this as ExtendedPoll).toJson();
       case BlogPost.typeName:
-        return (this as BlogPost).toJson();
+        return (this as ExtendedBlogPost).toJson();
       case MultipleChoiceItem.typeName:
-        return (this as MultipleChoiceItem).toJson();
+        return (this as ExtendedMultipleChoiceItem).toJson();
       default:
         throw StateError('Invalid type: $type');
     }
@@ -119,6 +119,7 @@ class ExtendedPoll extends Poll {
       'choices': choices.map((choice) => choice.toJson()).toList(),
       'createdAt': createdAt.toIso8601String(),
       'isCompleted': isCompleted,
+      'type': type,
     };
   }
 
@@ -169,6 +170,7 @@ class ExtendedMultipleChoiceItem extends MultipleChoiceItem {
       'multipleChoiceQuestions':
           multipleChoiceQuestions.map((question) => question.toJson()).toList(),
       'isCompleted': isCompleted,
+      'type': type,
     };
   }
 
@@ -232,6 +234,7 @@ class ExtendedBlogPost extends BlogPost {
       'meta': meta.toJson(),
       'quillDocData': quillDocData,
       'isCompleted': isCompleted,
+      'type': type,
     };
   }
 
