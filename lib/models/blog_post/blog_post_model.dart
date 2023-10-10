@@ -80,6 +80,8 @@ class BlogPost extends FeedItem {
     return meta.validUntil != null && meta.validUntil!.isBefore(DateTime.now());
   }
 
+  bool get isActive => !isUnpublished && !isPlanned && !isExpired;
+
   static const String typeName = 'blog_post';
 
   BlogPost copyWith({
