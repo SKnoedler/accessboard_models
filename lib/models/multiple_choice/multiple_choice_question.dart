@@ -9,6 +9,7 @@ class MultipleChoiceItem extends FeedItem {
   MultipleChoiceItem({
     required this.multipleChoiceItemId,
     required this.multipleChoiceQuestions,
+    super.isNew = false,
   }) : super(id: multipleChoiceItemId, type: typeName);
 
   factory MultipleChoiceItem.fromJson(Map<String, dynamic> json) {
@@ -36,6 +37,19 @@ class MultipleChoiceItem extends FeedItem {
   }
 
   static const String typeName = 'multiple_choice_question';
+
+  MultipleChoiceItem copyWith({
+    String? multipleChoiceItemId,
+    List<MultipleChoiceQuestion>? multipleChoiceQuestions,
+    bool? isNew,
+  }) {
+    return MultipleChoiceItem(
+      multipleChoiceItemId: multipleChoiceItemId ?? this.multipleChoiceItemId,
+      multipleChoiceQuestions:
+          multipleChoiceQuestions ?? this.multipleChoiceQuestions,
+      isNew: isNew ?? this.isNew,
+    );
+  }
 
   @override
   bool operator ==(Object other) =>

@@ -5,10 +5,12 @@ import 'package:accessboard_models/models/poll/poll.dart';
 abstract class FeedItem {
   final String id;
   final String type;
+  final bool isNew;
 
   FeedItem({
     required this.id,
     required this.type,
+    this.isNew = false,
   });
 
   factory FeedItem.fromJson(Map<String, dynamic> json) {
