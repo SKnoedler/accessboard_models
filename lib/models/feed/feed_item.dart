@@ -38,4 +38,16 @@ abstract class FeedItem {
         throw StateError('Invalid type: $type');
     }
   }
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is FeedItem &&
+          runtimeType == other.runtimeType &&
+          id == other.id &&
+          type == other.type &&
+          isNew == other.isNew;
+
+  @override
+  int get hashCode => id.hashCode ^ type.hashCode ^ isNew.hashCode;
 }
