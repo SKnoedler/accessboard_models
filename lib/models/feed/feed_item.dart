@@ -171,6 +171,7 @@ class ExtendedMultipleChoiceItem extends MultipleChoiceItem {
       'multipleChoiceQuestions':
           multipleChoiceQuestions.map((question) => question.toJson()).toList(),
       'isCompleted': isCompleted,
+      'meta': meta.toJson(),
       'type': type,
     };
   }
