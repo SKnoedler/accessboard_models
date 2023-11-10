@@ -1,5 +1,5 @@
-import 'package:accessboard_models/models/blog_post/blog_post_model.dart';
-import 'package:accessboard_models/models/blog_post/feed_item_meta.dart';
+import 'package:accessboard_models/src/models/blog_post/blog_post_model.dart';
+import 'package:accessboard_models/src/models/blog_post/feed_item_meta.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {

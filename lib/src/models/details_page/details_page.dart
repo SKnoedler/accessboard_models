@@ -1,4 +1,4 @@
-import 'package:accessboard_models/models/details_page/page_meta.dart';
+import 'package:accessboard_models/src/models/details_page/page_meta.dart';
 
 class DetailsPage {
   final String pageId;

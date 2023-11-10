@@ -1,4 +1,4 @@
-import 'package:accessboard_models/models/access_log/year_month.dart';
+import 'package:accessboard_models/src/models/access_log/year_month.dart';
 
 class AccessLog {
   final String accessLogId;

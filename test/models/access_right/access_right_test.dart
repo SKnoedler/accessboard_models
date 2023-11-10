@@ -1,4 +1,4 @@
-import 'package:accessboard_models/models/access_right/access_right.dart';
+import 'package:accessboard_models/src/models/access_right/access_right.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {

@@ -1,4 +1,4 @@
-import 'package:accessboard_models/models/access_right/project_role_reference.dart';
+import 'package:accessboard_models/src/models/access_right/project_role_reference.dart';
 import 'package:flutter/foundation.dart';
 
 class AdminAccessRight extends AccessRightBase {

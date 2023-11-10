@@ -1,4 +1,4 @@
-import 'package:accessboard_models/models/feed/feed_item.dart';
+import 'package:accessboard_models/src/models/feed/feed_item.dart';
 
 // collection: feeds
 

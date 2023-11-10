@@ -1,9 +1,13 @@
+import 'package:accessboard_models/src/models/design/design_enums.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-// this design class can be used in individual widgets
+// collection: designs
 
-class CustomDesign {
+class Design {
+  final String designId;
+
+  final Color? backgroundColor;
   final Color? primaryColor;
   final Color? secondaryColor;
   final Color? tertiaryColor;
@@ -12,7 +16,9 @@ class CustomDesign {
   final BorderEnum? borderEnum;
   final ShadowEnum? shadowEnum;
 
-  CustomDesign({
+  Design({
+    required this.designId,
+    this.backgroundColor,
     this.primaryColor,
     this.secondaryColor,
     this.tertiaryColor,
@@ -21,8 +27,12 @@ class CustomDesign {
     this.shadowEnum,
   });
 
-  factory CustomDesign.fromJson(Map<String, dynamic> json) {
-    return CustomDesign(
+  factory Design.fromJson(Map<String, dynamic> json) {
+    return Design(
+      designId: json['designId'] as String,
+      backgroundColor: json['backgroundColor'] != null
+          ? Color(json['backgroundColor'] as int)
+          : null,
       primaryColor: json['primaryColor'] != null
           ? Color(json['primaryColor'] as int)
           : null,
@@ -49,6 +59,8 @@ class CustomDesign {
 
   Map<String, dynamic> toJson() {
     return {
+      'designId': designId,
+      'backgroundColor': backgroundColor?.value,
       'primaryColor': primaryColor?.value,
       'secondaryColor': secondaryColor?.value,
       'tertiaryColor': tertiaryColor?.value,
@@ -115,25 +127,4 @@ class CustomDesign {
         return null;
     }
   }
-}
-
-enum BorderRadiusEnum {
-  none,
-  small,
-  medium,
-  large,
-}
-
-enum BorderEnum {
-  none,
-  small,
-  medium,
-  large,
-}
-
-enum ShadowEnum {
-  none,
-  small,
-  medium,
-  large,
 }

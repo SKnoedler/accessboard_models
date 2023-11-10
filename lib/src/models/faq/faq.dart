@@ -1,5 +1,5 @@
-import 'package:accessboard_models/models/faq/faq_item.dart';
-import 'package:accessboard_models/models/faq/faq_meta.dart';
+import 'package:accessboard_models/src/models/faq/faq_item.dart';
+import 'package:accessboard_models/src/models/faq/faq_meta.dart';
 
 class FAQ {
   final String faqId;
