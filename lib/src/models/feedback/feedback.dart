@@ -5,7 +5,6 @@ import 'package:accessboard_models/src/models/multiple_choice/multiple_choice_it
 
 class Feedback {
   final String feedbackId;
-
   final List<FeedbackItem> feedbackItems;
 
   Feedback({
