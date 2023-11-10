@@ -33,4 +33,18 @@ class FeedItemMeta {
       'validUntil': validUntil?.toIso8601String(),
     };
   }
+
+  FeedItemMeta copyWith({
+    DateTime? createdAt,
+    DateTime? releasedAt,
+    DateTime? updatedAt,
+    DateTime? validUntil,
+  }) {
+    return FeedItemMeta(
+      createdAt: createdAt ?? this.createdAt,
+      releasedAt: releasedAt ?? this.releasedAt,
+      updatedAt: updatedAt ?? this.updatedAt,
+      validUntil: validUntil ?? this.validUntil,
+    );
+  }
 }
