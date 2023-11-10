@@ -3,11 +3,11 @@
 // one per project
 class FeedbackAnswers {
   final String feedbackId;
-  final List<FeedbackItem> feedbackItems;
+  final List<FeedbackItem> feedbackAnswerItem;
 
   FeedbackAnswers({
     required this.feedbackId,
-    this.feedbackItems = const [],
+    this.feedbackAnswerItem = const [],
   });
 
   factory FeedbackAnswers.fromJson(Map<String, dynamic> json) {
@@ -17,14 +17,14 @@ class FeedbackAnswers {
 
     return FeedbackAnswers(
       feedbackId: json['feedbackId'] as String,
-      feedbackItems: feedbackItems,
+      feedbackAnswerItem: feedbackItems,
     );
   }
 
   Map<String, dynamic> toJson() {
     return {
       'feedbackId': feedbackId,
-      'feedbackItems': feedbackItems.map((item) => item.toJson()).toList(),
+      'feedbackItems': feedbackAnswerItem.map((item) => item.toJson()).toList(),
     };
   }
 
@@ -34,11 +34,11 @@ class FeedbackAnswers {
 
     return other is FeedbackAnswers &&
         other.feedbackId == feedbackId &&
-        other.feedbackItems == feedbackItems;
+        other.feedbackAnswerItem == feedbackAnswerItem;
   }
 
   @override
-  int get hashCode => feedbackId.hashCode ^ feedbackItems.hashCode;
+  int get hashCode => feedbackId.hashCode ^ feedbackAnswerItem.hashCode;
 }
 
 // created by user and updated by admin
