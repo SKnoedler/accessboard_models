@@ -3,7 +3,7 @@
 // one per project
 class FeedbackAnswers {
   final String feedbackId;
-  final List<FeedbackItem> feedbackAnswerItem;
+  final List<FeedbackAnswerItem> feedbackAnswerItem;
 
   FeedbackAnswers({
     required this.feedbackId,
@@ -12,8 +12,9 @@ class FeedbackAnswers {
 
   factory FeedbackAnswers.fromJson(Map<String, dynamic> json) {
     var feedbackItemsJson = json['feedbackItems'] as List;
-    List<FeedbackItem> feedbackItems =
-        feedbackItemsJson.map((item) => FeedbackItem.fromJson(item)).toList();
+    List<FeedbackAnswerItem> feedbackItems = feedbackItemsJson
+        .map((item) => FeedbackAnswerItem.fromJson(item))
+        .toList();
 
     return FeedbackAnswers(
       feedbackId: json['feedbackId'] as String,
@@ -42,14 +43,14 @@ class FeedbackAnswers {
 }
 
 // created by user and updated by admin
-class FeedbackItem {
+class FeedbackAnswerItem {
   final String deviceId;
   final String feedbackItemId;
   final FeedbackUserContent feedbackContent;
   final FeedbackAdminReply? feedbackReply;
   final bool isFeedbackReplyRead;
 
-  FeedbackItem({
+  FeedbackAnswerItem({
     required this.feedbackItemId,
     required this.feedbackContent,
     required this.deviceId,
@@ -57,8 +58,8 @@ class FeedbackItem {
     this.feedbackReply,
   });
 
-  factory FeedbackItem.fromJson(Map<String, dynamic> json) {
-    return FeedbackItem(
+  factory FeedbackAnswerItem.fromJson(Map<String, dynamic> json) {
+    return FeedbackAnswerItem(
         deviceId: json['deviceId'] as String,
         feedbackItemId: json['feedbackItemId'] as String,
         isFeedbackReplyRead: json['isFeedbackReplyRead'] as bool,
@@ -75,7 +76,7 @@ class FeedbackItem {
     };
   }
 
-  FeedbackItem copyWith({
+  FeedbackAnswerItem copyWith({
     String? feedbackItemId,
     FeedbackUserContent? feedbackContent,
     FeedbackAdminReply? feedbackReply,
@@ -84,7 +85,7 @@ class FeedbackItem {
     DateTime? updatedAt,
     String? deviceId,
   }) {
-    return FeedbackItem(
+    return FeedbackAnswerItem(
       deviceId: deviceId ?? this.deviceId,
       feedbackItemId: feedbackItemId ?? this.feedbackItemId,
       feedbackContent: feedbackContent ?? this.feedbackContent,
@@ -94,10 +95,10 @@ class FeedbackItem {
   }
 
   // used by admin user: reply
-  FeedbackItem replyToFeedback({
+  FeedbackAnswerItem replyToFeedback({
     required FeedbackAdminReply reply,
   }) {
-    return FeedbackItem(
+    return FeedbackAnswerItem(
       deviceId: deviceId,
       feedbackItemId: feedbackItemId,
       feedbackContent: feedbackContent,
@@ -110,7 +111,7 @@ class FeedbackItem {
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
 
-    return other is FeedbackItem &&
+    return other is FeedbackAnswerItem &&
         other.isFeedbackReplyRead == isFeedbackReplyRead &&
         other.feedbackItemId == feedbackItemId &&
         other.feedbackContent == feedbackContent &&

@@ -10,6 +10,7 @@ export 'src/models/details_page/details_page.dart';
 export 'src/models/faq/faq.dart';
 export 'src/models/feed/interactive_feed.dart';
 export 'src/models/feedback/feedback.dart';
+export 'src/models/feedback_answers/feedback_answers.dart';
 export 'src/models/multiple_choice/multiple_choice_item.dart';
 export 'src/models/multiple_choice_selections/multiple_choice_selections.dart';
 export 'src/models/poll/poll.dart';
