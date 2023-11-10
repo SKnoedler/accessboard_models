@@ -1,20 +1,20 @@
 // collection: multipleChoiceSelections
-class MultipleChoiceSelection {
+class MultipleChoiceSelections {
   final List<MultipleChoiceSelectionItem> selectionItems;
   final DateTime updatedAt;
 
-  MultipleChoiceSelection({
+  MultipleChoiceSelections({
     required this.selectionItems,
     required this.updatedAt,
   });
-  factory MultipleChoiceSelection.fromJson(Map<String, dynamic> json) {
+  factory MultipleChoiceSelections.fromJson(Map<String, dynamic> json) {
     var multipleChoiceSelectionItemsList = json['selectionItems'] as List;
     List<MultipleChoiceSelectionItem> multipleChoiceSelectionItems =
         multipleChoiceSelectionItemsList
             .map((item) => MultipleChoiceSelectionItem.fromJson(item))
             .toList();
 
-    return MultipleChoiceSelection(
+    return MultipleChoiceSelections(
       selectionItems: multipleChoiceSelectionItems,
       updatedAt: DateTime.parse(json['updatedAt']),
     );
