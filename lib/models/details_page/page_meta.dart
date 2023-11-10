@@ -27,4 +27,16 @@ class PageMeta {
       'updatedAt': updatedAt?.toIso8601String(),
     };
   }
+
+  PageMeta copyWith({
+    DateTime? createdAt,
+    DateTime? releasedAt,
+    DateTime? updatedAt,
+  }) {
+    return PageMeta(
+      createdAt: createdAt ?? this.createdAt,
+      releasedAt: releasedAt ?? this.releasedAt,
+      updatedAt: updatedAt ?? this.updatedAt,
+    );
+  }
 }

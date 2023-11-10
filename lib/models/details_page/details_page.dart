@@ -35,6 +35,22 @@ class DetailsPage {
     };
   }
 
+  DetailsPage copyWith({
+    String? pageId,
+    String? htmlContent,
+    String? title,
+    PageMeta? meta,
+    List<dynamic>? quillDocData,
+  }) {
+    return DetailsPage(
+      pageId: pageId ?? this.pageId,
+      htmlContent: htmlContent ?? this.htmlContent,
+      title: title ?? this.title,
+      meta: meta ?? this.meta,
+      quillDocData: quillDocData ?? this.quillDocData,
+    );
+  }
+
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
