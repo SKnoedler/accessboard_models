@@ -1,3 +1,5 @@
+import 'package:accessboard_models/src/models/feedback/feedback_item_meta.dart';
+
 /// feedback model unqiue for each device id
 /// the feedback model is retrieved from the database
 /// user can create a feedbackItem and admin use can update that feedbackitem
@@ -55,16 +57,14 @@ class FeedbackItem {
   final String feedbackContent;
   final String? feedbackReply;
   final bool isFeedbackReplyRead;
-  final DateTime createdAt;
-  final DateTime? updatedAt;
+  final FeedbackItemMeta meta;
 
   FeedbackItem({
     required this.feedbackItemId,
     required this.feedbackContent,
     this.isFeedbackReplyRead = false,
     this.feedbackReply,
-    required this.createdAt,
-    this.updatedAt,
+    required this.meta,
   });
 
   factory FeedbackItem.fromJson(Map<String, dynamic> json) {
@@ -73,10 +73,8 @@ class FeedbackItem {
       isFeedbackReplyRead: json['isFeedbackReplyRead'] as bool,
       feedbackContent: json['feedbackContent'] as String,
       feedbackReply: json['feedbackReply'] as String?,
-      createdAt: DateTime.parse(json['createdAt'] as String),
-      updatedAt: json['updatedAt'] != null
-          ? DateTime.parse(json['updatedAt'] as String)
-          : null,
+      meta:
+          FeedbackItemMeta.fromJson(json['createdAt'] as Map<String, dynamic>),
     );
   }
 
@@ -86,8 +84,7 @@ class FeedbackItem {
       'feedbackContent': feedbackContent,
       'isFeedbackReplyRead': isFeedbackReplyRead,
       'feedbackReply': feedbackReply,
-      'createdAt': createdAt.toIso8601String(),
-      'updatedAt': updatedAt?.toIso8601String(),
+      'meta': meta.toJson(),
     };
   }
 
@@ -98,14 +95,14 @@ class FeedbackItem {
     bool? isFeedbackReplyRead,
     DateTime? createdAt,
     DateTime? updatedAt,
+    FeedbackItemMeta? meta,
   }) {
     return FeedbackItem(
       feedbackItemId: feedbackItemId ?? this.feedbackItemId,
       feedbackContent: feedbackContent ?? this.feedbackContent,
       feedbackReply: feedbackReply ?? this.feedbackReply,
       isFeedbackReplyRead: isFeedbackReplyRead ?? this.isFeedbackReplyRead,
-      createdAt: createdAt ?? this.createdAt,
-      updatedAt: updatedAt ?? this.updatedAt,
+      meta: meta ?? this.meta,
     );
   }
 
@@ -118,8 +115,7 @@ class FeedbackItem {
       feedbackContent: feedbackContent,
       feedbackReply: feedbackReply,
       isFeedbackReplyRead: isFeedbackReplyRead,
-      createdAt: createdAt,
-      updatedAt: DateTime.now(),
+      meta: meta.copyWith(updatedAt: DateTime.now()),
     );
   }
 
@@ -132,8 +128,7 @@ class FeedbackItem {
         other.feedbackItemId == feedbackItemId &&
         other.feedbackContent == feedbackContent &&
         other.feedbackReply == feedbackReply &&
-        other.createdAt == createdAt &&
-        other.updatedAt == updatedAt;
+        other.meta == meta;
   }
 
   @override
@@ -142,6 +137,5 @@ class FeedbackItem {
       feedbackItemId.hashCode ^
       feedbackContent.hashCode ^
       feedbackReply.hashCode ^
-      createdAt.hashCode ^
-      updatedAt.hashCode;
+      meta.hashCode;
 }
