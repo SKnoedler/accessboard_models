@@ -2,7 +2,6 @@ import 'package:accessboard_models/src/models/blog_post/feed_item_meta.dart';
 import 'package:accessboard_models/src/models/design/custom_design.dart';
 import 'package:accessboard_models/src/models/feed/feed_item.dart';
 
-// collection: multipleChoiceItems
 class MultipleChoiceItem extends FeedItem {
   final String multipleChoiceItemId;
   final List<MultipleChoiceQuestion> multipleChoiceQuestions;
