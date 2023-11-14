@@ -27,4 +27,16 @@ class FaqMeta {
       'updatedAt': updatedAt?.toIso8601String(),
     };
   }
+
+  FaqMeta copyWith({
+    final DateTime? createdAt,
+    final DateTime? releasedAt,
+    final DateTime? updatedAt,
+  }) {
+    return FaqMeta(
+      createdAt: createdAt ?? this.createdAt,
+      releasedAt: releasedAt ?? this.releasedAt,
+      updatedAt: updatedAt ?? this.updatedAt,
+    );
+  }
 }
