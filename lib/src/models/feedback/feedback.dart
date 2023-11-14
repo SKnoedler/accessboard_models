@@ -1,36 +1,7 @@
-// collection feedback
+// collection feedbackItems
 // 1 feedback object per project
 import 'package:accessboard_models/src/models/meta/item_meta.dart';
 import 'package:accessboard_models/src/models/multiple_choice/multiple_choice_item.dart';
-
-class Feedback {
-  final String feedbackId;
-  final List<FeedbackItem> feedbackItems;
-
-  Feedback({
-    required this.feedbackId,
-    required this.feedbackItems,
-  });
-
-  factory Feedback.fromJson(Map<String, dynamic> json) {
-    return Feedback(
-      feedbackId: json['feedbackId'] as String,
-      feedbackItems: (json['feedbackItems'] as List<dynamic>)
-          .map((e) => FeedbackItem.fromJson(e as Map<String, dynamic>))
-          .toList(),
-    );
-  }
-
-  Feedback copyWith({
-    String? feedbackId,
-    List<FeedbackItem>? feedbackItems,
-  }) {
-    return Feedback(
-      feedbackId: feedbackId ?? this.feedbackId,
-      feedbackItems: feedbackItems ?? this.feedbackItems,
-    );
-  }
-}
 
 abstract class FeedbackItem {
   final String feedbackItemId;
