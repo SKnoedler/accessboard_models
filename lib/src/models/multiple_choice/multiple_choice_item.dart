@@ -4,11 +4,13 @@ import 'package:accessboard_models/src/models/feed/feed_item.dart';
 
 class MultipleChoiceItem extends FeedItem {
   final String multipleChoiceItemId;
+  final String projectId;
   final List<MultipleChoiceQuestion> multipleChoiceQuestions;
   final FeedItemMeta meta;
 
   MultipleChoiceItem({
     required this.multipleChoiceItemId,
+    required this.projectId,
     required this.multipleChoiceQuestions,
     required this.meta,
   }) : super(id: multipleChoiceItemId, type: typeName);
@@ -20,6 +22,7 @@ class MultipleChoiceItem extends FeedItem {
         .toList();
 
     return MultipleChoiceItem(
+      projectId: json['projectId'],
       multipleChoiceItemId: json['multipleChoiceItemId'],
       meta: FeedItemMeta.fromJson(json['meta']),
       multipleChoiceQuestions: questions,
@@ -32,6 +35,7 @@ class MultipleChoiceItem extends FeedItem {
         multipleChoiceQuestions.map((question) => question.toJson()).toList();
 
     return {
+      'projectId': projectId,
       'multipleChoiceItemId': multipleChoiceItemId,
       'multipleChoiceQuestions': questionsJson,
       'type': type,
@@ -57,16 +61,15 @@ class MultipleChoiceItem extends FeedItem {
   bool get isActive => !isUnpublished && !isPlanned && !isExpired;
 
   MultipleChoiceItem copyWith({
-    String? multipleChoiceItemId,
     List<MultipleChoiceQuestion>? multipleChoiceQuestions,
     FeedItemMeta? meta,
   }) {
     return MultipleChoiceItem(
-      multipleChoiceItemId: multipleChoiceItemId ?? this.multipleChoiceItemId,
-      multipleChoiceQuestions:
-          multipleChoiceQuestions ?? this.multipleChoiceQuestions,
-      meta: meta ?? this.meta,
-    );
+        multipleChoiceItemId: multipleChoiceItemId,
+        multipleChoiceQuestions:
+            multipleChoiceQuestions ?? this.multipleChoiceQuestions,
+        meta: meta ?? this.meta,
+        projectId: projectId);
   }
 
   @override
@@ -74,10 +77,11 @@ class MultipleChoiceItem extends FeedItem {
       identical(this, other) ||
       other is MultipleChoiceItem &&
           runtimeType == other.runtimeType &&
+          projectId == other.projectId &&
           multipleChoiceItemId == other.multipleChoiceItemId;
 
   @override
-  int get hashCode => multipleChoiceItemId.hashCode;
+  int get hashCode => multipleChoiceItemId.hashCode ^ projectId.hashCode;
 }
 
 class MultipleChoiceQuestion {
