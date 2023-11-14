@@ -1,46 +1,4 @@
-// collection: feedbackAnswers
-
-// one per project
-class FeedbackAnswers {
-  final String feedbackId;
-  final List<FeedbackAnswerItem> feedbackAnswerItem;
-
-  FeedbackAnswers({
-    required this.feedbackId,
-    this.feedbackAnswerItem = const [],
-  });
-
-  factory FeedbackAnswers.fromJson(Map<String, dynamic> json) {
-    var feedbackItemsJson = json['feedbackItems'] as List;
-    List<FeedbackAnswerItem> feedbackItems = feedbackItemsJson
-        .map((item) => FeedbackAnswerItem.fromJson(item))
-        .toList();
-
-    return FeedbackAnswers(
-      feedbackId: json['feedbackId'] as String,
-      feedbackAnswerItem: feedbackItems,
-    );
-  }
-
-  Map<String, dynamic> toJson() {
-    return {
-      'feedbackId': feedbackId,
-      'feedbackItems': feedbackAnswerItem.map((item) => item.toJson()).toList(),
-    };
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) return true;
-
-    return other is FeedbackAnswers &&
-        other.feedbackId == feedbackId &&
-        other.feedbackAnswerItem == feedbackAnswerItem;
-  }
-
-  @override
-  int get hashCode => feedbackId.hashCode ^ feedbackAnswerItem.hashCode;
-}
+// collection: feedbackAnswerItems
 
 // created by user and updated by admin
 class FeedbackAnswerItem {
