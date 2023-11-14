@@ -4,11 +4,13 @@
 class FeedbackAnswerItem {
   final String deviceId;
   final String feedbackItemId;
+  final String feedbackAnswerItemId;
   final FeedbackUserContent feedbackContent;
   final FeedbackAdminReply? feedbackReply;
   final bool isFeedbackReplyRead;
 
   FeedbackAnswerItem({
+    required this.feedbackAnswerItemId,
     required this.feedbackItemId,
     required this.feedbackContent,
     required this.deviceId,
@@ -20,6 +22,7 @@ class FeedbackAnswerItem {
     return FeedbackAnswerItem(
         deviceId: json['deviceId'] as String,
         feedbackItemId: json['feedbackItemId'] as String,
+        feedbackAnswerItemId: json['feedbackAnswerItemId'] as String,
         isFeedbackReplyRead: json['isFeedbackReplyRead'] as bool,
         feedbackContent: json['feedbackContent'] as FeedbackUserContent,
         feedbackReply: json['feedbackReply'] as FeedbackAdminReply?);
@@ -27,6 +30,7 @@ class FeedbackAnswerItem {
 
   Map<String, dynamic> toJson() {
     return {
+      'feedbackAnswerItemId': feedbackAnswerItemId,
       'feedbackItemId': feedbackItemId,
       'feedbackContent': feedbackContent,
       'isFeedbackReplyRead': isFeedbackReplyRead,
@@ -35,7 +39,6 @@ class FeedbackAnswerItem {
   }
 
   FeedbackAnswerItem copyWith({
-    String? feedbackItemId,
     FeedbackUserContent? feedbackContent,
     FeedbackAdminReply? feedbackReply,
     bool? isFeedbackReplyRead,
@@ -44,8 +47,9 @@ class FeedbackAnswerItem {
     String? deviceId,
   }) {
     return FeedbackAnswerItem(
+      feedbackAnswerItemId: feedbackAnswerItemId,
+      feedbackItemId: feedbackItemId,
       deviceId: deviceId ?? this.deviceId,
-      feedbackItemId: feedbackItemId ?? this.feedbackItemId,
       feedbackContent: feedbackContent ?? this.feedbackContent,
       feedbackReply: feedbackReply ?? this.feedbackReply,
       isFeedbackReplyRead: isFeedbackReplyRead ?? this.isFeedbackReplyRead,
@@ -59,6 +63,7 @@ class FeedbackAnswerItem {
     return FeedbackAnswerItem(
       deviceId: deviceId,
       feedbackItemId: feedbackItemId,
+      feedbackAnswerItemId: feedbackAnswerItemId,
       feedbackContent: feedbackContent,
       feedbackReply: reply,
       isFeedbackReplyRead: isFeedbackReplyRead,
