@@ -3,6 +3,7 @@ import 'package:accessboard_models/src/models/faq/faq_meta.dart';
 
 class FAQ {
   final String faqId;
+  final String projectId;
   final List<FaqItem> faqItems;
   final LocalizedString? openFaqQuestion;
   final FaqMeta meta;
@@ -11,6 +12,7 @@ class FAQ {
 
   FAQ({
     required this.faqId,
+    required this.projectId,
     required this.faqItems,
     required this.meta,
     this.openFaqQuestion,
@@ -32,6 +34,7 @@ class FAQ {
           ? LocalizedString.fromJson(json['openFaqQuestion'])
           : null,
       faqId: json['faqId'] as String,
+      projectId: json['projectId'] as String,
       faqItems: faqItems,
       meta: FaqMeta.fromJson(json['meta']),
     );
@@ -43,13 +46,13 @@ class FAQ {
       'openFaqQuestion':
           openFaqQuestion != null ? openFaqQuestion!.toJson() : null,
       'faqId': faqId,
+      'projectId': projectId,
       'faqItems': faqItems.map((item) => item.toJson()).toList(),
       'meta': meta.toJson(),
     };
   }
 
   FAQ copyWith({
-    String? faqId,
     List<FaqItem>? faqItems,
     FaqMeta? meta,
     LocalizedString? openFaqQuestion,
@@ -58,7 +61,8 @@ class FAQ {
     return FAQ(
       targetGroups: targetGroups ?? this.targetGroups,
       openFaqQuestion: openFaqQuestion ?? this.openFaqQuestion,
-      faqId: faqId ?? this.faqId,
+      faqId: faqId,
+      projectId: projectId,
       faqItems: faqItems ?? this.faqItems,
       meta: meta ?? this.meta,
     );
@@ -70,6 +74,7 @@ class FAQ {
 
     return other is FAQ &&
         other.faqId == faqId &&
+        other.projectId == projectId &&
         other.targetGroups == targetGroups &&
         other.openFaqQuestion == openFaqQuestion &&
         other.faqItems == faqItems &&
@@ -80,6 +85,7 @@ class FAQ {
   int get hashCode =>
       openFaqQuestion.hashCode ^
       faqId.hashCode ^
+      projectId.hashCode ^
       targetGroups.hashCode ^
       faqItems.hashCode ^
       meta.hashCode;
