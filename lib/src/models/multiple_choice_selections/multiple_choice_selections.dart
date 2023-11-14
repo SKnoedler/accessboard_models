@@ -1,35 +1,4 @@
-// collection: multipleChoiceSelections
-class MultipleChoiceSelections {
-  final List<MultipleChoiceSelectionItem> selectionItems;
-  final DateTime updatedAt;
-
-  MultipleChoiceSelections({
-    required this.selectionItems,
-    required this.updatedAt,
-  });
-  factory MultipleChoiceSelections.fromJson(Map<String, dynamic> json) {
-    var multipleChoiceSelectionItemsList = json['selectionItems'] as List;
-    List<MultipleChoiceSelectionItem> multipleChoiceSelectionItems =
-        multipleChoiceSelectionItemsList
-            .map((item) => MultipleChoiceSelectionItem.fromJson(item))
-            .toList();
-
-    return MultipleChoiceSelections(
-      selectionItems: multipleChoiceSelectionItems,
-      updatedAt: DateTime.parse(json['updatedAt']),
-    );
-  }
-
-  Map<String, dynamic> toJson() {
-    List<Map<String, dynamic>> multipleChoiceSelectionItemsJson =
-        selectionItems.map((item) => item.toJson()).toList();
-
-    return {
-      'selectionItems': multipleChoiceSelectionItemsJson,
-      'updatedAt': updatedAt.toIso8601String(),
-    };
-  }
-}
+// collection: MultipleChoiceSelectionItems
 
 class MultipleChoiceSelectionItem {
   final String multipleChoiceFeedbackId;
