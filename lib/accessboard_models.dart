@@ -14,6 +14,7 @@ export 'src/models/feed/feed_item.dart';
 export 'src/models/feed/interactive_feed.dart';
 export 'src/models/feedback/feedback.dart';
 export 'src/models/feedback_answers/feedback_answers.dart';
+export 'src/models/localized_string/language.dart';
 export 'src/models/localized_string/localized_string.dart';
 export 'src/models/multiple_choice/multiple_choice_item.dart';
 export 'src/models/multiple_choice_selections/multiple_choice_selections.dart';
