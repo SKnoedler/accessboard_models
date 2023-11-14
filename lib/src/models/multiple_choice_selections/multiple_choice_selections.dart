@@ -1,6 +1,7 @@
-// collection: MultipleChoiceSelectionItems
+// collection: multipleChoiceSelectionItems
 
 class MultipleChoiceSelectionItem {
+  final String projectId;
   final String multipleChoiceSelectionItemId;
   final String multipleChoiceItemId;
   final String multipleChoiceQuestionId;
@@ -10,6 +11,7 @@ class MultipleChoiceSelectionItem {
   final DateTime selectedAt;
 
   MultipleChoiceSelectionItem({
+    required this.projectId,
     required this.multipleChoiceSelectionItemId,
     required this.multipleChoiceItemId,
     required this.multipleChoiceQuestionId,
@@ -20,6 +22,7 @@ class MultipleChoiceSelectionItem {
 
   factory MultipleChoiceSelectionItem.fromJson(Map<String, dynamic> json) {
     return MultipleChoiceSelectionItem(
+      projectId: json['projectId'] as String,
       multipleChoiceSelectionItemId:
           json['multipleChoiceSelectionItemId'] as String,
       multipleChoiceItemId: json['multipleChoiceItemId'] as String,
@@ -32,6 +35,7 @@ class MultipleChoiceSelectionItem {
 
   Map<String, dynamic> toJson() {
     return {
+      'projectId': projectId,
       'multipleChoiceSelectionItemId': multipleChoiceSelectionItemId,
       'multipleChoiceItemId': multipleChoiceItemId,
       'multipleChoiceQuestionId': multipleChoiceQuestionId,
@@ -42,20 +46,15 @@ class MultipleChoiceSelectionItem {
   }
 
   MultipleChoiceSelectionItem copyWith({
-    String? multipleChoiceSelectionItemId,
-    String? multipleChoiceItemId,
-    String? multipleChoiceQuestionId,
-    String? deviceId,
     String? selectedAnswer,
     DateTime? selectedAt,
   }) {
     return MultipleChoiceSelectionItem(
-      multipleChoiceSelectionItemId:
-          multipleChoiceSelectionItemId ?? this.multipleChoiceSelectionItemId,
-      multipleChoiceItemId: multipleChoiceItemId ?? this.multipleChoiceItemId,
-      multipleChoiceQuestionId:
-          multipleChoiceQuestionId ?? this.multipleChoiceQuestionId,
-      deviceId: deviceId ?? this.deviceId,
+      multipleChoiceSelectionItemId: multipleChoiceSelectionItemId,
+      multipleChoiceItemId: multipleChoiceItemId,
+      multipleChoiceQuestionId: multipleChoiceQuestionId,
+      deviceId: deviceId,
+      projectId: projectId,
       selectedAnswer: selectedAnswer ?? this.selectedAnswer,
       selectedAt: selectedAt ?? this.selectedAt,
     );
