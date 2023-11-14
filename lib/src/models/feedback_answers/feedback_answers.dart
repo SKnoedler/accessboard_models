@@ -3,6 +3,7 @@
 // created by user and updated by admin
 class FeedbackAnswerItem {
   final String deviceId;
+  final String projectId;
   final String feedbackItemId;
   final String feedbackAnswerItemId;
   final DateTime createdAt;
@@ -18,12 +19,14 @@ class FeedbackAnswerItem {
     required this.feedbackItemId,
     required this.feedbackContent,
     required this.deviceId,
+    required this.projectId,
     this.isFeedbackReplyRead = false,
     this.feedbackReply,
   });
 
   factory FeedbackAnswerItem.fromJson(Map<String, dynamic> json) {
     return FeedbackAnswerItem(
+      projectId: json['projectId'] as String,
       deviceId: json['deviceId'] as String,
       feedbackItemId: json['feedbackItemId'] as String,
       feedbackAnswerItemId: json['feedbackAnswerItemId'] as String,
@@ -41,6 +44,7 @@ class FeedbackAnswerItem {
     return {
       'feedbackAnswerItemId': feedbackAnswerItemId,
       'feedbackItemId': feedbackItemId,
+      'projectId': projectId,
       'feedbackContent': feedbackContent,
       'isFeedbackReplyRead': isFeedbackReplyRead,
       'feedbackReply': feedbackReply,
@@ -55,12 +59,12 @@ class FeedbackAnswerItem {
     bool? isFeedbackReplyRead,
     DateTime? createdAt,
     DateTime? updatedAt,
-    String? deviceId,
   }) {
     return FeedbackAnswerItem(
       feedbackAnswerItemId: feedbackAnswerItemId,
       feedbackItemId: feedbackItemId,
-      deviceId: deviceId ?? this.deviceId,
+      deviceId: deviceId,
+      projectId: projectId,
       feedbackContent: feedbackContent ?? this.feedbackContent,
       feedbackReply: feedbackReply ?? this.feedbackReply,
       isFeedbackReplyRead: isFeedbackReplyRead ?? this.isFeedbackReplyRead,
@@ -75,6 +79,7 @@ class FeedbackAnswerItem {
   }) {
     return FeedbackAnswerItem(
       deviceId: deviceId,
+      projectId: projectId,
       createdAt: createdAt,
       updatedAt: updatedAt,
       feedbackItemId: feedbackItemId,
@@ -93,6 +98,7 @@ class FeedbackAnswerItem {
         other.isFeedbackReplyRead == isFeedbackReplyRead &&
         other.feedbackItemId == feedbackItemId &&
         other.createdAt == createdAt &&
+        other.projectId == projectId &&
         other.updatedAt == updatedAt &&
         other.feedbackContent == feedbackContent &&
         other.feedbackReply == feedbackReply;
@@ -103,6 +109,7 @@ class FeedbackAnswerItem {
       isFeedbackReplyRead.hashCode ^
       feedbackItemId.hashCode ^
       createdAt.hashCode ^
+      projectId.hashCode ^
       updatedAt.hashCode ^
       feedbackContent.hashCode ^
       feedbackReply.hashCode;
