@@ -6,11 +6,13 @@ import 'package:accessboard_models/src/models/multiple_choice/multiple_choice_it
 abstract class FeedbackItem {
   final String feedbackItemId;
   final String type;
+  final String projectId;
 
   final ItemMeta meta;
 
   FeedbackItem({
     required this.feedbackItemId,
+    required this.projectId,
     required this.meta,
     required this.type,
   });
@@ -44,15 +46,18 @@ class OpenFeedbackQuestion extends FeedbackItem {
   OpenFeedbackQuestion({
     required this.question,
     required String feedbackItemId,
+    required String projectId,
     required ItemMeta meta,
   }) : super(
           feedbackItemId: feedbackItemId,
           meta: meta,
           type: typeName,
+          projectId: projectId,
         );
 
   factory OpenFeedbackQuestion.fromJson(Map<String, dynamic> json) {
     return OpenFeedbackQuestion(
+      projectId: json['projectId'] as String,
       question: json['question'] as String,
       feedbackItemId: json['feedbackItemId'] as String,
       meta: ItemMeta.fromJson(json['meta']),
@@ -62,6 +67,7 @@ class OpenFeedbackQuestion extends FeedbackItem {
   @override
   Map<String, dynamic> toJson() {
     return {
+      'projectId': projectId,
       'question': question,
       'feedbackItemId': feedbackItemId,
       'meta': meta.toJson(),
@@ -71,12 +77,12 @@ class OpenFeedbackQuestion extends FeedbackItem {
 
   OpenFeedbackQuestion copyWith({
     String? question,
-    String? feedbackItemId,
     ItemMeta? meta,
   }) {
     return OpenFeedbackQuestion(
+      projectId: projectId,
+      feedbackItemId: feedbackItemId,
       question: question ?? this.question,
-      feedbackItemId: feedbackItemId ?? this.feedbackItemId,
       meta: meta ?? this.meta,
     );
   }
@@ -92,15 +98,17 @@ class MultipleChoiceFeedbackQuestion extends FeedbackItem {
     required this.question,
     required this.choices,
     required String feedbackItemId,
+    required String projectId,
     required ItemMeta meta,
   }) : super(
-          feedbackItemId: feedbackItemId,
-          meta: meta,
-          type: typeName,
-        );
+            feedbackItemId: feedbackItemId,
+            meta: meta,
+            type: typeName,
+            projectId: projectId);
 
   factory MultipleChoiceFeedbackQuestion.fromJson(Map<String, dynamic> json) {
     return MultipleChoiceFeedbackQuestion(
+      projectId: json['projectId'] as String,
       question: json['question'] as String,
       choices: (json['choices'] as List<dynamic>)
           .map((e) =>
@@ -114,6 +122,7 @@ class MultipleChoiceFeedbackQuestion extends FeedbackItem {
   @override
   Map<String, dynamic> toJson() {
     return {
+      'projectId': projectId,
       'question': question,
       'choices': choices.map((e) => e.toJson()).toList(),
       'feedbackItemId': feedbackItemId,
@@ -125,13 +134,13 @@ class MultipleChoiceFeedbackQuestion extends FeedbackItem {
   MultipleChoiceFeedbackQuestion copyWith({
     String? question,
     List<MultipleChoiceAnswerChoice>? choices,
-    String? feedbackItemId,
     ItemMeta? meta,
   }) {
     return MultipleChoiceFeedbackQuestion(
       question: question ?? this.question,
       choices: choices ?? this.choices,
-      feedbackItemId: feedbackItemId ?? this.feedbackItemId,
+      feedbackItemId: feedbackItemId,
+      projectId: projectId,
       meta: meta ?? this.meta,
     );
   }
