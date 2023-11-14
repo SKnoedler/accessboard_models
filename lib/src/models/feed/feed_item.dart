@@ -149,6 +149,7 @@ class ExtendedMultipleChoiceItem extends MultipleChoiceItem {
     required super.meta,
     required this.isCompleted,
     required this.isNew,
+    required super.projectId,
   });
   static ExtendedMultipleChoiceItem fromMultipleChoiceItem({
     required MultipleChoiceItem item,
@@ -156,6 +157,7 @@ class ExtendedMultipleChoiceItem extends MultipleChoiceItem {
     required bool isNew,
   }) {
     return ExtendedMultipleChoiceItem(
+      projectId: item.projectId,
       multipleChoiceItemId: item.multipleChoiceItemId,
       multipleChoiceQuestions: item.multipleChoiceQuestions,
       isCompleted: isCompleted,
@@ -167,6 +169,7 @@ class ExtendedMultipleChoiceItem extends MultipleChoiceItem {
   @override
   Map<String, dynamic> toJson() {
     return {
+      'projectId': projectId,
       'multipleChoiceItemId': multipleChoiceItemId,
       'multipleChoiceQuestions':
           multipleChoiceQuestions.map((question) => question.toJson()).toList(),
@@ -184,6 +187,7 @@ class ExtendedMultipleChoiceItem extends MultipleChoiceItem {
         .toList();
 
     return ExtendedMultipleChoiceItem(
+      projectId: json['projectId'],
       multipleChoiceItemId: json['multipleChoiceItemId'],
       multipleChoiceQuestions: questions,
       isCompleted: json['isCompleted'] ?? false,
