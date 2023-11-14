@@ -5,11 +5,15 @@ class FeedbackAnswerItem {
   final String deviceId;
   final String feedbackItemId;
   final String feedbackAnswerItemId;
+  final DateTime createdAt;
+  final DateTime? updatedAt;
   final FeedbackUserContent feedbackContent;
   final FeedbackAdminReply? feedbackReply;
   final bool isFeedbackReplyRead;
 
   FeedbackAnswerItem({
+    required this.createdAt,
+    this.updatedAt,
     required this.feedbackAnswerItemId,
     required this.feedbackItemId,
     required this.feedbackContent,
@@ -20,12 +24,17 @@ class FeedbackAnswerItem {
 
   factory FeedbackAnswerItem.fromJson(Map<String, dynamic> json) {
     return FeedbackAnswerItem(
-        deviceId: json['deviceId'] as String,
-        feedbackItemId: json['feedbackItemId'] as String,
-        feedbackAnswerItemId: json['feedbackAnswerItemId'] as String,
-        isFeedbackReplyRead: json['isFeedbackReplyRead'] as bool,
-        feedbackContent: json['feedbackContent'] as FeedbackUserContent,
-        feedbackReply: json['feedbackReply'] as FeedbackAdminReply?);
+      deviceId: json['deviceId'] as String,
+      feedbackItemId: json['feedbackItemId'] as String,
+      feedbackAnswerItemId: json['feedbackAnswerItemId'] as String,
+      isFeedbackReplyRead: json['isFeedbackReplyRead'] as bool,
+      feedbackContent: json['feedbackContent'] as FeedbackUserContent,
+      feedbackReply: json['feedbackReply'] as FeedbackAdminReply?,
+      createdAt: DateTime.parse(json['createdAt'] as String),
+      updatedAt: json['updatedAt'] != null
+          ? DateTime.parse(json['updatedAt'] as String)
+          : null,
+    );
   }
 
   Map<String, dynamic> toJson() {
@@ -35,6 +44,8 @@ class FeedbackAnswerItem {
       'feedbackContent': feedbackContent,
       'isFeedbackReplyRead': isFeedbackReplyRead,
       'feedbackReply': feedbackReply,
+      'createdAt': createdAt.toIso8601String(),
+      'updatedAt': updatedAt?.toIso8601String(),
     };
   }
 
@@ -53,6 +64,8 @@ class FeedbackAnswerItem {
       feedbackContent: feedbackContent ?? this.feedbackContent,
       feedbackReply: feedbackReply ?? this.feedbackReply,
       isFeedbackReplyRead: isFeedbackReplyRead ?? this.isFeedbackReplyRead,
+      createdAt: createdAt ?? this.createdAt,
+      updatedAt: updatedAt ?? this.updatedAt,
     );
   }
 
@@ -62,6 +75,8 @@ class FeedbackAnswerItem {
   }) {
     return FeedbackAnswerItem(
       deviceId: deviceId,
+      createdAt: createdAt,
+      updatedAt: updatedAt,
       feedbackItemId: feedbackItemId,
       feedbackAnswerItemId: feedbackAnswerItemId,
       feedbackContent: feedbackContent,
@@ -77,6 +92,8 @@ class FeedbackAnswerItem {
     return other is FeedbackAnswerItem &&
         other.isFeedbackReplyRead == isFeedbackReplyRead &&
         other.feedbackItemId == feedbackItemId &&
+        other.createdAt == createdAt &&
+        other.updatedAt == updatedAt &&
         other.feedbackContent == feedbackContent &&
         other.feedbackReply == feedbackReply;
   }
@@ -85,6 +102,8 @@ class FeedbackAnswerItem {
   int get hashCode =>
       isFeedbackReplyRead.hashCode ^
       feedbackItemId.hashCode ^
+      createdAt.hashCode ^
+      updatedAt.hashCode ^
       feedbackContent.hashCode ^
       feedbackReply.hashCode;
 }
