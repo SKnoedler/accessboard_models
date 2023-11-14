@@ -1,7 +1,9 @@
+import 'package:accessboard_models/accessboard_models.dart';
+
 class FaqItem {
   final String faqItemId;
-  final String question;
-  final String answer;
+  final LocalizedString question;
+  final LocalizedString answer;
 
   FaqItem({
     required this.faqItemId,
@@ -12,16 +14,16 @@ class FaqItem {
   factory FaqItem.fromJson(Map<String, dynamic> json) {
     return FaqItem(
       faqItemId: json['faqItemId'] as String,
-      question: json['question'] as String,
-      answer: json['answer'] as String,
+      question: LocalizedString.fromJson(json['question']),
+      answer: LocalizedString.fromJson(json['answer']),
     );
   }
 
   Map<String, dynamic> toJson() {
     return {
       'faqItemId': faqItemId,
-      'question': question,
-      'answer': answer,
+      'question': question.toJson(),
+      'answer': answer.toJson(),
     };
   }
 
