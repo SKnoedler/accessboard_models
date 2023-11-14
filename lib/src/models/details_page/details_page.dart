@@ -1,11 +1,13 @@
 import 'package:accessboard_models/src/models/details_page/page_meta.dart';
+import 'package:accessboard_models/src/models/localized_string/localized_quill_data.dart';
+import 'package:accessboard_models/src/models/localized_string/localized_string.dart';
 
 class DetailsPage {
   final String pageId;
-  final String htmlContent;
+  final LocalizedString htmlContent;
   final String title;
   final PageMeta meta;
-  final List<dynamic>? quillDocData;
+  final LocalizedQuillData? quillDocData;
 
   DetailsPage({
     required this.pageId,
@@ -18,29 +20,32 @@ class DetailsPage {
   factory DetailsPage.fromJson(Map<String, dynamic> json) {
     return DetailsPage(
       pageId: json['pageId'] as String,
-      htmlContent: json['htmlContent'] as String,
+      htmlContent: LocalizedString.fromJson(json['htmlContent']),
       title: json['title'] as String,
       meta: PageMeta.fromJson(json['meta']),
-      quillDocData: json['quillDocData'] as List<dynamic>?,
+      quillDocData: json['quillDocData'] != null
+          ? LocalizedQuillData.fromJson(
+              json['quillDocData'] as Map<String, dynamic>)
+          : null,
     );
   }
 
   Map<String, dynamic> toJson() {
     return {
       'pageId': pageId,
-      'htmlContent': htmlContent,
+      'htmlContent': htmlContent.toJson(),
       'title': title,
       'meta': meta.toJson(),
-      'quillDocData': quillDocData,
+      'quillDocData': quillDocData != null ? quillDocData!.toJson() : null,
     };
   }
 
   DetailsPage copyWith({
     String? pageId,
-    String? htmlContent,
+    LocalizedString? htmlContent,
     String? title,
     PageMeta? meta,
-    List<dynamic>? quillDocData,
+    LocalizedQuillData? quillDocData,
   }) {
     return DetailsPage(
       pageId: pageId ?? this.pageId,

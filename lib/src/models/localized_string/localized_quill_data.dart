@@ -1,21 +1,22 @@
 import 'package:accessboard_models/src/models/localized_string/language.dart';
 
-class LocalizedString {
-  final List<TranslationItem> translations;
+class LocalizedQuillData {
+  final List<LocalizedQuillDataItem> translations;
 
-  LocalizedString({
+  LocalizedQuillData({
     required this.translations,
   }) {
     assert(translations.isNotEmpty,
         'translations must have at least one translation');
   }
 
-  factory LocalizedString.fromJson(Map<String, dynamic> json) {
+  factory LocalizedQuillData.fromJson(Map<String, dynamic> json) {
     var translationsList = json['translations'] as List;
-    List<TranslationItem> translations =
-        translationsList.map((item) => TranslationItem.fromJson(item)).toList();
+    List<LocalizedQuillDataItem> translations = translationsList
+        .map((item) => LocalizedQuillDataItem.fromJson(item))
+        .toList();
 
-    return LocalizedString(
+    return LocalizedQuillData(
       translations: translations,
     );
   }
@@ -30,17 +31,17 @@ class LocalizedString {
   }
 }
 
-class TranslationItem {
+class LocalizedQuillDataItem {
   final Language languageCode;
-  final String translation;
+  final List<dynamic> translation;
 
-  TranslationItem({
+  LocalizedQuillDataItem({
     required this.languageCode,
     required this.translation,
   });
 
-  factory TranslationItem.fromJson(Map<String, dynamic> json) {
-    return TranslationItem(
+  factory LocalizedQuillDataItem.fromJson(Map<String, dynamic> json) {
+    return LocalizedQuillDataItem(
       languageCode: Language.values[json['languageCode']],
       translation: json['translation'],
     );

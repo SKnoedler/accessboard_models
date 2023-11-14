@@ -1,6 +1,5 @@
+import 'package:accessboard_models/accessboard_models.dart';
 import 'package:accessboard_models/src/models/blog_post/feed_item_meta.dart';
-import 'package:accessboard_models/src/models/design/custom_design.dart';
-import 'package:accessboard_models/src/models/feed/feed_item.dart';
 
 class MultipleChoiceItem extends FeedItem {
   final String multipleChoiceItemId;
@@ -86,7 +85,7 @@ class MultipleChoiceItem extends FeedItem {
 
 class MultipleChoiceQuestion {
   final String multipleChoiceQuestionId;
-  final String question;
+  final LocalizedString question;
   final List<MultipleChoiceAnswerChoice> choices;
   final CustomDesign? customDesign;
 
@@ -100,7 +99,7 @@ class MultipleChoiceQuestion {
   factory MultipleChoiceQuestion.fromJson(Map<String, dynamic> json) {
     return MultipleChoiceQuestion(
       multipleChoiceQuestionId: json['multipleChoiceQuestionId'],
-      question: json['question'],
+      question: LocalizedString.fromJson(json['question']),
       choices: List<MultipleChoiceAnswerChoice>.from(json['choices']
           .map((choice) => MultipleChoiceAnswerChoice.fromJson(choice))),
       customDesign: json['customDesign'] != null
@@ -112,7 +111,7 @@ class MultipleChoiceQuestion {
   Map<String, dynamic> toJson() {
     return {
       'multipleChoiceQuestionId': multipleChoiceQuestionId,
-      'question': question,
+      'question': question.toJson(),
       'choices': choices.map((choice) => choice.toJson()).toList(),
       'customDesign': customDesign?.toJson(),
     };
@@ -120,7 +119,7 @@ class MultipleChoiceQuestion {
 
   MultipleChoiceQuestion copyWith({
     String? multipleChoiceQuestionId,
-    String? question,
+    LocalizedString? question,
     List<MultipleChoiceAnswerChoice>? choices,
     DateTime? createdAt,
     DateTime? updatedAt,
@@ -149,7 +148,7 @@ class MultipleChoiceQuestion {
 }
 
 class MultipleChoiceAnswerChoice {
-  final String answer;
+  final LocalizedString answer;
   final bool isCorrect;
 
   MultipleChoiceAnswerChoice({
@@ -159,14 +158,14 @@ class MultipleChoiceAnswerChoice {
 
   factory MultipleChoiceAnswerChoice.fromJson(Map<String, dynamic> json) {
     return MultipleChoiceAnswerChoice(
-      answer: json['answer'] as String,
+      answer: LocalizedString.fromJson(json['answer']),
       isCorrect: json['isCorrect'] as bool,
     );
   }
 
   Map<String, dynamic> toJson() {
     return {
-      'answer': answer,
+      'answer': answer.toJson(),
       'isCorrect': isCorrect,
     };
   }

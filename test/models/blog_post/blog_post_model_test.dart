@@ -1,5 +1,7 @@
 import 'package:accessboard_models/src/models/blog_post/blog_post_model.dart';
 import 'package:accessboard_models/src/models/blog_post/feed_item_meta.dart';
+import 'package:accessboard_models/src/models/localized_string/language.dart';
+import 'package:accessboard_models/src/models/localized_string/localized_string.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
@@ -8,8 +10,22 @@ void main() {
       final post = BlogPost(
         quillDocData: [],
         blogPostId: '123',
-        title: 'Test Post',
-        description: 'This is a test post',
+        title: LocalizedString(
+          translations: [
+            TranslationItem(
+              languageCode: Language.english,
+              translation: 'Test Post',
+            )
+          ],
+        ),
+        description: LocalizedString(
+          translations: [
+            TranslationItem(
+              languageCode: Language.english,
+              translation: 'Test Post desc',
+            )
+          ],
+        ),
         imageUrl: 'https://example.com/image.jpg',
         htmlContent: '<p>This is a test post</p>',
         meta: FeedItemMeta(
@@ -61,8 +77,22 @@ void main() {
       final post = BlogPost(
         quillDocData: [],
         blogPostId: '123',
-        title: 'Test Post',
-        description: 'This is a test post',
+        title: LocalizedString(
+          translations: [
+            TranslationItem(
+              languageCode: Language.english,
+              translation: 'Test Post',
+            )
+          ],
+        ),
+        description: LocalizedString(
+          translations: [
+            TranslationItem(
+              languageCode: Language.english,
+              translation: 'Test Post desc',
+            )
+          ],
+        ),
         imageUrl: 'https://example.com/image.jpg',
         htmlContent: '<p>This is a test post</p>',
         meta: FeedItemMeta(
@@ -80,8 +110,22 @@ void main() {
       final post = BlogPost(
         quillDocData: [],
         blogPostId: '123',
-        title: 'Test Post',
-        description: 'This is a test post',
+        title: LocalizedString(
+          translations: [
+            TranslationItem(
+              languageCode: Language.english,
+              translation: 'Test Post',
+            )
+          ],
+        ),
+        description: LocalizedString(
+          translations: [
+            TranslationItem(
+              languageCode: Language.english,
+              translation: 'Test Post desc',
+            )
+          ],
+        ),
         imageUrl: 'https://example.com/image.jpg',
         htmlContent: '<p>This is a test post</p>',
         meta: FeedItemMeta(
@@ -99,8 +143,22 @@ void main() {
       final post = BlogPost(
         quillDocData: [],
         blogPostId: '123',
-        title: 'Test Post',
-        description: 'This is a test post',
+        title: LocalizedString(
+          translations: [
+            TranslationItem(
+              languageCode: Language.english,
+              translation: 'Test Post',
+            )
+          ],
+        ),
+        description: LocalizedString(
+          translations: [
+            TranslationItem(
+              languageCode: Language.english,
+              translation: 'Test Post desc',
+            )
+          ],
+        ),
         imageUrl: 'https://example.com/image.jpg',
         htmlContent: '<p>This is a test post</p>',
         meta: FeedItemMeta(
@@ -116,8 +174,22 @@ void main() {
       final expiredPost = BlogPost(
         quillDocData: [],
         blogPostId: '123',
-        title: 'Test Post',
-        description: 'This is a test post',
+        title: LocalizedString(
+          translations: [
+            TranslationItem(
+              languageCode: Language.english,
+              translation: 'Test Post',
+            )
+          ],
+        ),
+        description: LocalizedString(
+          translations: [
+            TranslationItem(
+              languageCode: Language.english,
+              translation: 'Test Post desc',
+            )
+          ],
+        ),
         imageUrl: 'https://example.com/image.jpg',
         htmlContent: '<p>This is a test post</p>',
         meta: FeedItemMeta(

@@ -1,6 +1,8 @@
+import 'package:accessboard_models/src/models/localized_string/localized_string.dart';
+
 class BlogPostFeedbackQuestion {
   final String feedbackQuestionId;
-  final String question;
+  final LocalizedString question;
 
   BlogPostFeedbackQuestion({
     required this.feedbackQuestionId,
@@ -10,14 +12,14 @@ class BlogPostFeedbackQuestion {
   factory BlogPostFeedbackQuestion.fromJson(Map<String, dynamic> json) {
     return BlogPostFeedbackQuestion(
       feedbackQuestionId: json['feedbackQuestionId'],
-      question: json['question'],
+      question: LocalizedString.fromJson(json['question']),
     );
   }
 
   Map<String, dynamic> toJson() {
     return {
       'feedbackQuestionId': feedbackQuestionId,
-      'question': question,
+      'question': question.toJson(),
     };
   }
 }

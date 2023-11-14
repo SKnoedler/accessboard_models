@@ -2,13 +2,14 @@ import 'package:accessboard_models/src/models/blog_post/blog_post_feedback_quest
 import 'package:accessboard_models/src/models/blog_post/feed_item_meta.dart';
 import 'package:accessboard_models/src/models/design/custom_design.dart';
 import 'package:accessboard_models/src/models/feed/feed_item.dart';
+import 'package:accessboard_models/src/models/localized_string/localized_string.dart';
 
 // collection name: blogPosts
 
 class BlogPost extends FeedItem {
   final String blogPostId;
-  final String title;
-  final String description;
+  final LocalizedString title;
+  final LocalizedString description;
   final String imageUrl;
   final String htmlContent;
   final FeedItemMeta meta;
@@ -37,8 +38,8 @@ class BlogPost extends FeedItem {
           ? (json['quillDocData'] as List<dynamic>)
           : null,
       blogPostId: json['blogPostId'],
-      title: json['title'],
-      description: json['description'],
+      title: LocalizedString.fromJson(json['title']),
+      description: LocalizedString.fromJson(json['description']),
       imageUrl: json['imageUrl'],
       htmlContent: json['htmlContent'],
       meta: FeedItemMeta.fromJson(json['meta']),
@@ -55,8 +56,8 @@ class BlogPost extends FeedItem {
   Map<String, dynamic> toJson() {
     return {
       'blogPostId': blogPostId,
-      'title': title,
-      'description': description,
+      'title': title.toJson(),
+      'description': description.toJson(),
       'imageUrl': imageUrl,
       'htmlContent': htmlContent,
       'meta': meta.toJson(),
@@ -86,8 +87,8 @@ class BlogPost extends FeedItem {
 
   BlogPost copyWith({
     String? blogPostId,
-    String? title,
-    String? description,
+    LocalizedString? title,
+    LocalizedString? description,
     String? imageUrl,
     String? htmlContent,
     FeedItemMeta? meta,
