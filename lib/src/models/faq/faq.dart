@@ -1,18 +1,20 @@
-import 'package:accessboard_models/src/models/faq/faq_item.dart';
+import 'package:accessboard_models/accessboard_models.dart';
 import 'package:accessboard_models/src/models/faq/faq_meta.dart';
-import 'package:accessboard_models/src/models/localized_string/localized_string.dart';
 
 class FAQ {
   final String faqId;
   final List<FaqItem> faqItems;
   final LocalizedString? openFaqQuestion;
   final FaqMeta meta;
+  final List<TargetGroup> targetGroups;
+  //TODO: add targetgroups to all objects
 
   FAQ({
     required this.faqId,
     required this.faqItems,
     required this.meta,
     this.openFaqQuestion,
+    this.targetGroups = const [],
   });
 
   factory FAQ.fromJson(Map<String, dynamic> json) {
@@ -20,7 +22,12 @@ class FAQ {
     List<FaqItem> faqItems =
         faqItemsJson.map((item) => FaqItem.fromJson(item)).toList();
 
+    var targetGroupsList = json['targetGroups'] as List;
+    List<TargetGroup> targetGroups =
+        targetGroupsList.map((item) => TargetGroup.fromJson(item)).toList();
+
     return FAQ(
+      targetGroups: targetGroups,
       openFaqQuestion: json['openFaqQuestion'] != null
           ? LocalizedString.fromJson(json['openFaqQuestion'])
           : null,
@@ -32,6 +39,7 @@ class FAQ {
 
   Map<String, dynamic> toJson() {
     return {
+      'targetGroups': targetGroups.map((e) => e.toJson()).toList(),
       'openFaqQuestion':
           openFaqQuestion != null ? openFaqQuestion!.toJson() : null,
       'faqId': faqId,
@@ -45,8 +53,10 @@ class FAQ {
     List<FaqItem>? faqItems,
     FaqMeta? meta,
     LocalizedString? openFaqQuestion,
+    List<TargetGroup>? targetGroups,
   }) {
     return FAQ(
+      targetGroups: targetGroups ?? this.targetGroups,
       openFaqQuestion: openFaqQuestion ?? this.openFaqQuestion,
       faqId: faqId ?? this.faqId,
       faqItems: faqItems ?? this.faqItems,
@@ -60,6 +70,7 @@ class FAQ {
 
     return other is FAQ &&
         other.faqId == faqId &&
+        other.targetGroups == targetGroups &&
         other.openFaqQuestion == openFaqQuestion &&
         other.faqItems == faqItems &&
         other.meta == meta;
@@ -69,6 +80,7 @@ class FAQ {
   int get hashCode =>
       openFaqQuestion.hashCode ^
       faqId.hashCode ^
+      targetGroups.hashCode ^
       faqItems.hashCode ^
       meta.hashCode;
 }
