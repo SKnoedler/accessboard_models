@@ -32,6 +32,18 @@ class FAQ {
     };
   }
 
+  FAQ copyWith({
+    String? faqId,
+    List<FaqItem>? faqItems,
+    FaqMeta? meta,
+  }) {
+    return FAQ(
+      faqId: faqId ?? this.faqId,
+      faqItems: faqItems ?? this.faqItems,
+      meta: meta ?? this.meta,
+    );
+  }
+
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
