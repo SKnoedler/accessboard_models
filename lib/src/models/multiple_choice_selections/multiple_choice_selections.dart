@@ -40,4 +40,24 @@ class MultipleChoiceSelectionItem {
       'selectedAt': selectedAt.toIso8601String(),
     };
   }
+
+  MultipleChoiceSelectionItem copyWith({
+    String? multipleChoiceSelectionItemId,
+    String? multipleChoiceItemId,
+    String? multipleChoiceQuestionId,
+    String? deviceId,
+    String? selectedAnswer,
+    DateTime? selectedAt,
+  }) {
+    return MultipleChoiceSelectionItem(
+      multipleChoiceSelectionItemId:
+          multipleChoiceSelectionItemId ?? this.multipleChoiceSelectionItemId,
+      multipleChoiceItemId: multipleChoiceItemId ?? this.multipleChoiceItemId,
+      multipleChoiceQuestionId:
+          multipleChoiceQuestionId ?? this.multipleChoiceQuestionId,
+      deviceId: deviceId ?? this.deviceId,
+      selectedAnswer: selectedAnswer ?? this.selectedAnswer,
+      selectedAt: selectedAt ?? this.selectedAt,
+    );
+  }
 }
