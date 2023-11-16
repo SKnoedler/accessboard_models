@@ -1,6 +1,7 @@
 import 'package:accessboard_models/src/models/blog_post/feed_item_meta.dart';
 import 'package:accessboard_models/src/models/design/custom_design.dart';
 import 'package:accessboard_models/src/models/feed/feed_item.dart';
+import 'package:accessboard_models/src/models/target_group.dart/target_group.dart';
 
 // collection: polls
 
@@ -10,12 +11,14 @@ class Poll extends FeedItem {
   final List<PollChoice> choices;
   final FeedItemMeta meta;
   final CustomDesign? customDesign;
+  final List<TargetGroup> targetGroups;
 
   Poll({
     required this.pollId,
     required this.question,
     required this.choices,
     required this.meta,
+    this.targetGroups = const [],
     this.customDesign,
   }) : super(
           id: pollId,
@@ -26,8 +29,12 @@ class Poll extends FeedItem {
     var choicesList = json['choices'] as List;
     List<PollChoice> choices =
         choicesList.map((choice) => PollChoice.fromJson(choice)).toList();
+    var targetGroupsJson = json['targetGroups'] as List;
+    List<TargetGroup> targetGroups =
+        targetGroupsJson.map((item) => TargetGroup.fromJson(item)).toList();
 
     return Poll(
+      targetGroups: targetGroups,
       pollId: json['pollId'],
       question: json['question'],
       choices: choices,
@@ -50,6 +57,7 @@ class Poll extends FeedItem {
       'meta': meta.toJson(),
       'customDesign': customDesign?.toJson(),
       'type': type,
+      'targetGroups': targetGroups.map((item) => item.toJson()).toList(),
     };
   }
 

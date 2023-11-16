@@ -6,12 +6,14 @@ class MultipleChoiceItem extends FeedItem {
   final String projectId;
   final List<MultipleChoiceQuestion> multipleChoiceQuestions;
   final FeedItemMeta meta;
+  final List<TargetGroup> targetGroups;
 
   MultipleChoiceItem({
     required this.multipleChoiceItemId,
     required this.projectId,
     required this.multipleChoiceQuestions,
     required this.meta,
+    this.targetGroups = const [],
   }) : super(id: multipleChoiceItemId, type: typeName);
 
   factory MultipleChoiceItem.fromJson(Map<String, dynamic> json) {
@@ -19,8 +21,12 @@ class MultipleChoiceItem extends FeedItem {
     List<MultipleChoiceQuestion> questions = questionsList
         .map((question) => MultipleChoiceQuestion.fromJson(question))
         .toList();
+    var targetGroupsJson = json['targetGroups'] as List;
+    List<TargetGroup> targetGroups =
+        targetGroupsJson.map((item) => TargetGroup.fromJson(item)).toList();
 
     return MultipleChoiceItem(
+      targetGroups: targetGroups,
       projectId: json['projectId'],
       multipleChoiceItemId: json['multipleChoiceItemId'],
       meta: FeedItemMeta.fromJson(json['meta']),
@@ -36,6 +42,7 @@ class MultipleChoiceItem extends FeedItem {
     return {
       'projectId': projectId,
       'multipleChoiceItemId': multipleChoiceItemId,
+      'targetGroups': targetGroups.map((item) => item.toJson()).toList(),
       'multipleChoiceQuestions': questionsJson,
       'type': type,
       'meta': meta.toJson(),
@@ -61,10 +68,12 @@ class MultipleChoiceItem extends FeedItem {
 
   MultipleChoiceItem copyWith({
     List<MultipleChoiceQuestion>? multipleChoiceQuestions,
+    List<TargetGroup>? targetGroups,
     FeedItemMeta? meta,
   }) {
     return MultipleChoiceItem(
         multipleChoiceItemId: multipleChoiceItemId,
+        targetGroups: targetGroups ?? this.targetGroups,
         multipleChoiceQuestions:
             multipleChoiceQuestions ?? this.multipleChoiceQuestions,
         meta: meta ?? this.meta,
@@ -77,6 +86,7 @@ class MultipleChoiceItem extends FeedItem {
       other is MultipleChoiceItem &&
           runtimeType == other.runtimeType &&
           projectId == other.projectId &&
+          targetGroups == other.targetGroups &&
           multipleChoiceItemId == other.multipleChoiceItemId;
 
   @override

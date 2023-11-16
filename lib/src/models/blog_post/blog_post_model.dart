@@ -3,6 +3,7 @@ import 'package:accessboard_models/src/models/blog_post/feed_item_meta.dart';
 import 'package:accessboard_models/src/models/design/custom_design.dart';
 import 'package:accessboard_models/src/models/feed/feed_item.dart';
 import 'package:accessboard_models/src/models/localized_string/localized_string.dart';
+import 'package:accessboard_models/src/models/target_group.dart/target_group.dart';
 
 // collection name: blogPosts
 
@@ -16,6 +17,7 @@ class BlogPost extends FeedItem {
   final List<dynamic>? quillDocData;
   final BlogPostFeedbackQuestion? feedbackQuestion;
   final CustomDesign? customDesign;
+  final List<TargetGroup> targetGroups;
 
   BlogPost({
     required this.blogPostId,
@@ -27,13 +29,18 @@ class BlogPost extends FeedItem {
     this.quillDocData,
     this.feedbackQuestion,
     this.customDesign,
+    this.targetGroups = const [],
   }) : super(
           id: blogPostId,
           type: typeName,
         );
 
   factory BlogPost.fromJson(Map<String, dynamic> json) {
+    var targetGroupsJson = json['targetGroups'] as List; // And this line
+    List<TargetGroup> targetGroups =
+        targetGroupsJson.map((item) => TargetGroup.fromJson(item)).toList();
     return BlogPost(
+      targetGroups: targetGroups,
       quillDocData: json['quillDocData'] != null
           ? (json['quillDocData'] as List<dynamic>)
           : null,
@@ -65,6 +72,7 @@ class BlogPost extends FeedItem {
       'customDesign': customDesign?.toJson(),
       'quillDocData': quillDocData,
       'type': type,
+      'targetGroups': targetGroups.map((item) => item.toJson()).toList(),
     };
   }
 
@@ -95,8 +103,10 @@ class BlogPost extends FeedItem {
     BlogPostFeedbackQuestion? feedbackQuestion,
     CustomDesign? customDesign,
     List<Map<String, Object>>? quillDocData,
+    List<TargetGroup>? targetGroups,
   }) {
     return BlogPost(
+      targetGroups: targetGroups ?? this.targetGroups,
       blogPostId: blogPostId ?? this.blogPostId,
       title: title ?? this.title,
       description: description ?? this.description,
