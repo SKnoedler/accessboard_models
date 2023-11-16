@@ -4,7 +4,7 @@ export 'src/models/access_log/access_log.dart';
 export 'src/models/access_log/year_month.dart';
 export 'src/models/access_right/access_right.dart';
 export 'src/models/ad/ad.dart';
-export 'src/models/blog_post/blog_post_model.dart';
+export 'src/models/blog_post/blog_post.dart';
 export 'src/models/blog_post_feedback/blog_post_feedback.dart';
 export 'src/models/design/custom_design.dart';
 export 'src/models/design/design.dart';

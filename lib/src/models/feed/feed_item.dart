@@ -1,5 +1,5 @@
+import 'package:accessboard_models/src/models/blog_post/blog_post.dart';
 import 'package:accessboard_models/src/models/blog_post/blog_post_feedback_question.dart';
-import 'package:accessboard_models/src/models/blog_post/blog_post_model.dart';
 import 'package:accessboard_models/src/models/blog_post/feed_item_meta.dart';
 import 'package:accessboard_models/src/models/design/custom_design.dart';
 import 'package:accessboard_models/src/models/multiple_choice/multiple_choice_item.dart';

@@ -1,4 +1,4 @@
-import 'package:accessboard_models/src/models/blog_post/blog_post_model.dart';
+import 'package:accessboard_models/src/models/blog_post/blog_post.dart';
 import 'package:accessboard_models/src/models/blog_post/feed_item_meta.dart';
 import 'package:accessboard_models/src/models/localized_string/language.dart';
 import 'package:accessboard_models/src/models/localized_string/localized_string.dart';

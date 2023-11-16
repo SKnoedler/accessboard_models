@@ -1,3 +1,4 @@
+import 'package:accessboard_models/src/models/localized_string/localized_string.dart';
 import 'package:accessboard_models/src/models/meta/item_meta.dart';
 import 'package:accessboard_models/src/models/target_group.dart/target_group.dart';
 
@@ -71,8 +72,8 @@ class Ad {
 
 class AdItem {
   final String adItemId;
-  final String title;
-  final String description;
+  final LocalizedString title;
+  final LocalizedString description;
   final String imageUrl;
   final String buttonUrl;
 
@@ -87,8 +88,8 @@ class AdItem {
   factory AdItem.fromJson(Map<String, dynamic> json) {
     return AdItem(
       adItemId: json['adItemId'] as String,
-      title: json['title'] as String,
-      description: json['description'] as String,
+      title: LocalizedString.fromJson(json['title']),
+      description: LocalizedString.fromJson(json['description']),
       imageUrl: json['imageUrl'] as String,
       buttonUrl: json['buttonUrl'] as String,
     );
@@ -97,8 +98,8 @@ class AdItem {
   Map<String, dynamic> toJson() {
     return {
       'adItemId': adItemId,
-      'title': title,
-      'description': description,
+      'title': title.toJson(),
+      'description': description.toJson(),
       'imageUrl': imageUrl,
       'buttonUrl': buttonUrl,
     };
@@ -106,8 +107,8 @@ class AdItem {
 
   AdItem copyWith({
     String? adItemId,
-    String? title,
-    String? description,
+    LocalizedString? title,
+    LocalizedString? description,
     String? imageUrl,
     String? buttonUrl,
   }) {
