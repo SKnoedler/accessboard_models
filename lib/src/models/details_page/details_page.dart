@@ -5,7 +5,7 @@ import 'package:accessboard_models/src/models/localized_string/localized_string.
 class DetailsPage {
   final String pageId;
   final LocalizedString htmlContent;
-  final String title;
+  final LocalizedString title;
   final PageMeta meta;
   final LocalizedQuillData? quillDocData;
 
@@ -21,7 +21,7 @@ class DetailsPage {
     return DetailsPage(
       pageId: json['pageId'] as String,
       htmlContent: LocalizedString.fromJson(json['htmlContent']),
-      title: json['title'] as String,
+      title: LocalizedString.fromJson(json['title']),
       meta: PageMeta.fromJson(json['meta']),
       quillDocData: json['quillDocData'] != null
           ? LocalizedQuillData.fromJson(
@@ -34,7 +34,7 @@ class DetailsPage {
     return {
       'pageId': pageId,
       'htmlContent': htmlContent.toJson(),
-      'title': title,
+      'title': title.toJson(),
       'meta': meta.toJson(),
       'quillDocData': quillDocData != null ? quillDocData!.toJson() : null,
     };
@@ -43,7 +43,7 @@ class DetailsPage {
   DetailsPage copyWith({
     String? pageId,
     LocalizedString? htmlContent,
-    String? title,
+    LocalizedString? title,
     PageMeta? meta,
     LocalizedQuillData? quillDocData,
   }) {
