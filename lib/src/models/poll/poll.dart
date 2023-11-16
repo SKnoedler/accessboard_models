@@ -1,13 +1,14 @@
 import 'package:accessboard_models/src/models/blog_post/feed_item_meta.dart';
 import 'package:accessboard_models/src/models/design/custom_design.dart';
 import 'package:accessboard_models/src/models/feed/feed_item.dart';
+import 'package:accessboard_models/src/models/localized_string/localized_string.dart';
 import 'package:accessboard_models/src/models/target_group.dart/target_group.dart';
 
 // collection: polls
 
 class Poll extends FeedItem {
   final String pollId;
-  final String question;
+  final LocalizedString question; // Changed this line
   final List<PollChoice> choices;
   final FeedItemMeta meta;
   final CustomDesign? customDesign;
@@ -15,7 +16,7 @@ class Poll extends FeedItem {
 
   Poll({
     required this.pollId,
-    required this.question,
+    required this.question, // And this line
     required this.choices,
     required this.meta,
     this.targetGroups = const [],
@@ -36,7 +37,7 @@ class Poll extends FeedItem {
     return Poll(
       targetGroups: targetGroups,
       pollId: json['pollId'],
-      question: json['question'],
+      question: LocalizedString.fromJson(json['question']), // And this line
       choices: choices,
       meta: FeedItemMeta.fromJson(json['meta']),
       customDesign: json['customDesign'] != null
@@ -52,7 +53,7 @@ class Poll extends FeedItem {
 
     return {
       'pollId': pollId,
-      'question': question,
+      'question': question.toJson(), // And this line
       'choices': choicesJson,
       'meta': meta.toJson(),
       'customDesign': customDesign?.toJson(),
@@ -80,7 +81,7 @@ class Poll extends FeedItem {
 
   Poll copyWith({
     String? pollId,
-    String? question,
+    LocalizedString? question,
     List<PollChoice>? choices,
     DateTime? createdAt,
     DateTime? updatedAt,
