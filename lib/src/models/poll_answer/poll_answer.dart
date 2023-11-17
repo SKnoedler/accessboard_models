@@ -33,4 +33,20 @@ class PollAnswer {
       'selectedAt': selectedAt.toIso8601String(),
     };
   }
+
+  PollAnswer copyWith({
+    String? pollId,
+    String? pollAnswerId,
+    String? deviceId,
+    String? selectedPollChoiceId,
+    DateTime? selectedAt,
+  }) {
+    return PollAnswer(
+      pollId: pollId ?? this.pollId,
+      pollAnswerId: pollAnswerId ?? this.pollAnswerId,
+      deviceId: deviceId ?? this.deviceId,
+      selectedPollChoiceId: selectedPollChoiceId ?? this.selectedPollChoiceId,
+      selectedAt: selectedAt ?? this.selectedAt,
+    );
+  }
 }
