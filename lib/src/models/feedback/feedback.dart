@@ -104,8 +104,6 @@ class OpenFeedbackQuestion extends FeedbackItem {
 class MultipleChoiceFeedbackQuestion extends FeedbackItem {
   final String question;
   final List<MultipleChoiceAnswerChoice> choices;
-  @override
-  final List<TargetGroup> targetGroups;
 
   MultipleChoiceFeedbackQuestion({
     required this.question,
@@ -113,7 +111,7 @@ class MultipleChoiceFeedbackQuestion extends FeedbackItem {
     required String feedbackItemId,
     required String projectId,
     required ItemMeta meta,
-    this.targetGroups = const [],
+    List<TargetGroup> targetGroups = const [],
   }) : super(
           feedbackItemId: feedbackItemId,
           meta: meta,
