@@ -1,16 +1,16 @@
 import 'package:accessboard_models/src/models/localized_string/localized_string.dart';
 
-class BlogPostFeedbackQuestion {
+class BlogPostCommentQuestion {
   final String feedbackQuestionId;
   final LocalizedString question;
 
-  BlogPostFeedbackQuestion({
+  BlogPostCommentQuestion({
     required this.feedbackQuestionId,
     required this.question,
   });
 
-  factory BlogPostFeedbackQuestion.fromJson(Map<String, dynamic> json) {
-    return BlogPostFeedbackQuestion(
+  factory BlogPostCommentQuestion.fromJson(Map<String, dynamic> json) {
+    return BlogPostCommentQuestion(
       feedbackQuestionId: json['feedbackQuestionId'],
       question: LocalizedString.fromJson(json['question']),
     );

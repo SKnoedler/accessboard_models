@@ -1,5 +1,5 @@
 import 'package:accessboard_models/src/models/blog_post/blog_post.dart';
-import 'package:accessboard_models/src/models/blog_post/blog_post_feedback_question.dart';
+import 'package:accessboard_models/src/models/blog_post/blog_post_comment_question.dart';
 import 'package:accessboard_models/src/models/blog_post/feed_item_meta.dart';
 import 'package:accessboard_models/src/models/design/custom_design.dart';
 import 'package:accessboard_models/src/models/multiple_choice/multiple_choice_item.dart';
@@ -264,7 +264,7 @@ class ExtendedBlogPost extends BlogPost {
       meta: FeedItemMeta.fromJson(json['meta']),
       isCompleted: json['isCompleted'] ?? false,
       feedbackQuestion: json['feedbackQuestion'] != null
-          ? BlogPostFeedbackQuestion.fromJson(json['feedbackQuestion'])
+          ? BlogPostCommentQuestion.fromJson(json['feedbackQuestion'])
           : null,
       customDesign: json['customDesign'] != null
           ? CustomDesign.fromJson(json['customDesign'])
