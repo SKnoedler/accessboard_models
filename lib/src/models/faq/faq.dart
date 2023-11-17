@@ -8,7 +8,6 @@ class FAQ {
   final LocalizedString? openFaqQuestion;
   final FaqMeta meta;
   final List<TargetGroup> targetGroups;
-  //TODO: add targetgroups to all objects
 
   FAQ({
     required this.faqId,
