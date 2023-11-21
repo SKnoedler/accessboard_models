@@ -1,5 +1,3 @@
-import 'package:flutter/foundation.dart';
-
 class ProjectRoleReference {
   const ProjectRoleReference({
     required this.projectId,
@@ -10,7 +8,7 @@ class ProjectRoleReference {
   factory ProjectRoleReference.fromJson(Map<String, dynamic> json) {
     final roleString = json['role'] as String;
     final role = UserRole.values.firstWhere(
-      (e) => describeEnum(e) == roleString,
+      (e) => e.name == roleString,
       orElse: () => UserRole.viewer,
     );
     return ProjectRoleReference(
@@ -28,7 +26,7 @@ class ProjectRoleReference {
     return {
       'projectId': projectId,
       'name': name,
-      'role': describeEnum(role),
+      'role': role.name,
     };
   }
 }

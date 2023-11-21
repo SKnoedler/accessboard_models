@@ -1,5 +1,4 @@
 import 'package:accessboard_models/src/models/design/design_enums.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 // this design class can be used in individual widgets
@@ -35,15 +34,13 @@ class CustomDesign {
           : null,
       borderRadiusEnum: json['borderRadiusEnum'] != null
           ? BorderRadiusEnum.values
-              .firstWhere((e) => describeEnum(e) == json['borderRadiusEnum'])
+              .firstWhere((e) => e.name == json['borderRadiusEnum'])
           : null,
       borderEnum: json['borderEnum'] != null
-          ? BorderEnum.values
-              .firstWhere((e) => describeEnum(e) == json['borderEnum'])
+          ? BorderEnum.values.firstWhere((e) => e.name == json['borderEnum'])
           : null,
       shadowEnum: json['shadowEnum'] != null
-          ? ShadowEnum.values
-              .firstWhere((e) => describeEnum(e) == json['shadowEnum'])
+          ? ShadowEnum.values.firstWhere((e) => e.name == json['shadowEnum'])
           : null,
     );
   }
@@ -53,10 +50,9 @@ class CustomDesign {
       'primaryColor': primaryColor?.value,
       'secondaryColor': secondaryColor?.value,
       'tertiaryColor': tertiaryColor?.value,
-      'borderRadiusEnum':
-          borderRadiusEnum != null ? describeEnum(borderRadiusEnum!) : null,
-      'borderEnum': borderEnum != null ? describeEnum(borderEnum!) : null,
-      'shadowEnum': shadowEnum != null ? describeEnum(shadowEnum!) : null,
+      'borderRadiusEnum': borderRadiusEnum?.name,
+      'borderEnum': borderEnum?.name,
+      'shadowEnum': shadowEnum?.name,
     };
   }
 

@@ -4,6 +4,7 @@ import 'package:accessboard_models/src/models/localized_string/localized_string.
 
 class DetailsPage {
   final String pageId;
+  final String projectId;
   final LocalizedString htmlContent;
   final LocalizedString title;
   final PageMeta meta;
@@ -11,6 +12,7 @@ class DetailsPage {
 
   DetailsPage({
     required this.pageId,
+    required this.projectId,
     required this.htmlContent,
     required this.title,
     required this.meta,
@@ -20,6 +22,7 @@ class DetailsPage {
   factory DetailsPage.fromJson(Map<String, dynamic> json) {
     return DetailsPage(
       pageId: json['pageId'] as String,
+      projectId: json['projectId'] as String,
       htmlContent: LocalizedString.fromJson(json['htmlContent']),
       title: LocalizedString.fromJson(json['title']),
       meta: PageMeta.fromJson(json['meta']),
@@ -33,22 +36,23 @@ class DetailsPage {
   Map<String, dynamic> toJson() {
     return {
       'pageId': pageId,
+      'projectId': projectId,
       'htmlContent': htmlContent.toJson(),
       'title': title.toJson(),
       'meta': meta.toJson(),
-      'quillDocData': quillDocData != null ? quillDocData!.toJson() : null,
+      'quillDocData': quillDocData?.toJson(),
     };
   }
 
   DetailsPage copyWith({
-    String? pageId,
     LocalizedString? htmlContent,
     LocalizedString? title,
     PageMeta? meta,
     LocalizedQuillData? quillDocData,
   }) {
     return DetailsPage(
-      pageId: pageId ?? this.pageId,
+      pageId: pageId,
+      projectId: projectId,
       htmlContent: htmlContent ?? this.htmlContent,
       title: title ?? this.title,
       meta: meta ?? this.meta,
@@ -62,6 +66,7 @@ class DetailsPage {
 
     return other is DetailsPage &&
         other.pageId == pageId &&
+        other.projectId == projectId &&
         other.htmlContent == htmlContent &&
         other.title == title &&
         other.meta == meta &&
@@ -72,6 +77,7 @@ class DetailsPage {
   int get hashCode =>
       pageId.hashCode ^
       htmlContent.hashCode ^
+      projectId.hashCode ^
       title.hashCode ^
       meta.hashCode ^
       quillDocData.hashCode;

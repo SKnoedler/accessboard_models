@@ -1,5 +1,4 @@
 import 'package:accessboard_models/src/models/access_right/project_role_reference.dart';
-import 'package:flutter/foundation.dart';
 
 class AdminAccessRight extends AccessRightBase {
   final String organizationId;
@@ -91,7 +90,7 @@ class AccessRightBase {
   factory AccessRightBase.fromJson(Map<String, dynamic> json) {
     final stateString = json['state'] as String;
     final state = AccessRightState.values.firstWhere(
-      (e) => describeEnum(e) == stateString,
+      (e) => e.name == stateString,
       orElse: () => AccessRightState.notRegistered,
     );
     return AccessRightBase._(
@@ -101,7 +100,7 @@ class AccessRightBase {
 
   Map<String, dynamic> toJson() {
     return {
-      'state': describeEnum(state),
+      'state': state.name,
     };
   }
 }

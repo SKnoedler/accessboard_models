@@ -42,8 +42,7 @@ class FAQ {
   Map<String, dynamic> toJson() {
     return {
       'targetGroups': targetGroups.map((e) => e.toJson()).toList(),
-      'openFaqQuestion':
-          openFaqQuestion != null ? openFaqQuestion!.toJson() : null,
+      'openFaqQuestion': openFaqQuestion?.toJson(),
       'faqId': faqId,
       'projectId': projectId,
       'faqItems': faqItems.map((item) => item.toJson()).toList(),
