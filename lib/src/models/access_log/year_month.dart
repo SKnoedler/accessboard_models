@@ -18,4 +18,9 @@ class YearMonth extends DateTime {
       'month': month,
     };
   }
+
+  @override
+  String toString() {
+    return '$year-$month';
+  }
 }
