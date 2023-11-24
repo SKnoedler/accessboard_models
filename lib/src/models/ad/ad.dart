@@ -4,12 +4,14 @@ import 'package:accessboard_models/src/models/target_group.dart/target_group.dar
 
 class Ad {
   final String adId;
+  final String projectId;
   final List<AdItem> adItems;
   final ItemMeta meta;
   final List<TargetGroup> targetGroups;
 
   Ad({
     required this.adId,
+    required this.projectId,
     required this.adItems,
     required this.meta,
     this.targetGroups = const [],
@@ -25,6 +27,7 @@ class Ad {
 
     return Ad(
       adId: json['adId'] as String,
+      projectId: json['projectId'] as String,
       adItems: adItems,
       meta: ItemMeta.fromJson(json['meta']),
       targetGroups: targetGroups,
@@ -34,6 +37,7 @@ class Ad {
   Map<String, dynamic> toJson() {
     return {
       'adId': adId,
+      'projectId': projectId,
       'adItems': adItems.map((item) => item.toJson()).toList(),
       'meta': meta.toJson(),
       'targetGroups': targetGroups.map((item) => item.toJson()).toList(),
@@ -41,13 +45,13 @@ class Ad {
   }
 
   Ad copyWith({
-    String? adId,
     List<AdItem>? adItems,
     ItemMeta? meta,
     List<TargetGroup>? targetGroups,
   }) {
     return Ad(
-      adId: adId ?? this.adId,
+      adId: adId,
+      projectId: projectId,
       adItems: adItems ?? this.adItems,
       meta: meta ?? this.meta,
       targetGroups: targetGroups ?? this.targetGroups,
@@ -60,6 +64,7 @@ class Ad {
 
     return other is Ad &&
         other.adId == adId &&
+        other.projectId == projectId &&
         other.adItems == adItems &&
         other.targetGroups == targetGroups &&
         other.meta == meta;
@@ -67,7 +72,11 @@ class Ad {
 
   @override
   int get hashCode =>
-      targetGroups.hashCode ^ adId.hashCode ^ adItems.hashCode ^ meta.hashCode;
+      targetGroups.hashCode ^
+      projectId.hashCode ^
+      adId.hashCode ^
+      adItems.hashCode ^
+      meta.hashCode;
 }
 
 class AdItem {
