@@ -1,12 +1,10 @@
 import 'package:accessboard_models/src/models/target_group.dart/target_group.dart';
 
 class WidgetSwitch {
-  final String widgetSwitchId;
   final int placeHolderId;
   final List<StateTargetGroup> stateTargetGroups;
 
   WidgetSwitch({
-    required this.widgetSwitchId,
     required this.placeHolderId,
     required this.stateTargetGroups,
   });
@@ -18,7 +16,6 @@ class WidgetSwitch {
         .toList();
 
     return WidgetSwitch(
-      widgetSwitchId: json['widgetSwitchId'] as String,
       placeHolderId: json['placeHolderId'] as int,
       stateTargetGroups: stateTargetGroups,
     );
@@ -26,7 +23,6 @@ class WidgetSwitch {
 
   Map<String, dynamic> toJson() {
     return {
-      'widgetSwitchId': widgetSwitchId,
       'placeHolderId': placeHolderId,
       'stateTargetGroups':
           stateTargetGroups.map((item) => item.toJson()).toList(),
@@ -39,7 +35,6 @@ class WidgetSwitch {
     List<StateTargetGroup>? stateTargetGroups,
   }) {
     return WidgetSwitch(
-      widgetSwitchId: widgetSwitchId ?? this.widgetSwitchId,
       placeHolderId: placeHolderId ?? this.placeHolderId,
       stateTargetGroups: stateTargetGroups ?? this.stateTargetGroups,
     );
@@ -50,16 +45,12 @@ class WidgetSwitch {
     if (identical(this, other)) return true;
 
     return other is WidgetSwitch &&
-        other.widgetSwitchId == widgetSwitchId &&
         other.placeHolderId == placeHolderId &&
         other.stateTargetGroups == stateTargetGroups;
   }
 
   @override
-  int get hashCode =>
-      widgetSwitchId.hashCode ^
-      placeHolderId.hashCode ^
-      stateTargetGroups.hashCode;
+  int get hashCode => placeHolderId.hashCode ^ stateTargetGroups.hashCode;
 }
 
 class StateTargetGroup {
