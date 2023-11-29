@@ -2,33 +2,30 @@ import 'package:accessboard_models/src/models/localized_string/localized_string.
 import 'package:accessboard_models/src/models/meta/item_meta.dart';
 import 'package:accessboard_models/src/models/target_group.dart/target_group.dart';
 
-class Ad {
+class BannerAd {
   final String adId;
   final String projectId;
-  final List<AdItem> adItems;
+  final BannerAdItem adData;
   final ItemMeta meta;
   final List<TargetGroup> targetGroups;
 
-  Ad({
+  BannerAd({
     required this.adId,
     required this.projectId,
-    required this.adItems,
+    required this.adData,
     required this.meta,
     this.targetGroups = const [],
   });
 
-  factory Ad.fromJson(Map<String, dynamic> json) {
-    var adItemsJson = json['adItems'] as List;
-    List<AdItem> adItems =
-        adItemsJson.map((item) => AdItem.fromJson(item)).toList();
+  factory BannerAd.fromJson(Map<String, dynamic> json) {
     var targetGroupsJson = json['targetGroups'] as List;
     List<TargetGroup> targetGroups =
         targetGroupsJson.map((item) => TargetGroup.fromJson(item)).toList();
 
-    return Ad(
+    return BannerAd(
       adId: json['adId'] as String,
       projectId: json['projectId'] as String,
-      adItems: adItems,
+      adData: BannerAdItem.fromJson(json['adData']),
       meta: ItemMeta.fromJson(json['meta']),
       targetGroups: targetGroups,
     );
@@ -38,21 +35,21 @@ class Ad {
     return {
       'adId': adId,
       'projectId': projectId,
-      'adItems': adItems.map((item) => item.toJson()).toList(),
+      'adData': adData.toJson(),
       'meta': meta.toJson(),
       'targetGroups': targetGroups.map((item) => item.toJson()).toList(),
     };
   }
 
-  Ad copyWith({
-    List<AdItem>? adItems,
+  BannerAd copyWith({
+    BannerAdItem? adData,
     ItemMeta? meta,
     List<TargetGroup>? targetGroups,
   }) {
-    return Ad(
+    return BannerAd(
       adId: adId,
       projectId: projectId,
-      adItems: adItems ?? this.adItems,
+      adData: adData ?? this.adData,
       meta: meta ?? this.meta,
       targetGroups: targetGroups ?? this.targetGroups,
     );
@@ -62,10 +59,10 @@ class Ad {
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
 
-    return other is Ad &&
+    return other is BannerAd &&
         other.adId == adId &&
         other.projectId == projectId &&
-        other.adItems == adItems &&
+        other.adData == adData &&
         other.targetGroups == targetGroups &&
         other.meta == meta;
   }
@@ -75,18 +72,18 @@ class Ad {
       targetGroups.hashCode ^
       projectId.hashCode ^
       adId.hashCode ^
-      adItems.hashCode ^
+      adData.hashCode ^
       meta.hashCode;
 }
 
-class AdItem {
+class BannerAdItem {
   final String adItemId;
   final LocalizedString title;
   final LocalizedString description;
   final String imageUrl;
   final String buttonUrl;
 
-  AdItem({
+  BannerAdItem({
     required this.adItemId,
     required this.title,
     required this.description,
@@ -94,8 +91,8 @@ class AdItem {
     required this.buttonUrl,
   });
 
-  factory AdItem.fromJson(Map<String, dynamic> json) {
-    return AdItem(
+  factory BannerAdItem.fromJson(Map<String, dynamic> json) {
+    return BannerAdItem(
       adItemId: json['adItemId'] as String,
       title: LocalizedString.fromJson(json['title']),
       description: LocalizedString.fromJson(json['description']),
@@ -114,14 +111,14 @@ class AdItem {
     };
   }
 
-  AdItem copyWith({
+  BannerAdItem copyWith({
     String? adItemId,
     LocalizedString? title,
     LocalizedString? description,
     String? imageUrl,
     String? buttonUrl,
   }) {
-    return AdItem(
+    return BannerAdItem(
       adItemId: adItemId ?? this.adItemId,
       title: title ?? this.title,
       description: description ?? this.description,
@@ -134,7 +131,7 @@ class AdItem {
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
 
-    return other is AdItem &&
+    return other is BannerAdItem &&
         other.adItemId == adItemId &&
         other.title == title &&
         other.description == description &&
