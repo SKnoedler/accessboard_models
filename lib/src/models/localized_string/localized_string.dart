@@ -41,15 +41,27 @@ class TranslationItem {
 
   factory TranslationItem.fromJson(Map<String, dynamic> json) {
     return TranslationItem(
-      languageCode: Language.values[json['languageCode']],
+      languageCode: LanguageExtension.fromCode(json['languageCode']),
       translation: json['translation'],
     );
   }
 
   Map<String, dynamic> toJson() {
     return {
-      'languageCode': languageCode.index,
+      'languageCode': languageCode.code,
       'translation': translation,
     };
   }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+
+    return other is TranslationItem &&
+        other.languageCode == languageCode &&
+        other.translation == translation;
+  }
+
+  @override
+  int get hashCode => languageCode.hashCode ^ translation.hashCode;
 }
