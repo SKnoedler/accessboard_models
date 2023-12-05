@@ -1,8 +1,9 @@
+import 'package:accessboard_models/src/models/feed/feed_item.dart';
 import 'package:accessboard_models/src/models/localized_string/localized_string.dart';
 import 'package:accessboard_models/src/models/meta/item_meta.dart';
 import 'package:accessboard_models/src/models/target_group.dart/target_group.dart';
 
-class BannerAd {
+class BannerAd extends FeedItem {
   final String adId;
   final String projectId;
   final BannerAdItem adData;
@@ -15,7 +16,12 @@ class BannerAd {
     required this.adData,
     required this.meta,
     this.targetGroups = const [],
-  });
+  }) : super(
+          id: adId,
+          type: typeName,
+        );
+
+  static const String typeName = 'BannerAd';
 
   factory BannerAd.fromJson(Map<String, dynamic> json) {
     var targetGroupsJson = json['targetGroups'] as List;
@@ -31,6 +37,7 @@ class BannerAd {
     );
   }
 
+  @override
   Map<String, dynamic> toJson() {
     return {
       'adId': adId,
