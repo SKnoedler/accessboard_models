@@ -6,7 +6,6 @@ class ProjectData {
   final List<PlaceholderIdMatcher> multipleChoiceIds;
   final List<PlaceholderIdMatcher> bannerAdIds;
   final List<PlaceholderIdMatcher> popUpAdIds;
-  final List<ItemTargetGroupIds> adIds;
   final List<ItemTargetGroupIds> adPopIds;
   final List<PlaceholderIdMatcher> feedbackItemIds;
   final List<PlaceholderIdMatcher> pollIds;
@@ -26,7 +25,6 @@ class ProjectData {
     this.multipleChoiceIds = const [],
     this.bannerAdIds = const [],
     this.popUpAdIds = const [],
-    this.adIds = const [],
     this.adPopIds = const [],
     this.feedbackItemIds = const [],
     this.pollIds = const [],
@@ -70,12 +68,6 @@ class ProjectData {
           ? ItemTargetGroupIds.fromJson(
               json['privacyPolicyId'] as Map<String, dynamic>)
           : null,
-      adIds: json['bannerAdIds'] == null
-          ? []
-          : (json['bannerAdIds'] as List<dynamic>)
-              .map((item) =>
-                  ItemTargetGroupIds.fromJson(item as Map<String, dynamic>))
-              .toList(),
       adPopIds: json['adPopIds'] == null
           ? []
           : (json['adPopIds'] as List<dynamic>)
@@ -136,9 +128,9 @@ class ProjectData {
               .map((item) =>
                   PlaceholderIdMatcher.fromJson(item as Map<String, dynamic>))
               .toList(),
-      switches: json['multipleChoiceSelectionIds'] == null
+      switches: json['switches'] == null
           ? []
-          : (json['multipleChoiceSelectionIds'] as List<dynamic>)
+          : (json['switches'] as List<dynamic>)
               .map(
                   (item) => WidgetSwitch.fromJson(item as Map<String, dynamic>))
               .toList(),
@@ -154,7 +146,6 @@ class ProjectData {
       'imprintId': imprintId?.toJson(),
       'termsId': termsId?.toJson(),
       'privacyPolicyId': privacyPolicyId?.toJson(),
-      'adIds': adIds.map((item) => item.toJson()).toList(),
       'adPopIds': adPopIds.map((item) => item.toJson()).toList(),
       'blogPostIds': blogPostIds.map((item) => item.toJson()).toList(),
       'faqIds': faqIds.map((item) => item.toJson()).toList(),
@@ -209,7 +200,6 @@ class ProjectData {
       imprintId: imprintId ?? this.imprintId,
       termsId: termsId ?? this.termsId,
       privacyPolicyId: privacyPolicyId ?? this.privacyPolicyId,
-      adIds: adIds ?? this.adIds,
       adPopIds: adPopIds ?? this.adPopIds,
       blogPostIds: blogPostIds ?? this.blogPostIds,
       faqIds: faqIds ?? this.faqIds,
@@ -230,78 +220,54 @@ class ProjectData {
     if (identical(this, other)) return true;
 
     return other is ProjectData &&
-        _listEquals(other.multipleChoiceIds, multipleChoiceIds) &&
-        _listEquals(other.bannerAdIds, bannerAdIds) &&
+        _equals(other.multipleChoiceIds, multipleChoiceIds) &&
+        _equals(other.bannerAdIds, bannerAdIds) &&
         other.feedId == feedId &&
         other.imprintId == imprintId &&
         other.termsId == termsId &&
         other.privacyPolicyId == privacyPolicyId &&
-        _listEquals(other.adIds, adIds) &&
-        _listEquals(other.adPopIds, adPopIds) &&
-        _listEquals(other.blogPostIds, blogPostIds) &&
-        _listEquals(other.faqIds, faqIds) &&
-        _listEquals(other.faqUserQuestionIds, faqUserQuestionIds) &&
-        _listEquals(other.feedbackAnswerIds, feedbackAnswerIds) &&
-        _listEquals(other.feedbackItemIds, feedbackItemIds) &&
-        _listEquals(
-            other.multipleChoiceSelectionIds, multipleChoiceSelectionIds) &&
-        _listEquals(other.pollAnswerIds, pollAnswerIds) &&
-        _listEquals(other.pollIds, pollIds) &&
-        _listEquals(other.popUpAdIds, popUpAdIds) &&
-        _listEquals(other.switches, switches);
+        _equals(other.adPopIds, adPopIds) &&
+        _equals(other.blogPostIds, blogPostIds) &&
+        _equals(other.faqIds, faqIds) &&
+        _equals(other.faqUserQuestionIds, faqUserQuestionIds) &&
+        _equals(other.feedbackAnswerIds, feedbackAnswerIds) &&
+        _equals(other.feedbackItemIds, feedbackItemIds) &&
+        _equals(other.multipleChoiceSelectionIds, multipleChoiceSelectionIds) &&
+        _equals(other.pollAnswerIds, pollAnswerIds) &&
+        _equals(other.pollIds, pollIds) &&
+        _equals(other.popUpAdIds, popUpAdIds) &&
+        _equals(other.switches, switches);
   }
 
   @override
-  int get hashCode {
-    return _hashValues([
-      ...multipleChoiceIds.map((e) => e.hashCode),
-      ...bannerAdIds.map((e) => e.hashCode),
-      feedId.hashCode,
-      imprintId.hashCode,
-      termsId.hashCode,
-      privacyPolicyId.hashCode,
-      ...adIds.map((e) => e.hashCode),
-      ...adPopIds.map((e) => e.hashCode),
-      ...blogPostIds.map((e) => e.hashCode),
-      ...faqIds.map((e) => e.hashCode),
-      ...faqUserQuestionIds.map((e) => e.hashCode),
-      ...feedbackAnswerIds.map((e) => e.hashCode),
-      ...feedbackItemIds.map((e) => e.hashCode),
-      ...multipleChoiceSelectionIds.map((e) => e.hashCode),
-      ...pollAnswerIds.map((e) => e.hashCode),
-      ...pollIds.map((e) => e.hashCode),
-      ...popUpAdIds.map((e) => e.hashCode),
-      ...switches.map((e) => e.hashCode),
-    ]);
+  int get hashCode => _hashValues([
+        ...multipleChoiceIds,
+        ...bannerAdIds,
+        feedId,
+        imprintId,
+        termsId,
+        privacyPolicyId,
+        ...adPopIds,
+        ...blogPostIds,
+        ...faqIds,
+        ...faqUserQuestionIds,
+        ...feedbackAnswerIds,
+        ...feedbackItemIds,
+        ...multipleChoiceSelectionIds,
+        ...pollAnswerIds,
+        ...pollIds,
+        ...popUpAdIds,
+        ...switches,
+      ]);
+
+  bool _equals<T>(List<T>? a, List<T>? b) {
+    if (a == null) return b == null;
+    if (b == null) return false;
+    if (a.length != b.length) return false;
+
+    return a.every((element) => b.contains(element));
   }
-}
 
-bool _listEquals<T>(List<T>? a, List<T>? b) {
-  if (a == null) return b == null;
-  if (b == null || a.length != b.length) return false;
-  if (identical(a, b)) return true;
-  for (int index = 0; index < a.length; index++) {
-    if (a[index] != b[index]) return false;
-  }
-  return true;
-}
-
-int _hashValues(List<dynamic> values) {
-  return _finish(_combineHashCodes(values.map((e) => e.hashCode).toList()));
-}
-
-int _combineHashCodes(List<int> codes) {
-  return codes.fold(0, (value, code) => _combine(value, code));
-}
-
-int _combine(int hash, int value) {
-  hash = 0x1fffffff & (hash + value);
-  hash = 0x1fffffff & (hash + ((0x0007ffff & hash) << 10));
-  return hash ^ (hash >> 6);
-}
-
-int _finish(int hash) {
-  hash = 0x1fffffff & (hash + ((0x03ffffff & hash) << 3));
-  hash = hash ^ (hash >> 11);
-  return 0x1fffffff & (hash + ((0x00003fff & hash) << 15));
+  int _hashValues(List<dynamic> values) =>
+      values.fold(0, (hash, value) => hash ^ value.hashCode);
 }

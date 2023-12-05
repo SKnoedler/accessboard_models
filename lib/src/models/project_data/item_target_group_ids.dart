@@ -10,9 +10,7 @@ class ItemTargetGroupIds {
   factory ItemTargetGroupIds.fromJson(Map<String, dynamic> json) {
     return ItemTargetGroupIds(
       itemId: json['itemId'] as String,
-      targetGroupIds: (json['targetGroupIds'] as List<dynamic>?)
-          ?.map((item) => item as String)
-          .toList(),
+      targetGroupIds: json['targetGroupIds'] as List<String>?,
     );
   }
 

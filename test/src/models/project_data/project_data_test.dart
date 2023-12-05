@@ -6,16 +6,6 @@ import 'package:test/test.dart';
 
 void main() {
   final expectedobject = ProjectData(
-    adIds: [
-      ItemTargetGroupIds(
-        itemId: '23',
-        targetGroupIds: ['1', '2'],
-      ),
-      ItemTargetGroupIds(
-        itemId: '223',
-        targetGroupIds: ['1', '2'],
-      )
-    ],
     adPopIds: [
       ItemTargetGroupIds(
         itemId: '23',
@@ -146,6 +136,7 @@ void main() {
     'fromJson() converts a List<Map<String, dynamic>> to a List<FaqItem>',
     () {
       final result = ProjectData.fromJson(expectedJson);
+
       expect(result, expectedobject);
     },
   );
