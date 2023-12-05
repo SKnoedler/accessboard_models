@@ -1,7 +1,5 @@
 import 'package:accessboard_models/src/models/feed/feed_item.dart';
 
-// collection: feeds
-
 class InteractiveFeed {
   final String feedId;
   final String projectId;

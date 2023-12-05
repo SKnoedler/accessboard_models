@@ -31,5 +31,4 @@ class ProjectRoleReference {
   }
 }
 
-/// An enumeration of possible user roles.
 enum UserRole { viewer, editor }

@@ -1,5 +1,3 @@
-// collection name: blogPostComments
-
 class BlogPostComment {
   final String commentId;
   final String deviceId;

@@ -4,8 +4,6 @@ import 'package:accessboard_models/src/models/feed/feed_item.dart';
 import 'package:accessboard_models/src/models/localized_string/localized_string.dart';
 import 'package:accessboard_models/src/models/target_group.dart/target_group.dart';
 
-// collection: polls
-
 class Poll extends FeedItem {
   final String pollId;
   final LocalizedString question; // Changed this line

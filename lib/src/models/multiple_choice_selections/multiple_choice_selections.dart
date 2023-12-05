@@ -1,5 +1,3 @@
-// collection: multipleChoiceSelectionItems
-
 class MultipleChoiceSelectionItem {
   final String projectId;
   final String multipleChoiceSelectionItemId;

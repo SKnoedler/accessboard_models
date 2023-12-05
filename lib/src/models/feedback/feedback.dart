@@ -1,5 +1,3 @@
-// collection feedbackItems
-// 1 feedback object per project
 import 'package:accessboard_models/src/models/meta/item_meta.dart';
 import 'package:accessboard_models/src/models/multiple_choice/multiple_choice_item.dart';
 import 'package:accessboard_models/src/models/target_group.dart/target_group.dart';

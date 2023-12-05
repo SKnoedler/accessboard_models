@@ -1,7 +1,5 @@
 import 'package:accessboard_models/src/models/design/design_enums.dart';
 
-// collection: designs
-
 class Design {
   final String designId;
 

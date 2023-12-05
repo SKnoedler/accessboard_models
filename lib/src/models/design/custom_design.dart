@@ -1,7 +1,5 @@
 import 'package:accessboard_models/src/models/design/design_enums.dart';
 
-// this design class can be used in individual widgets
-
 class CustomDesign {
   final int? primaryColor;
   final int? secondaryColor;

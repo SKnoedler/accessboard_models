@@ -5,8 +5,6 @@ import 'package:accessboard_models/src/models/feed/feed_item.dart';
 import 'package:accessboard_models/src/models/localized_string/localized_string.dart';
 import 'package:accessboard_models/src/models/target_group.dart/target_group.dart';
 
-// collection name: blogPosts
-
 class BlogPost extends FeedItem {
   final String blogPostId;
   final LocalizedString title;

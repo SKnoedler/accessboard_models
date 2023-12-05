@@ -1,6 +1,3 @@
-// collection: feedbackAnswerItems
-
-// created by user and updated by admin
 class FeedbackAnswerItem {
   final String deviceId;
   final String projectId;

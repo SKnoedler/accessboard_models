@@ -1,4 +1,3 @@
-// collection: pollAnswers
 class PollAnswer {
   final String pollId;
   final String pollAnswerId;
