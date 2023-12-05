@@ -1,3 +1,5 @@
+import 'package:accessboard_models/src/models/project_data/item_target_group_ids.dart';
+import 'package:accessboard_models/src/models/project_data/placeholder_id_matcher.dart';
 import 'package:accessboard_models/src/models/switch/widget_switch.dart';
 
 class ProjectData {
@@ -42,14 +44,18 @@ class ProjectData {
   });
   factory ProjectData.fromJson(Map<String, dynamic> json) {
     return ProjectData(
-      multipleChoiceIds: (json['multipleChoiceIds'] as List<dynamic>)
-          .map((item) =>
-              PlaceholderIdMatcher.fromJson(item as Map<String, dynamic>))
-          .toList(),
-      bannerAdIds: (json['bannerAdIds'] as List<dynamic>)
-          .map((item) =>
-              PlaceholderIdMatcher.fromJson(item as Map<String, dynamic>))
-          .toList(),
+      multipleChoiceIds: json['multipleChoiceIds'] == null
+          ? []
+          : (json['multipleChoiceIds'] as List<dynamic>)
+              .map((item) =>
+                  PlaceholderIdMatcher.fromJson(item as Map<String, dynamic>))
+              .toList(),
+      bannerAdIds: json['bannerAdIds'] == null
+          ? []
+          : (json['bannerAdIds'] as List<dynamic>)
+              .map((item) =>
+                  PlaceholderIdMatcher.fromJson(item as Map<String, dynamic>))
+              .toList(),
       feedId: json['feedId'] != null
           ? ItemTargetGroupIds.fromJson(json['feedId'] as Map<String, dynamic>)
           : null,
@@ -64,59 +70,83 @@ class ProjectData {
           ? ItemTargetGroupIds.fromJson(
               json['privacyPolicyId'] as Map<String, dynamic>)
           : null,
-      adIds: (json['bannerAdIds'] as List<dynamic>)
-          .map((item) =>
-              ItemTargetGroupIds.fromJson(item as Map<String, dynamic>))
-          .toList(),
-      adPopIds: (json['adPopIds'] as List<dynamic>)
-          .map((item) =>
-              ItemTargetGroupIds.fromJson(item as Map<String, dynamic>))
-          .toList(),
-      blogPostIds: (json['blogPostIds'] as List<dynamic>)
-          .map((item) =>
-              ItemTargetGroupIds.fromJson(item as Map<String, dynamic>))
-          .toList(),
-      faqIds: (json['faqIds'] as List<dynamic>)
-          .map((item) =>
-              ItemTargetGroupIds.fromJson(item as Map<String, dynamic>))
-          .toList(),
-      faqUserQuestionIds: (json['faqUserQuestionIds'] as List<dynamic>)
-          .map((item) =>
-              ItemTargetGroupIds.fromJson(item as Map<String, dynamic>))
-          .toList(),
-      feedbackAnswerIds: (json['feedbackAnswerIds'] as List<dynamic>)
-          .map((item) =>
-              ItemTargetGroupIds.fromJson(item as Map<String, dynamic>))
-          .toList(),
-      feedbackItemIds: (json['feedbackItemIds'] as List<dynamic>)
-          .map((item) =>
-              PlaceholderIdMatcher.fromJson(item as Map<String, dynamic>))
-          .toList(),
-      multipleChoiceSelectionIds:
-          (json['multipleChoiceSelectionIds'] as List<dynamic>)
+      adIds: json['bannerAdIds'] == null
+          ? []
+          : (json['bannerAdIds'] as List<dynamic>)
               .map((item) =>
                   ItemTargetGroupIds.fromJson(item as Map<String, dynamic>))
               .toList(),
-      pollAnswerIds: (json['pollAnswerIds'] as List<dynamic>)
-          .map((item) =>
-              ItemTargetGroupIds.fromJson(item as Map<String, dynamic>))
-          .toList(),
-      pollIds: (json['pollIds'] as List<dynamic>)
-          .map((item) =>
-              PlaceholderIdMatcher.fromJson(item as Map<String, dynamic>))
-          .toList(),
-      popUpAdIds: (json['popUpAdIds'] as List<dynamic>)
-          .map((item) =>
-              PlaceholderIdMatcher.fromJson(item as Map<String, dynamic>))
-          .toList(),
-      switches: (json['multipleChoiceSelectionIds'] as List<dynamic>)
-          .map((item) => WidgetSwitch.fromJson(item as Map<String, dynamic>))
-          .toList(),
+      adPopIds: json['adPopIds'] == null
+          ? []
+          : (json['adPopIds'] as List<dynamic>)
+              .map((item) =>
+                  ItemTargetGroupIds.fromJson(item as Map<String, dynamic>))
+              .toList(),
+      blogPostIds: json['blogPostIds'] == null
+          ? []
+          : (json['blogPostIds'] as List<dynamic>)
+              .map((item) =>
+                  ItemTargetGroupIds.fromJson(item as Map<String, dynamic>))
+              .toList(),
+      faqIds: json['faqIds'] == null
+          ? []
+          : (json['faqIds'] as List<dynamic>)
+              .map((item) =>
+                  ItemTargetGroupIds.fromJson(item as Map<String, dynamic>))
+              .toList(),
+      faqUserQuestionIds: json['faqUserQuestionIds'] == null
+          ? []
+          : (json['faqUserQuestionIds'] as List<dynamic>)
+              .map((item) =>
+                  ItemTargetGroupIds.fromJson(item as Map<String, dynamic>))
+              .toList(),
+      feedbackAnswerIds: json['feedbackAnswerIds'] == null
+          ? []
+          : (json['feedbackAnswerIds'] as List<dynamic>)
+              .map((item) =>
+                  ItemTargetGroupIds.fromJson(item as Map<String, dynamic>))
+              .toList(),
+      feedbackItemIds: json['feedbackItemIds'] == null
+          ? []
+          : (json['feedbackItemIds'] as List<dynamic>)
+              .map((item) =>
+                  PlaceholderIdMatcher.fromJson(item as Map<String, dynamic>))
+              .toList(),
+      multipleChoiceSelectionIds: json['multipleChoiceSelectionIds'] == null
+          ? []
+          : (json['multipleChoiceSelectionIds'] as List<dynamic>)
+              .map((item) =>
+                  ItemTargetGroupIds.fromJson(item as Map<String, dynamic>))
+              .toList(),
+      pollAnswerIds: json['pollAnswerIds'] == null
+          ? []
+          : (json['pollAnswerIds'] as List<dynamic>)
+              .map((item) =>
+                  ItemTargetGroupIds.fromJson(item as Map<String, dynamic>))
+              .toList(),
+      pollIds: json['pollIds'] == null
+          ? []
+          : (json['pollIds'] as List<dynamic>)
+              .map((item) =>
+                  PlaceholderIdMatcher.fromJson(item as Map<String, dynamic>))
+              .toList(),
+      popUpAdIds: json['popUpAdIds'] == null
+          ? []
+          : (json['popUpAdIds'] as List<dynamic>)
+              .map((item) =>
+                  PlaceholderIdMatcher.fromJson(item as Map<String, dynamic>))
+              .toList(),
+      switches: json['multipleChoiceSelectionIds'] == null
+          ? []
+          : (json['multipleChoiceSelectionIds'] as List<dynamic>)
+              .map(
+                  (item) => WidgetSwitch.fromJson(item as Map<String, dynamic>))
+              .toList(),
     );
   }
 
   Map<String, dynamic> toJson() {
-    return {
+    final jsonData = {
       'multipleChoiceIds':
           multipleChoiceIds.map((item) => item.toJson()).toList(),
       'bannerAdIds': bannerAdIds.map((item) => item.toJson()).toList(),
@@ -140,6 +170,16 @@ class ProjectData {
       'popUpAdIds': popUpAdIds.map((item) => item.toJson()).toList(),
       'switches': switches.map((item) => item.toJson()).toList(),
     };
+
+    jsonData.removeWhere((key, value) {
+      if (value is List) {
+        return value.isEmpty;
+      } else {
+        return value == null;
+      }
+    });
+
+    return jsonData;
   }
 
   ProjectData copyWith({
@@ -190,149 +230,78 @@ class ProjectData {
     if (identical(this, other)) return true;
 
     return other is ProjectData &&
-        other.multipleChoiceIds == multipleChoiceIds &&
-        other.bannerAdIds == bannerAdIds &&
+        _listEquals(other.multipleChoiceIds, multipleChoiceIds) &&
+        _listEquals(other.bannerAdIds, bannerAdIds) &&
         other.feedId == feedId &&
         other.imprintId == imprintId &&
         other.termsId == termsId &&
         other.privacyPolicyId == privacyPolicyId &&
-        other.adIds == adIds &&
-        other.adPopIds == adPopIds &&
-        other.blogPostIds == blogPostIds &&
-        other.faqIds == faqIds &&
-        other.faqUserQuestionIds == faqUserQuestionIds &&
-        other.feedbackAnswerIds == feedbackAnswerIds &&
-        other.feedbackItemIds == feedbackItemIds &&
-        other.multipleChoiceSelectionIds == multipleChoiceSelectionIds &&
-        other.pollAnswerIds == pollAnswerIds &&
-        other.pollIds == pollIds &&
-        other.popUpAdIds == popUpAdIds &&
-        other.switches == switches;
+        _listEquals(other.adIds, adIds) &&
+        _listEquals(other.adPopIds, adPopIds) &&
+        _listEquals(other.blogPostIds, blogPostIds) &&
+        _listEquals(other.faqIds, faqIds) &&
+        _listEquals(other.faqUserQuestionIds, faqUserQuestionIds) &&
+        _listEquals(other.feedbackAnswerIds, feedbackAnswerIds) &&
+        _listEquals(other.feedbackItemIds, feedbackItemIds) &&
+        _listEquals(
+            other.multipleChoiceSelectionIds, multipleChoiceSelectionIds) &&
+        _listEquals(other.pollAnswerIds, pollAnswerIds) &&
+        _listEquals(other.pollIds, pollIds) &&
+        _listEquals(other.popUpAdIds, popUpAdIds) &&
+        _listEquals(other.switches, switches);
   }
 
   @override
   int get hashCode {
-    return multipleChoiceIds.hashCode ^
-        bannerAdIds.hashCode ^
-        feedId.hashCode ^
-        imprintId.hashCode ^
-        termsId.hashCode ^
-        privacyPolicyId.hashCode ^
-        adIds.hashCode ^
-        adPopIds.hashCode ^
-        blogPostIds.hashCode ^
-        faqIds.hashCode ^
-        faqUserQuestionIds.hashCode ^
-        feedbackAnswerIds.hashCode ^
-        feedbackItemIds.hashCode ^
-        multipleChoiceSelectionIds.hashCode ^
-        pollAnswerIds.hashCode ^
-        pollIds.hashCode ^
-        popUpAdIds.hashCode ^
-        switches.hashCode;
+    return _hashValues([
+      ...multipleChoiceIds.map((e) => e.hashCode),
+      ...bannerAdIds.map((e) => e.hashCode),
+      feedId.hashCode,
+      imprintId.hashCode,
+      termsId.hashCode,
+      privacyPolicyId.hashCode,
+      ...adIds.map((e) => e.hashCode),
+      ...adPopIds.map((e) => e.hashCode),
+      ...blogPostIds.map((e) => e.hashCode),
+      ...faqIds.map((e) => e.hashCode),
+      ...faqUserQuestionIds.map((e) => e.hashCode),
+      ...feedbackAnswerIds.map((e) => e.hashCode),
+      ...feedbackItemIds.map((e) => e.hashCode),
+      ...multipleChoiceSelectionIds.map((e) => e.hashCode),
+      ...pollAnswerIds.map((e) => e.hashCode),
+      ...pollIds.map((e) => e.hashCode),
+      ...popUpAdIds.map((e) => e.hashCode),
+      ...switches.map((e) => e.hashCode),
+    ]);
   }
 }
 
-class ItemTargetGroupIds {
-  final String itemId;
-  final List<String>? targetGroupIds;
-
-  ItemTargetGroupIds({
-    required this.itemId,
-    this.targetGroupIds,
-  });
-
-  factory ItemTargetGroupIds.fromJson(Map<String, dynamic> json) {
-    return ItemTargetGroupIds(
-      itemId: json['itemId'] as String,
-      targetGroupIds: (json['targetGroupIds'] as List<dynamic>?)
-          ?.map((item) => item as String)
-          .toList(),
-    );
+bool _listEquals<T>(List<T>? a, List<T>? b) {
+  if (a == null) return b == null;
+  if (b == null || a.length != b.length) return false;
+  if (identical(a, b)) return true;
+  for (int index = 0; index < a.length; index++) {
+    if (a[index] != b[index]) return false;
   }
-
-  Map<String, dynamic> toJson() {
-    return {
-      'itemId': itemId,
-      'targetGroupIds': targetGroupIds,
-    };
-  }
-
-  ItemTargetGroupIds copyWith({
-    String? itemId,
-    List<String>? targetGroupIds,
-  }) {
-    return ItemTargetGroupIds(
-      itemId: itemId ?? this.itemId,
-      targetGroupIds: targetGroupIds ?? this.targetGroupIds,
-    );
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) return true;
-
-    return other is ItemTargetGroupIds &&
-        other.itemId == itemId &&
-        other.targetGroupIds == targetGroupIds;
-  }
-
-  @override
-  int get hashCode => itemId.hashCode ^ targetGroupIds.hashCode;
+  return true;
 }
 
-class PlaceholderIdMatcher {
-  final int placeholderId;
-  final String itemId;
-  final List<String>? targetGroupIds;
+int _hashValues(List<dynamic> values) {
+  return _finish(_combineHashCodes(values.map((e) => e.hashCode).toList()));
+}
 
-  PlaceholderIdMatcher({
-    required this.placeholderId,
-    required this.itemId,
-    this.targetGroupIds,
-  });
+int _combineHashCodes(List<int> codes) {
+  return codes.fold(0, (value, code) => _combine(value, code));
+}
 
-  factory PlaceholderIdMatcher.fromJson(Map<String, dynamic> json) {
-    return PlaceholderIdMatcher(
-      placeholderId: json['placeholderId'] as int,
-      itemId: json['itemId'] as String,
-      targetGroupIds: (json['targetGroupIds'] as List<dynamic>?)
-          ?.map((item) => item as String)
-          .toList(),
-    );
-  }
+int _combine(int hash, int value) {
+  hash = 0x1fffffff & (hash + value);
+  hash = 0x1fffffff & (hash + ((0x0007ffff & hash) << 10));
+  return hash ^ (hash >> 6);
+}
 
-  Map<String, dynamic> toJson() {
-    return {
-      'placeholderId': placeholderId,
-      'itemId': itemId,
-      'targetGroupIds': targetGroupIds,
-    };
-  }
-
-  PlaceholderIdMatcher copyWith({
-    int? placeholderId,
-    String? itemId,
-    List<String>? targetGroupIds,
-  }) {
-    return PlaceholderIdMatcher(
-      placeholderId: placeholderId ?? this.placeholderId,
-      itemId: itemId ?? this.itemId,
-      targetGroupIds: targetGroupIds ?? this.targetGroupIds,
-    );
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) return true;
-
-    return other is PlaceholderIdMatcher &&
-        other.placeholderId == placeholderId &&
-        other.itemId == itemId &&
-        other.targetGroupIds == targetGroupIds;
-  }
-
-  @override
-  int get hashCode =>
-      placeholderId.hashCode ^ itemId.hashCode ^ targetGroupIds.hashCode;
+int _finish(int hash) {
+  hash = 0x1fffffff & (hash + ((0x03ffffff & hash) << 3));
+  hash = hash ^ (hash >> 11);
+  return 0x1fffffff & (hash + ((0x00003fff & hash) << 15));
 }

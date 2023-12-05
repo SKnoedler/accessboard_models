@@ -1,11 +1,11 @@
-import 'package:accessboard_models/src/models/target_group.dart/target_group.dart';
+import 'package:accessboard_models/src/models/switch/state_target_group.dart';
 
 class WidgetSwitch {
-  final int placeHolderId;
+  final int placeholderId;
   final List<StateTargetGroup> stateTargetGroups;
 
   WidgetSwitch({
-    required this.placeHolderId,
+    required this.placeholderId,
     required this.stateTargetGroups,
   });
 
@@ -16,14 +16,14 @@ class WidgetSwitch {
         .toList();
 
     return WidgetSwitch(
-      placeHolderId: json['placeHolderId'] as int,
+      placeholderId: json['placeholderId'] as int,
       stateTargetGroups: stateTargetGroups,
     );
   }
 
   Map<String, dynamic> toJson() {
     return {
-      'placeHolderId': placeHolderId,
+      'placeholderId': placeholderId,
       'stateTargetGroups':
           stateTargetGroups.map((item) => item.toJson()).toList(),
     };
@@ -31,11 +31,11 @@ class WidgetSwitch {
 
   WidgetSwitch copyWith({
     String? widgetSwitchId,
-    int? placeHolderId,
+    int? placeholderId,
     List<StateTargetGroup>? stateTargetGroups,
   }) {
     return WidgetSwitch(
-      placeHolderId: placeHolderId ?? this.placeHolderId,
+      placeholderId: placeholderId ?? this.placeholderId,
       stateTargetGroups: stateTargetGroups ?? this.stateTargetGroups,
     );
   }
@@ -45,56 +45,20 @@ class WidgetSwitch {
     if (identical(this, other)) return true;
 
     return other is WidgetSwitch &&
-        other.placeHolderId == placeHolderId &&
-        other.stateTargetGroups == stateTargetGroups;
+        other.placeholderId == placeholderId &&
+        _listEquals(other.stateTargetGroups, stateTargetGroups);
+  }
+
+  bool _listEquals<T>(List<T>? a, List<T>? b) {
+    if (a == null) return b == null;
+    if (b == null || a.length != b.length) return false;
+    if (identical(a, b)) return true;
+    for (int index = 0; index < a.length; index++) {
+      if (a[index] != b[index]) return false;
+    }
+    return true;
   }
 
   @override
-  int get hashCode => placeHolderId.hashCode ^ stateTargetGroups.hashCode;
-}
-
-class StateTargetGroup {
-  final bool isActive;
-  final TargetGroup targetGroup;
-
-  StateTargetGroup({
-    required this.isActive,
-    required this.targetGroup,
-  });
-
-  factory StateTargetGroup.fromJson(Map<String, dynamic> json) {
-    return StateTargetGroup(
-      isActive: json['isActive'] as bool,
-      targetGroup: TargetGroup.fromJson(json['targetGroup']),
-    );
-  }
-
-  Map<String, dynamic> toJson() {
-    return {
-      'isActive': isActive,
-      'targetGroup': targetGroup.toJson(),
-    };
-  }
-
-  StateTargetGroup copyWith({
-    bool? isActive,
-    TargetGroup? targetGroup,
-  }) {
-    return StateTargetGroup(
-      isActive: isActive ?? this.isActive,
-      targetGroup: targetGroup ?? this.targetGroup,
-    );
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) return true;
-
-    return other is StateTargetGroup &&
-        other.isActive == isActive &&
-        other.targetGroup == targetGroup;
-  }
-
-  @override
-  int get hashCode => isActive.hashCode ^ targetGroup.hashCode;
+  int get hashCode => placeholderId.hashCode ^ stateTargetGroups.hashCode;
 }
