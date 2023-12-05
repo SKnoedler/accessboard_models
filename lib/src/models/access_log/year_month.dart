@@ -14,17 +14,20 @@
 class YearMonth extends DateTime {
   YearMonth._internal(int year, int month) : super.utc(year, month, 1);
 
+  /// Creates a `YearMonth` object representing the current year and month.
   factory YearMonth.now() {
     final now = DateTime.now().toUtc();
     return YearMonth._internal(now.year, now.month);
   }
 
+  /// Creates a `YearMonth` object from a JSON map.
   factory YearMonth.fromJson(Map<String, dynamic> json) {
     final year = json['year'] as int;
     final month = json['month'] as int;
     return YearMonth._internal(year, month);
   }
 
+  /// Converts the `YearMonth` object to a JSON map.
   Map<String, dynamic> toJson() {
     return {
       'year': year,
