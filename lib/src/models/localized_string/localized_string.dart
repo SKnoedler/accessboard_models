@@ -28,6 +28,25 @@ class LocalizedString {
       'translations': translationsJson,
     };
   }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+
+    return other is LocalizedString &&
+        _listEquals(other.translations, translations);
+  }
+
+  @override
+  int get hashCode => translations.hashCode;
+
+  bool _listEquals(List<TranslationItem> a, List<TranslationItem> b) {
+    if (a.length != b.length) return false;
+    for (int i = 0; i < a.length; i++) {
+      if (a[i] != b[i]) return false;
+    }
+    return true;
+  }
 }
 
 class TranslationItem {
