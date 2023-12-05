@@ -18,6 +18,7 @@ class BlogPost extends FeedItem {
   final BlogPostCommentQuestion? feedbackQuestion;
   final CustomDesign? customDesign;
   final List<TargetGroup> targetGroups;
+  final List<String> commentIds;
 
   BlogPost({
     required this.blogPostId,
@@ -29,6 +30,7 @@ class BlogPost extends FeedItem {
     this.quillDocData,
     this.feedbackQuestion,
     this.customDesign,
+    this.commentIds = const [],
     this.targetGroups = const [],
   }) : super(
           id: blogPostId,
@@ -56,6 +58,7 @@ class BlogPost extends FeedItem {
       customDesign: json['customDesign'] != null
           ? CustomDesign.fromJson(json['customDesign'])
           : null,
+      commentIds: json['commentIds'] as List<String>,
     );
   }
 
@@ -73,6 +76,7 @@ class BlogPost extends FeedItem {
       'quillDocData': quillDocData,
       'type': type,
       'targetGroups': targetGroups.map((item) => item.toJson()).toList(),
+      'commentIds': commentIds,
     };
   }
 
@@ -104,6 +108,7 @@ class BlogPost extends FeedItem {
     CustomDesign? customDesign,
     List<Map<String, Object>>? quillDocData,
     List<TargetGroup>? targetGroups,
+    List<String>? commentIds,
   }) {
     return BlogPost(
       targetGroups: targetGroups ?? this.targetGroups,
@@ -116,16 +121,38 @@ class BlogPost extends FeedItem {
       feedbackQuestion: feedbackQuestion ?? this.feedbackQuestion,
       customDesign: customDesign ?? this.customDesign,
       quillDocData: quillDocData ?? this.quillDocData,
+      commentIds: commentIds ?? this.commentIds,
     );
   }
 
   @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is BlogPost &&
-          runtimeType == other.runtimeType &&
-          blogPostId == other.blogPostId;
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+
+    return other is BlogPost &&
+        other.blogPostId == blogPostId &&
+        other.title == title &&
+        other.description == description &&
+        other.imageUrl == imageUrl &&
+        other.htmlContent == htmlContent &&
+        other.meta == meta &&
+        other.quillDocData == quillDocData &&
+        other.feedbackQuestion == feedbackQuestion &&
+        other.customDesign == customDesign &&
+        other.targetGroups == targetGroups;
+  }
 
   @override
-  int get hashCode => blogPostId.hashCode;
+  int get hashCode {
+    return blogPostId.hashCode ^
+        title.hashCode ^
+        description.hashCode ^
+        imageUrl.hashCode ^
+        htmlContent.hashCode ^
+        meta.hashCode ^
+        quillDocData.hashCode ^
+        feedbackQuestion.hashCode ^
+        customDesign.hashCode ^
+        targetGroups.hashCode;
+  }
 }
