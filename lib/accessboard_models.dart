@@ -22,5 +22,6 @@ export 'src/models/multiple_choice/multiple_choice_item.dart';
 export 'src/models/multiple_choice_selections/multiple_choice_selections.dart';
 export 'src/models/poll/poll.dart';
 export 'src/models/poll_answer/poll_answer.dart';
+export 'src/models/project_data/project_data.dart';
 export 'src/models/switch/widget_switch.dart';
 export 'src/models/target_group.dart/target_group.dart';
