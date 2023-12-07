@@ -2,19 +2,19 @@ import 'package:accessboard_models/accessboard_models.dart';
 import 'package:accessboard_models/src/models/blog_post/feed_item_meta.dart';
 
 class MultipleChoiceItem extends FeedItem {
-  final String multipleChoiceItemId;
+  final String id;
   final String projectId;
   final List<MultipleChoiceQuestion> multipleChoiceQuestions;
   final FeedItemMeta meta;
   final List<TargetGroup> targetGroups;
 
   MultipleChoiceItem({
-    required this.multipleChoiceItemId,
+    required this.id,
     required this.projectId,
     required this.multipleChoiceQuestions,
     required this.meta,
     this.targetGroups = const [],
-  }) : super(id: multipleChoiceItemId, type: typeName);
+  }) : super(id: id, type: typeName);
 
   factory MultipleChoiceItem.fromJson(Map<String, dynamic> json) {
     var questionsList = json['multipleChoiceQuestions'] as List;
@@ -28,7 +28,7 @@ class MultipleChoiceItem extends FeedItem {
     return MultipleChoiceItem(
       targetGroups: targetGroups,
       projectId: json['projectId'],
-      multipleChoiceItemId: json['multipleChoiceItemId'],
+      id: json['id'],
       meta: FeedItemMeta.fromJson(json['meta']),
       multipleChoiceQuestions: questions,
     );
@@ -41,7 +41,7 @@ class MultipleChoiceItem extends FeedItem {
 
     return {
       'projectId': projectId,
-      'multipleChoiceItemId': multipleChoiceItemId,
+      'id': id,
       'targetGroups': targetGroups.map((item) => item.toJson()).toList(),
       'multipleChoiceQuestions': questionsJson,
       'type': type,
@@ -72,7 +72,7 @@ class MultipleChoiceItem extends FeedItem {
     FeedItemMeta? meta,
   }) {
     return MultipleChoiceItem(
-        multipleChoiceItemId: multipleChoiceItemId,
+        id: id,
         targetGroups: targetGroups ?? this.targetGroups,
         multipleChoiceQuestions:
             multipleChoiceQuestions ?? this.multipleChoiceQuestions,
@@ -87,10 +87,10 @@ class MultipleChoiceItem extends FeedItem {
           runtimeType == other.runtimeType &&
           projectId == other.projectId &&
           targetGroups == other.targetGroups &&
-          multipleChoiceItemId == other.multipleChoiceItemId;
+          id == other.id;
 
   @override
-  int get hashCode => multipleChoiceItemId.hashCode ^ projectId.hashCode;
+  int get hashCode => id.hashCode ^ projectId.hashCode;
 }
 
 class MultipleChoiceQuestion {

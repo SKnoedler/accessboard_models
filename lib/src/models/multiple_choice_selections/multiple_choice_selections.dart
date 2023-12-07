@@ -1,6 +1,6 @@
 class MultipleChoiceSelectionItem {
   final String projectId;
-  final String multipleChoiceSelectionItemId;
+  final String id;
   final String multipleChoiceItemId;
   final String multipleChoiceQuestionId;
   final String deviceId;
@@ -10,7 +10,7 @@ class MultipleChoiceSelectionItem {
 
   MultipleChoiceSelectionItem({
     required this.projectId,
-    required this.multipleChoiceSelectionItemId,
+    required this.id,
     required this.multipleChoiceItemId,
     required this.multipleChoiceQuestionId,
     required this.deviceId,
@@ -21,8 +21,7 @@ class MultipleChoiceSelectionItem {
   factory MultipleChoiceSelectionItem.fromJson(Map<String, dynamic> json) {
     return MultipleChoiceSelectionItem(
       projectId: json['projectId'] as String,
-      multipleChoiceSelectionItemId:
-          json['multipleChoiceSelectionItemId'] as String,
+      id: json['id'] as String,
       multipleChoiceItemId: json['multipleChoiceItemId'] as String,
       multipleChoiceQuestionId: json['multipleChoiceQuestionId'] as String,
       deviceId: json['deviceId'] as String,
@@ -34,7 +33,7 @@ class MultipleChoiceSelectionItem {
   Map<String, dynamic> toJson() {
     return {
       'projectId': projectId,
-      'multipleChoiceSelectionItemId': multipleChoiceSelectionItemId,
+      'id': id,
       'multipleChoiceItemId': multipleChoiceItemId,
       'multipleChoiceQuestionId': multipleChoiceQuestionId,
       'deviceId': deviceId,
@@ -48,7 +47,7 @@ class MultipleChoiceSelectionItem {
     DateTime? selectedAt,
   }) {
     return MultipleChoiceSelectionItem(
-      multipleChoiceSelectionItemId: multipleChoiceSelectionItemId,
+      id: id,
       multipleChoiceItemId: multipleChoiceItemId,
       multipleChoiceQuestionId: multipleChoiceQuestionId,
       deviceId: deviceId,

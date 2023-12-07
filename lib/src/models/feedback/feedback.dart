@@ -3,7 +3,7 @@ import 'package:accessboard_models/src/models/multiple_choice/multiple_choice_it
 import 'package:accessboard_models/src/models/target_group.dart/target_group.dart';
 
 abstract class FeedbackItem {
-  final String feedbackItemId;
+  final String id;
   final String type;
   final String projectId;
   final List<TargetGroup> targetGroups;
@@ -11,7 +11,7 @@ abstract class FeedbackItem {
   final ItemMeta meta;
 
   FeedbackItem({
-    required this.feedbackItemId,
+    required this.id,
     required this.projectId,
     required this.meta,
     required this.type,
@@ -46,12 +46,12 @@ class OpenFeedbackQuestion extends FeedbackItem {
 
   OpenFeedbackQuestion({
     required this.question,
-    required String feedbackItemId,
+    required String id,
     required String projectId,
     required ItemMeta meta,
     List<TargetGroup> targetGroups = const [],
   }) : super(
-          feedbackItemId: feedbackItemId,
+          id: id,
           meta: meta,
           type: typeName,
           projectId: projectId,
@@ -67,7 +67,7 @@ class OpenFeedbackQuestion extends FeedbackItem {
       targetGroups: targetGroups,
       projectId: json['projectId'] as String,
       question: json['question'] as String,
-      feedbackItemId: json['feedbackItemId'] as String,
+      id: json['id'] as String,
       meta: ItemMeta.fromJson(json['meta']),
     );
   }
@@ -77,7 +77,7 @@ class OpenFeedbackQuestion extends FeedbackItem {
     return {
       'projectId': projectId,
       'question': question,
-      'feedbackItemId': feedbackItemId,
+      'id': id,
       'meta': meta.toJson(),
       'type': typeName,
       'targetGroups': targetGroups.map((e) => e.toJson()).toList(),
@@ -90,7 +90,7 @@ class OpenFeedbackQuestion extends FeedbackItem {
   }) {
     return OpenFeedbackQuestion(
       projectId: projectId,
-      feedbackItemId: feedbackItemId,
+      id: id,
       question: question ?? this.question,
       meta: meta ?? this.meta,
     );
@@ -106,12 +106,12 @@ class MultipleChoiceFeedbackQuestion extends FeedbackItem {
   MultipleChoiceFeedbackQuestion({
     required this.question,
     required this.choices,
-    required String feedbackItemId,
+    required String id,
     required String projectId,
     required ItemMeta meta,
     List<TargetGroup> targetGroups = const [],
   }) : super(
-          feedbackItemId: feedbackItemId,
+          id: id,
           meta: meta,
           type: typeName,
           projectId: projectId,
@@ -130,7 +130,7 @@ class MultipleChoiceFeedbackQuestion extends FeedbackItem {
           .map((e) =>
               MultipleChoiceAnswerChoice.fromJson(e as Map<String, dynamic>))
           .toList(),
-      feedbackItemId: json['feedbackItemId'] as String,
+      id: json['id'] as String,
       meta: ItemMeta.fromJson(json['meta']),
     );
   }
@@ -142,7 +142,7 @@ class MultipleChoiceFeedbackQuestion extends FeedbackItem {
       'projectId': projectId,
       'question': question,
       'choices': choices.map((e) => e.toJson()).toList(),
-      'feedbackItemId': feedbackItemId,
+      'id': id,
       'meta': meta.toJson(),
       'type': typeName,
     };
@@ -156,7 +156,7 @@ class MultipleChoiceFeedbackQuestion extends FeedbackItem {
     return MultipleChoiceFeedbackQuestion(
       question: question ?? this.question,
       choices: choices ?? this.choices,
-      feedbackItemId: feedbackItemId,
+      id: id,
       projectId: projectId,
       meta: meta ?? this.meta,
     );

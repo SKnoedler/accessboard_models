@@ -2,7 +2,7 @@ class FeedbackAnswerItem {
   final String deviceId;
   final String projectId;
   final String feedbackItemId;
-  final String feedbackAnswerItemId;
+  final String id;
   final DateTime createdAt;
   final DateTime? updatedAt;
   final FeedbackUserContent feedbackContent;
@@ -12,7 +12,7 @@ class FeedbackAnswerItem {
   FeedbackAnswerItem({
     required this.createdAt,
     this.updatedAt,
-    required this.feedbackAnswerItemId,
+    required this.id,
     required this.feedbackItemId,
     required this.feedbackContent,
     required this.deviceId,
@@ -26,7 +26,7 @@ class FeedbackAnswerItem {
       projectId: json['projectId'] as String,
       deviceId: json['deviceId'] as String,
       feedbackItemId: json['feedbackItemId'] as String,
-      feedbackAnswerItemId: json['feedbackAnswerItemId'] as String,
+      id: json['id'] as String,
       isFeedbackReplyRead: json['isFeedbackReplyRead'] as bool,
       feedbackContent: json['feedbackContent'] as FeedbackUserContent,
       feedbackReply: json['feedbackReply'] as FeedbackAdminReply?,
@@ -39,7 +39,7 @@ class FeedbackAnswerItem {
 
   Map<String, dynamic> toJson() {
     return {
-      'feedbackAnswerItemId': feedbackAnswerItemId,
+      'id': id,
       'feedbackItemId': feedbackItemId,
       'projectId': projectId,
       'feedbackContent': feedbackContent,
@@ -58,7 +58,7 @@ class FeedbackAnswerItem {
     DateTime? updatedAt,
   }) {
     return FeedbackAnswerItem(
-      feedbackAnswerItemId: feedbackAnswerItemId,
+      id: id,
       feedbackItemId: feedbackItemId,
       deviceId: deviceId,
       projectId: projectId,
@@ -80,7 +80,7 @@ class FeedbackAnswerItem {
       createdAt: createdAt,
       updatedAt: updatedAt,
       feedbackItemId: feedbackItemId,
-      feedbackAnswerItemId: feedbackAnswerItemId,
+      id: id,
       feedbackContent: feedbackContent,
       feedbackReply: reply,
       isFeedbackReplyRead: isFeedbackReplyRead,

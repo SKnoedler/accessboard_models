@@ -3,14 +3,14 @@ import 'package:accessboard_models/src/models/meta/item_meta.dart';
 import 'package:accessboard_models/src/models/target_group.dart/target_group.dart';
 
 class PopupAd {
-  final String adId;
+  final String id;
   final String projectId;
   final List<PopupAdItem> adItems;
   final ItemMeta meta;
   final List<TargetGroup> targetGroups;
 
   PopupAd({
-    required this.adId,
+    required this.id,
     required this.projectId,
     required this.adItems,
     required this.meta,
@@ -26,7 +26,7 @@ class PopupAd {
         targetGroupsJson.map((item) => TargetGroup.fromJson(item)).toList();
 
     return PopupAd(
-      adId: json['adId'] as String,
+      id: json['id'] as String,
       projectId: json['projectId'] as String,
       adItems: adItems,
       meta: ItemMeta.fromJson(json['meta']),
@@ -36,7 +36,7 @@ class PopupAd {
 
   Map<String, dynamic> toJson() {
     return {
-      'adId': adId,
+      'id': id,
       'projectId': projectId,
       'adItems': adItems.map((item) => item.toJson()).toList(),
       'meta': meta.toJson(),
@@ -50,7 +50,7 @@ class PopupAd {
     List<TargetGroup>? targetGroups,
   }) {
     return PopupAd(
-      adId: adId,
+      id: id,
       projectId: projectId,
       adItems: adItems ?? this.adItems,
       meta: meta ?? this.meta,
@@ -63,7 +63,7 @@ class PopupAd {
     if (identical(this, other)) return true;
 
     return other is PopupAd &&
-        other.adId == adId &&
+        other.id == id &&
         other.projectId == projectId &&
         other.adItems == adItems &&
         other.targetGroups == targetGroups &&
@@ -74,7 +74,7 @@ class PopupAd {
   int get hashCode =>
       targetGroups.hashCode ^
       projectId.hashCode ^
-      adId.hashCode ^
+      id.hashCode ^
       adItems.hashCode ^
       meta.hashCode;
 }

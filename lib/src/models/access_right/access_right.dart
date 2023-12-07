@@ -6,12 +6,12 @@ import 'package:accessboard_models/src/models/access_right/project_role_referenc
 /// It includes information such as the organization ID, access right ID, and organization name.
 class AdminAccessRight extends AccessRightBase {
   final String organizationId;
-  final String accessRightId;
+  final String id;
   final String organizationName;
 
   AdminAccessRight({
     required this.organizationId,
-    required this.accessRightId,
+    required this.id,
     required this.organizationName,
   }) : super._(state: AccessRightState.adminAccessRight);
 
@@ -19,7 +19,7 @@ class AdminAccessRight extends AccessRightBase {
   factory AdminAccessRight.fromJson(Map<String, dynamic> json) {
     return AdminAccessRight(
       organizationId: json['organizationId'],
-      accessRightId: json['accessRightId'],
+      id: json['id'],
       organizationName: json['organizationName'],
     );
   }
@@ -31,7 +31,7 @@ class AdminAccessRight extends AccessRightBase {
     final json = super.toJson();
     json.addAll({
       'organizationId': organizationId,
-      'accessRightId': accessRightId,
+      'id': id,
       'organizationName': organizationName,
     });
     return json;
@@ -43,12 +43,12 @@ class AdminAccessRight extends AccessRightBase {
 /// This class extends the [AccessRightBase] class and adds additional properties specific to project access rights.
 /// It contains information such as the access right ID, organization ID, and a list of project role references.
 class ProjectAccessRight extends AccessRightBase {
-  final String accessRightId;
+  final String id;
   final String organizationId;
   final List<ProjectRoleReference> projectReferences;
 
   ProjectAccessRight({
-    required this.accessRightId,
+    required this.id,
     required this.organizationId,
     List<ProjectRoleReference>? projectReferences,
   })  : projectReferences = projectReferences ?? [],
@@ -56,10 +56,10 @@ class ProjectAccessRight extends AccessRightBase {
 
   /// Creates a [ProjectAccessRight] instance from a JSON map.
   ///
-  /// The JSON map should contain the following keys: 'accessRightId', 'organizationId', and 'projectReferences'.
+  /// The JSON map should contain the following keys: 'id', 'organizationId', and 'projectReferences'.
   factory ProjectAccessRight.fromJson(Map<String, dynamic> json) {
     return ProjectAccessRight(
-      accessRightId: json['accessRightId'],
+      id: json['id'],
       organizationId: json['organizationId'],
       projectReferences: (json['projectReferences'] as List<dynamic>)
           .map((e) => ProjectRoleReference.fromJson(e))
@@ -71,11 +71,11 @@ class ProjectAccessRight extends AccessRightBase {
 
   /// Converts the [ProjectAccessRight] instance to a JSON map.
   ///
-  /// The returned JSON map will contain the following keys: 'accessRightId', 'organizationId', and 'projectReferences'.
+  /// The returned JSON map will contain the following keys: 'id', 'organizationId', and 'projectReferences'.
   Map<String, dynamic> toJson() {
     final json = super.toJson();
     json.addAll({
-      'accessRightId': accessRightId,
+      'id': id,
       'organizationId': organizationId,
       'projectReferences': projectReferences.map((e) => e.toJson()).toList(),
     });

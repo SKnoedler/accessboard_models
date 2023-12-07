@@ -2,7 +2,7 @@ import 'package:accessboard_models/accessboard_models.dart';
 import 'package:accessboard_models/src/models/faq/faq_meta.dart';
 
 class FAQ {
-  final String faqId;
+  final String id;
   final String projectId;
   final List<FaqItem> faqItems;
   final LocalizedString? openFaqQuestion;
@@ -10,7 +10,7 @@ class FAQ {
   final List<TargetGroup> targetGroups;
 
   FAQ({
-    required this.faqId,
+    required this.id,
     required this.projectId,
     required this.faqItems,
     required this.meta,
@@ -32,7 +32,7 @@ class FAQ {
       openFaqQuestion: json['openFaqQuestion'] != null
           ? LocalizedString.fromJson(json['openFaqQuestion'])
           : null,
-      faqId: json['faqId'] as String,
+      id: json['id'] as String,
       projectId: json['projectId'] as String,
       faqItems: faqItems,
       meta: FaqMeta.fromJson(json['meta']),
@@ -43,7 +43,7 @@ class FAQ {
     return {
       'targetGroups': targetGroups.map((e) => e.toJson()).toList(),
       'openFaqQuestion': openFaqQuestion?.toJson(),
-      'faqId': faqId,
+      'id': id,
       'projectId': projectId,
       'faqItems': faqItems.map((item) => item.toJson()).toList(),
       'meta': meta.toJson(),
@@ -59,7 +59,7 @@ class FAQ {
     return FAQ(
       targetGroups: targetGroups ?? this.targetGroups,
       openFaqQuestion: openFaqQuestion ?? this.openFaqQuestion,
-      faqId: faqId,
+      id: id,
       projectId: projectId,
       faqItems: faqItems ?? this.faqItems,
       meta: meta ?? this.meta,
@@ -71,7 +71,7 @@ class FAQ {
     if (identical(this, other)) return true;
 
     return other is FAQ &&
-        other.faqId == faqId &&
+        other.id == id &&
         other.projectId == projectId &&
         other.targetGroups == targetGroups &&
         other.openFaqQuestion == openFaqQuestion &&
@@ -82,7 +82,7 @@ class FAQ {
   @override
   int get hashCode =>
       openFaqQuestion.hashCode ^
-      faqId.hashCode ^
+      id.hashCode ^
       projectId.hashCode ^
       targetGroups.hashCode ^
       faqItems.hashCode ^

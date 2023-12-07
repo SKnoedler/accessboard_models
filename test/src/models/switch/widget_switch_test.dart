@@ -12,14 +12,14 @@ void main() {
       StateTargetGroup(
         isActive: true,
         targetGroup: TargetGroup(
-          groupId: '1',
+          id: '1',
           name: 'Group 1',
         ),
       ),
       StateTargetGroup(
         isActive: false,
         targetGroup: TargetGroup(
-          groupId: '2',
+          id: '2',
           name: 'Group 2',
         ),
       ),

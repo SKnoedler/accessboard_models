@@ -1,13 +1,13 @@
 class PollAnswer {
   final String pollId;
-  final String pollAnswerId;
+  final String id;
   final String deviceId;
   final String selectedPollChoiceId;
   final DateTime selectedAt;
 
   PollAnswer({
     required this.pollId,
-    required this.pollAnswerId,
+    required this.id,
     required this.deviceId,
     required this.selectedPollChoiceId,
     required this.selectedAt,
@@ -16,7 +16,7 @@ class PollAnswer {
   factory PollAnswer.fromJson(Map<String, dynamic> json) {
     return PollAnswer(
       pollId: json['pollId'] as String,
-      pollAnswerId: json['pollAnswerId'] as String,
+      id: json['id'] as String,
       deviceId: json['deviceId'] as String,
       selectedPollChoiceId: json['selectedPollChoiceId'] as String,
       selectedAt: DateTime.parse(json['selectedAt'] as String),
@@ -26,7 +26,7 @@ class PollAnswer {
   Map<String, dynamic> toJson() {
     return {
       'pollId': pollId,
-      'pollAnswerId': pollAnswerId,
+      'id': id,
       'deviceId': deviceId,
       'selectedPollChoiceId': selectedPollChoiceId,
       'selectedAt': selectedAt.toIso8601String(),
@@ -35,14 +35,14 @@ class PollAnswer {
 
   PollAnswer copyWith({
     String? pollId,
-    String? pollAnswerId,
+    String? id,
     String? deviceId,
     String? selectedPollChoiceId,
     DateTime? selectedAt,
   }) {
     return PollAnswer(
       pollId: pollId ?? this.pollId,
-      pollAnswerId: pollAnswerId ?? this.pollAnswerId,
+      id: id ?? this.id,
       deviceId: deviceId ?? this.deviceId,
       selectedPollChoiceId: selectedPollChoiceId ?? this.selectedPollChoiceId,
       selectedAt: selectedAt ?? this.selectedAt,

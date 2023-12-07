@@ -6,7 +6,7 @@ import 'package:accessboard_models/src/models/localized_string/localized_string.
 import 'package:accessboard_models/src/models/target_group.dart/target_group.dart';
 
 class BlogPost extends FeedItem {
-  final String blogPostId;
+  final String id;
   final LocalizedString title;
   final LocalizedString description;
   final String imageUrl;
@@ -19,7 +19,7 @@ class BlogPost extends FeedItem {
   final List<String> commentIds;
 
   BlogPost({
-    required this.blogPostId,
+    required this.id,
     required this.title,
     required this.description,
     required this.imageUrl,
@@ -31,7 +31,7 @@ class BlogPost extends FeedItem {
     this.commentIds = const [],
     this.targetGroups = const [],
   }) : super(
-          id: blogPostId,
+          id: id,
           type: typeName,
         );
 
@@ -44,7 +44,7 @@ class BlogPost extends FeedItem {
       quillDocData: json['quillDocData'] != null
           ? (json['quillDocData'] as List<dynamic>)
           : null,
-      blogPostId: json['blogPostId'],
+      id: json['id'],
       title: LocalizedString.fromJson(json['title']),
       description: LocalizedString.fromJson(json['description']),
       imageUrl: json['imageUrl'],
@@ -63,7 +63,7 @@ class BlogPost extends FeedItem {
   @override
   Map<String, dynamic> toJson() {
     return {
-      'blogPostId': blogPostId,
+      'id': id,
       'title': title.toJson(),
       'description': description.toJson(),
       'imageUrl': imageUrl,
@@ -96,7 +96,7 @@ class BlogPost extends FeedItem {
   static const String typeName = 'blog_post';
 
   BlogPost copyWith({
-    String? blogPostId,
+    String? id,
     LocalizedString? title,
     LocalizedString? description,
     String? imageUrl,
@@ -110,7 +110,7 @@ class BlogPost extends FeedItem {
   }) {
     return BlogPost(
       targetGroups: targetGroups ?? this.targetGroups,
-      blogPostId: blogPostId ?? this.blogPostId,
+      id: id ?? this.id,
       title: title ?? this.title,
       description: description ?? this.description,
       imageUrl: imageUrl ?? this.imageUrl,
@@ -128,7 +128,7 @@ class BlogPost extends FeedItem {
     if (identical(this, other)) return true;
 
     return other is BlogPost &&
-        other.blogPostId == blogPostId &&
+        other.id == id &&
         other.title == title &&
         other.description == description &&
         other.imageUrl == imageUrl &&
@@ -142,7 +142,7 @@ class BlogPost extends FeedItem {
 
   @override
   int get hashCode {
-    return blogPostId.hashCode ^
+    return id.hashCode ^
         title.hashCode ^
         description.hashCode ^
         imageUrl.hashCode ^

@@ -4,20 +4,20 @@ import 'package:accessboard_models/src/models/meta/item_meta.dart';
 import 'package:accessboard_models/src/models/target_group.dart/target_group.dart';
 
 class BannerAd extends FeedItem {
-  final String adId;
+  final String id;
   final String projectId;
   final BannerAdItem adData;
   final ItemMeta meta;
   final List<TargetGroup> targetGroups;
 
   BannerAd({
-    required this.adId,
+    required this.id,
     required this.projectId,
     required this.adData,
     required this.meta,
     this.targetGroups = const [],
   }) : super(
-          id: adId,
+          id: id,
           type: typeName,
         );
 
@@ -29,7 +29,7 @@ class BannerAd extends FeedItem {
         targetGroupsJson.map((item) => TargetGroup.fromJson(item)).toList();
 
     return BannerAd(
-      adId: json['adId'] as String,
+      id: json['id'] as String,
       projectId: json['projectId'] as String,
       adData: BannerAdItem.fromJson(json['adData']),
       meta: ItemMeta.fromJson(json['meta']),
@@ -40,7 +40,7 @@ class BannerAd extends FeedItem {
   @override
   Map<String, dynamic> toJson() {
     return {
-      'adId': adId,
+      'id': id,
       'projectId': projectId,
       'adData': adData.toJson(),
       'meta': meta.toJson(),
@@ -54,7 +54,7 @@ class BannerAd extends FeedItem {
     List<TargetGroup>? targetGroups,
   }) {
     return BannerAd(
-      adId: adId,
+      id: id,
       projectId: projectId,
       adData: adData ?? this.adData,
       meta: meta ?? this.meta,
@@ -67,7 +67,7 @@ class BannerAd extends FeedItem {
     if (identical(this, other)) return true;
 
     return other is BannerAd &&
-        other.adId == adId &&
+        other.id == id &&
         other.projectId == projectId &&
         other.adData == adData &&
         other.targetGroups == targetGroups &&
@@ -78,7 +78,7 @@ class BannerAd extends FeedItem {
   int get hashCode =>
       targetGroups.hashCode ^
       projectId.hashCode ^
-      adId.hashCode ^
+      id.hashCode ^
       adData.hashCode ^
       meta.hashCode;
 }

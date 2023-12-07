@@ -1,7 +1,7 @@
 import 'package:accessboard_models/src/models/feed/feed_item.dart';
 
 class InteractiveFeed {
-  final String feedId;
+  final String id;
   final String projectId;
   final String projectSecret;
   final DateTime createdAt;
@@ -9,7 +9,7 @@ class InteractiveFeed {
   final List<FeedItem> feedItems;
 
   InteractiveFeed({
-    required this.feedId,
+    required this.id,
     required this.projectId,
     required this.projectSecret,
     required this.createdAt,
@@ -24,7 +24,7 @@ class InteractiveFeed {
         .toList();
 
     return InteractiveFeed(
-      feedId: json['feedId'] as String,
+      id: json['id'] as String,
       projectId: json['projectId'] as String,
       projectSecret: json['projectSecret'] as String,
       createdAt: DateTime.parse(json['createdAt'] as String),
@@ -41,7 +41,7 @@ class InteractiveFeed {
         .toList();
 
     return InteractiveFeed(
-      feedId: json['feedId'] as String,
+      id: json['id'] as String,
       projectId: json['projectId'] as String,
       projectSecret: json['projectSecret'] as String,
       createdAt: DateTime.parse(json['createdAt'] as String),
@@ -55,7 +55,7 @@ class InteractiveFeed {
         feedItems.map((item) => item.toJson()).toList();
 
     return {
-      'feedId': feedId,
+      'id': id,
       'projectId': projectId,
       'projectSecret': projectSecret,
       'createdAt': createdAt.toIso8601String(),
@@ -69,7 +69,7 @@ class InteractiveFeed {
         feedItems.map((item) => item.toStorageJson()).toList();
 
     return {
-      'feedId': feedId,
+      'id': id,
       'projectId': projectId,
       'projectSecret': projectSecret,
       'createdAt': createdAt.toIso8601String(),
@@ -79,7 +79,7 @@ class InteractiveFeed {
   }
 
   InteractiveFeed copyWith({
-    String? feedId,
+    String? id,
     String? projectId,
     String? projectSecret,
     DateTime? createdAt,
@@ -87,7 +87,7 @@ class InteractiveFeed {
     List<FeedItem>? feedItems,
   }) {
     return InteractiveFeed(
-      feedId: feedId ?? this.feedId,
+      id: id ?? this.id,
       projectId: projectId ?? this.projectId,
       projectSecret: projectSecret ?? this.projectSecret,
       createdAt: createdAt ?? this.createdAt,
@@ -101,13 +101,13 @@ class InteractiveFeed {
       identical(this, other) ||
       other is InteractiveFeed &&
           runtimeType == other.runtimeType &&
-          feedId == other.feedId &&
+          id == other.id &&
           _listEquals(feedItems, other.feedItems);
 
   @override
   int get hashCode {
     int result = 17;
-    result = 31 * result + feedId.hashCode;
+    result = 31 * result + id.hashCode;
     result = 31 * result + feedItems.length;
     return result;
   }

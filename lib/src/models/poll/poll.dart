@@ -5,7 +5,7 @@ import 'package:accessboard_models/src/models/localized_string/localized_string.
 import 'package:accessboard_models/src/models/target_group.dart/target_group.dart';
 
 class Poll extends FeedItem {
-  final String pollId;
+  final String id;
   final LocalizedString question; // Changed this line
   final List<PollChoice> choices;
   final FeedItemMeta meta;
@@ -13,14 +13,14 @@ class Poll extends FeedItem {
   final List<TargetGroup> targetGroups;
 
   Poll({
-    required this.pollId,
+    required this.id,
     required this.question, // And this line
     required this.choices,
     required this.meta,
     this.targetGroups = const [],
     this.customDesign,
   }) : super(
-          id: pollId,
+          id: id,
           type: typeName,
         );
 
@@ -34,7 +34,7 @@ class Poll extends FeedItem {
 
     return Poll(
       targetGroups: targetGroups,
-      pollId: json['pollId'],
+      id: json['id'],
       question: LocalizedString.fromJson(json['question']), // And this line
       choices: choices,
       meta: FeedItemMeta.fromJson(json['meta']),
@@ -50,7 +50,7 @@ class Poll extends FeedItem {
         choices.map((choice) => choice.toJson()).toList();
 
     return {
-      'pollId': pollId,
+      'id': id,
       'question': question.toJson(), // And this line
       'choices': choicesJson,
       'meta': meta.toJson(),
@@ -78,7 +78,7 @@ class Poll extends FeedItem {
   bool get isActive => !isUnpublished && !isPlanned && !isExpired;
 
   Poll copyWith({
-    String? pollId,
+    String? id,
     LocalizedString? question,
     List<PollChoice>? choices,
     DateTime? createdAt,
@@ -87,7 +87,7 @@ class Poll extends FeedItem {
     FeedItemMeta? meta,
   }) {
     return Poll(
-      pollId: pollId ?? this.pollId,
+      id: id ?? this.id,
       question: question ?? this.question,
       choices: choices ?? this.choices,
       customDesign: customDesign ?? this.customDesign,
@@ -98,12 +98,10 @@ class Poll extends FeedItem {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is Poll &&
-          runtimeType == other.runtimeType &&
-          pollId == other.pollId;
+      other is Poll && runtimeType == other.runtimeType && id == other.id;
 
   @override
-  int get hashCode => pollId.hashCode;
+  int get hashCode => id.hashCode;
 }
 
 class PollChoice {

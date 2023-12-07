@@ -1,19 +1,19 @@
 import 'package:accessboard_models/accessboard_models.dart';
 
 class FaqItem {
-  final String faqItemId;
+  final String id;
   final LocalizedString question;
   final LocalizedString answer;
 
   FaqItem({
-    required this.faqItemId,
+    required this.id,
     required this.question,
     required this.answer,
   });
 
   factory FaqItem.fromJson(Map<String, dynamic> json) {
     return FaqItem(
-      faqItemId: json['faqItemId'] as String,
+      id: json['id'] as String,
       question: LocalizedString.fromJson(json['question']),
       answer: LocalizedString.fromJson(json['answer']),
     );
@@ -21,7 +21,7 @@ class FaqItem {
 
   Map<String, dynamic> toJson() {
     return {
-      'faqItemId': faqItemId,
+      'id': id,
       'question': question.toJson(),
       'answer': answer.toJson(),
     };
@@ -32,11 +32,11 @@ class FaqItem {
     if (identical(this, other)) return true;
 
     return other is FaqItem &&
-        other.faqItemId == faqItemId &&
+        other.id == id &&
         other.question == question &&
         other.answer == answer;
   }
 
   @override
-  int get hashCode => faqItemId.hashCode ^ question.hashCode ^ answer.hashCode;
+  int get hashCode => id.hashCode ^ question.hashCode ^ answer.hashCode;
 }

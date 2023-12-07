@@ -48,14 +48,14 @@ void main() {
           StateTargetGroup(
             isActive: true,
             targetGroup: TargetGroup(
-              groupId: '23',
+              id: '23',
               name: 'name23',
             ),
           ),
           StateTargetGroup(
             isActive: false,
             targetGroup: TargetGroup(
-              groupId: '23',
+              id: '23',
               name: 'name23',
             ),
           ),

@@ -80,7 +80,7 @@ abstract class FeedItem {
 
 class ExtendedPoll extends Poll {
   ExtendedPoll({
-    required super.pollId,
+    required super.id,
     required super.question,
     required super.choices,
     required super.customDesign,
@@ -98,7 +98,7 @@ class ExtendedPoll extends Poll {
     required bool isNew,
   }) {
     return ExtendedPoll(
-      pollId: poll.pollId,
+      id: poll.id,
       question: poll.question,
       choices: poll.choices,
       customDesign: poll.customDesign,
@@ -111,7 +111,7 @@ class ExtendedPoll extends Poll {
   @override
   Map<String, dynamic> toJson() {
     return {
-      'pollId': pollId,
+      'id': id,
       'question': question,
       'choices': choices.map((choice) => choice.toJson()).toList(),
       'meta': meta.toJson(),
@@ -126,7 +126,7 @@ class ExtendedPoll extends Poll {
         choicesList.map((choice) => PollChoice.fromJson(choice)).toList();
 
     return ExtendedPoll(
-      pollId: json['pollId'],
+      id: json['id'],
       question: json['question'],
       choices: choices,
       meta: FeedItemMeta.fromJson(json['meta']),
@@ -144,7 +144,7 @@ class ExtendedMultipleChoiceItem extends MultipleChoiceItem {
   final bool isNew;
 
   ExtendedMultipleChoiceItem({
-    required super.multipleChoiceItemId,
+    required super.id,
     required super.multipleChoiceQuestions,
     required super.meta,
     required this.isCompleted,
@@ -158,7 +158,7 @@ class ExtendedMultipleChoiceItem extends MultipleChoiceItem {
   }) {
     return ExtendedMultipleChoiceItem(
       projectId: item.projectId,
-      multipleChoiceItemId: item.multipleChoiceItemId,
+      id: item.id,
       multipleChoiceQuestions: item.multipleChoiceQuestions,
       isCompleted: isCompleted,
       meta: item.meta,
@@ -170,7 +170,7 @@ class ExtendedMultipleChoiceItem extends MultipleChoiceItem {
   Map<String, dynamic> toJson() {
     return {
       'projectId': projectId,
-      'multipleChoiceItemId': multipleChoiceItemId,
+      'id': id,
       'multipleChoiceQuestions':
           multipleChoiceQuestions.map((question) => question.toJson()).toList(),
       'isCompleted': isCompleted,
@@ -188,7 +188,7 @@ class ExtendedMultipleChoiceItem extends MultipleChoiceItem {
 
     return ExtendedMultipleChoiceItem(
       projectId: json['projectId'],
-      multipleChoiceItemId: json['multipleChoiceItemId'],
+      id: json['id'],
       multipleChoiceQuestions: questions,
       isCompleted: json['isCompleted'] ?? false,
       meta: FeedItemMeta.fromJson(json['meta']),
@@ -199,7 +199,7 @@ class ExtendedMultipleChoiceItem extends MultipleChoiceItem {
 
 class ExtendedBlogPost extends BlogPost {
   ExtendedBlogPost({
-    required super.blogPostId,
+    required super.id,
     required super.title,
     required super.description,
     required super.imageUrl,
@@ -222,7 +222,7 @@ class ExtendedBlogPost extends BlogPost {
   }) {
     return ExtendedBlogPost(
       quillDocData: blogPost.quillDocData,
-      blogPostId: blogPost.blogPostId,
+      id: blogPost.id,
       title: blogPost.title,
       description: blogPost.description,
       imageUrl: blogPost.imageUrl,
@@ -238,7 +238,7 @@ class ExtendedBlogPost extends BlogPost {
   @override
   Map<String, dynamic> toJson() {
     return {
-      'blogPostId': blogPostId,
+      'id': id,
       'title': title,
       'description': description,
       'imageUrl': imageUrl,
@@ -256,7 +256,7 @@ class ExtendedBlogPost extends BlogPost {
       quillDocData: json['quillDocData'] != null
           ? (json['quillDocData'] as List<dynamic>)
           : null,
-      blogPostId: json['blogPostId'],
+      id: json['id'],
       title: json['title'],
       description: json['description'],
       imageUrl: json['imageUrl'],
