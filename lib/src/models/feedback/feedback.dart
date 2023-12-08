@@ -1,12 +1,10 @@
 import 'package:accessboard_models/src/models/meta/item_meta.dart';
 import 'package:accessboard_models/src/models/multiple_choice/multiple_choice_item.dart';
-import 'package:accessboard_models/src/models/target_group.dart/target_group.dart';
 
 abstract class FeedbackItem {
   final String id;
   final String type;
   final String projectId;
-  final List<TargetGroup> targetGroups;
 
   final ItemMeta meta;
 
@@ -15,7 +13,6 @@ abstract class FeedbackItem {
     required this.projectId,
     required this.meta,
     required this.type,
-    this.targetGroups = const [],
   });
 
   factory FeedbackItem.fromJson(Map<String, dynamic> json) {
@@ -49,22 +46,15 @@ class OpenFeedbackQuestion extends FeedbackItem {
     required String id,
     required String projectId,
     required ItemMeta meta,
-    List<TargetGroup> targetGroups = const [],
   }) : super(
           id: id,
           meta: meta,
           type: typeName,
           projectId: projectId,
-          targetGroups: targetGroups,
         );
 
   factory OpenFeedbackQuestion.fromJson(Map<String, dynamic> json) {
-    var targetGroupsList = json['targetGroups'] as List;
-    List<TargetGroup> targetGroups =
-        targetGroupsList.map((item) => TargetGroup.fromJson(item)).toList();
-
     return OpenFeedbackQuestion(
-      targetGroups: targetGroups,
       projectId: json['projectId'] as String,
       question: json['question'] as String,
       id: json['id'] as String,
@@ -80,7 +70,6 @@ class OpenFeedbackQuestion extends FeedbackItem {
       'id': id,
       'meta': meta.toJson(),
       'type': typeName,
-      'targetGroups': targetGroups.map((e) => e.toJson()).toList(),
     };
   }
 
@@ -109,21 +98,15 @@ class MultipleChoiceFeedbackQuestion extends FeedbackItem {
     required String id,
     required String projectId,
     required ItemMeta meta,
-    List<TargetGroup> targetGroups = const [],
   }) : super(
           id: id,
           meta: meta,
           type: typeName,
           projectId: projectId,
-          targetGroups: targetGroups,
         );
 
   factory MultipleChoiceFeedbackQuestion.fromJson(Map<String, dynamic> json) {
-    var targetGroupsList = json['targetGroups'] as List;
-    List<TargetGroup> targetGroups =
-        targetGroupsList.map((item) => TargetGroup.fromJson(item)).toList();
     return MultipleChoiceFeedbackQuestion(
-      targetGroups: targetGroups,
       projectId: json['projectId'] as String,
       question: json['question'] as String,
       choices: (json['choices'] as List<dynamic>)
@@ -138,7 +121,6 @@ class MultipleChoiceFeedbackQuestion extends FeedbackItem {
   @override
   Map<String, dynamic> toJson() {
     return {
-      'targetGroups': targetGroups.map((e) => e.toJson()).toList(),
       'projectId': projectId,
       'question': question,
       'choices': choices.map((e) => e.toJson()).toList(),
