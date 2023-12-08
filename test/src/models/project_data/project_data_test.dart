@@ -1,15 +1,17 @@
 import 'package:accessboard_models/accessboard_models.dart';
-import 'package:accessboard_models/src/models/project_data/item_target_group_ids.dart';
-import 'package:accessboard_models/src/models/project_data/placeholder_id_matcher.dart';
 import 'package:accessboard_models/src/models/switch/state_target_group.dart';
 import 'package:test/test.dart';
 
 void main() {
   final expectedobject = ProjectData(
-    adPopIds: [
+    popUpAdIds: [
       ItemTargetGroupIds(
         itemId: '23',
-        targetGroupIds: ['1'],
+        targetGroupIds: ['1', '2'],
+      ),
+      ItemTargetGroupIds(
+        itemId: '223',
+        targetGroupIds: ['1', '2'],
       ),
     ],
     bannerAdIds: [
@@ -76,7 +78,7 @@ void main() {
       "itemId": "23243",
       "targetGroupIds": ["1", "432"]
     },
-    "adIds": [
+    "popUpAdIds": [
       {
         "itemId": "23",
         "targetGroupIds": ["1", "2"]
@@ -84,12 +86,6 @@ void main() {
       {
         "itemId": "223",
         "targetGroupIds": ["1", "2"]
-      }
-    ],
-    "adPopIds": [
-      {
-        "itemId": "23",
-        "targetGroupIds": ["1"]
       }
     ],
     "blogPostIds": [
@@ -116,11 +112,11 @@ void main() {
         "stateTargetGroups": [
           {
             "isActive": true,
-            "targetGroup": {"groupId": "23", "name": "name23"}
+            "targetGroup": {"id": "23", "name": "name23"}
           },
           {
             "isActive": false,
-            "targetGroup": {"groupId": "23", "name": "name23"}
+            "targetGroup": {"id": "23", "name": "name23"}
           }
         ]
       }

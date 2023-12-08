@@ -5,8 +5,7 @@ import 'package:accessboard_models/src/models/switch/widget_switch.dart';
 class ProjectData {
   final List<PlaceholderIdMatcher> multipleChoiceIds;
   final List<PlaceholderIdMatcher> bannerAdIds;
-  final List<PlaceholderIdMatcher> popUpAdIds;
-  final List<ItemTargetGroupIds> adPopIds;
+  final List<ItemTargetGroupIds> popUpAdIds;
   final List<PlaceholderIdMatcher> feedbackItemIds;
   final List<PlaceholderIdMatcher> pollIds;
   final List<ItemTargetGroupIds> blogPostIds;
@@ -25,7 +24,6 @@ class ProjectData {
     this.multipleChoiceIds = const [],
     this.bannerAdIds = const [],
     this.popUpAdIds = const [],
-    this.adPopIds = const [],
     this.feedbackItemIds = const [],
     this.pollIds = const [],
     this.blogPostIds = const [],
@@ -44,7 +42,6 @@ class ProjectData {
   static const multipleChoiceIdsKey = 'multipleChoiceIds';
   static const bannerAdIdsKey = 'bannerAdIds';
   static const popUpAdIdsKey = 'popUpAdIds';
-  static const adPopIdsKey = 'adPopIds';
   static const feedbackItemIdsKey = 'feedbackItemIds';
   static const pollIdsKey = 'pollIds';
   static const blogPostIdsKey = 'blogPostIds';
@@ -87,12 +84,6 @@ class ProjectData {
           ? ItemTargetGroupIds.fromJson(
               json['privacyPolicyId'] as Map<String, dynamic>)
           : null,
-      adPopIds: json['adPopIds'] == null
-          ? []
-          : (json['adPopIds'] as List<dynamic>)
-              .map((item) =>
-                  ItemTargetGroupIds.fromJson(item as Map<String, dynamic>))
-              .toList(),
       blogPostIds: json['blogPostIds'] == null
           ? []
           : (json['blogPostIds'] as List<dynamic>)
@@ -145,7 +136,7 @@ class ProjectData {
           ? []
           : (json['popUpAdIds'] as List<dynamic>)
               .map((item) =>
-                  PlaceholderIdMatcher.fromJson(item as Map<String, dynamic>))
+                  ItemTargetGroupIds.fromJson(item as Map<String, dynamic>))
               .toList(),
       switches: json['switches'] == null
           ? []
@@ -165,7 +156,6 @@ class ProjectData {
       'imprintId': imprintId?.toJson(),
       'termsId': termsId?.toJson(),
       'privacyPolicyId': privacyPolicyId?.toJson(),
-      'adPopIds': adPopIds.map((item) => item.toJson()).toList(),
       'blogPostIds': blogPostIds.map((item) => item.toJson()).toList(),
       'faqIds': faqIds.map((item) => item.toJson()).toList(),
       'faqUserQuestionIds':
@@ -219,7 +209,6 @@ class ProjectData {
       imprintId: imprintId ?? this.imprintId,
       termsId: termsId ?? this.termsId,
       privacyPolicyId: privacyPolicyId ?? this.privacyPolicyId,
-      adPopIds: adPopIds ?? this.adPopIds,
       blogPostIds: blogPostIds ?? this.blogPostIds,
       faqIds: faqIds ?? this.faqIds,
       faqUserQuestionIds: faqUserQuestionIds ?? this.faqUserQuestionIds,
@@ -229,7 +218,6 @@ class ProjectData {
           multipleChoiceSelectionIds ?? this.multipleChoiceSelectionIds,
       pollAnswerIds: pollAnswerIds ?? this.pollAnswerIds,
       pollIds: pollIds ?? this.pollIds,
-      popUpAdIds: popUpAdIds ?? this.popUpAdIds,
       switches: switches ?? this.switches,
     );
   }
@@ -245,7 +233,6 @@ class ProjectData {
         other.imprintId == imprintId &&
         other.termsId == termsId &&
         other.privacyPolicyId == privacyPolicyId &&
-        _equals(other.adPopIds, adPopIds) &&
         _equals(other.blogPostIds, blogPostIds) &&
         _equals(other.faqIds, faqIds) &&
         _equals(other.faqUserQuestionIds, faqUserQuestionIds) &&
@@ -266,7 +253,6 @@ class ProjectData {
         imprintId,
         termsId,
         privacyPolicyId,
-        ...adPopIds,
         ...blogPostIds,
         ...faqIds,
         ...faqUserQuestionIds,
