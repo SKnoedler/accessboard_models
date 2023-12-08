@@ -40,6 +40,25 @@ class ProjectData {
     this.termsId,
     this.privacyPolicyId,
   });
+
+  static const multipleChoiceIdsKey = 'multipleChoiceIds';
+  static const bannerAdIdsKey = 'bannerAdIds';
+  static const popUpAdIdsKey = 'popUpAdIds';
+  static const adPopIdsKey = 'adPopIds';
+  static const feedbackItemIdsKey = 'feedbackItemIds';
+  static const pollIdsKey = 'pollIds';
+  static const blogPostIdsKey = 'blogPostIds';
+  static const faqIdsKey = 'faqIds';
+  static const multipleChoiceSelectionIdsKey = 'multipleChoiceSelectionIds';
+  static const feedbackAnswerIdsKey = 'feedbackAnswerIds';
+  static const pollAnswerIdsKey = 'pollAnswerIds';
+  static const faqUserQuestionIdsKey = 'faqUserQuestionIds';
+  static const switchesKey = 'switches';
+  static const feedIdKey = 'feedId';
+  static const imprintIdKey = 'imprintId';
+  static const termsIdKey = 'termsId';
+  static const privacyPolicyIdKey = 'privacyPolicyId';
+
   factory ProjectData.fromJson(Map<String, dynamic> json) {
     return ProjectData(
       multipleChoiceIds: json['multipleChoiceIds'] == null
