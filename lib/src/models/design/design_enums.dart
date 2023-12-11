@@ -7,14 +7,14 @@ enum BorderRadiusEnum {
 
 enum BorderEnum {
   none,
-  small,
+  thin,
   medium,
-  large,
+  thick,
 }
 
 enum ShadowEnum {
   none,
-  small,
+  light,
   medium,
-  large,
+  dark,
 }
