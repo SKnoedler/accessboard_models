@@ -1,6 +1,6 @@
 import 'package:accessboard_models/src/models/blog_post/blog_post_comment_question.dart';
 import 'package:accessboard_models/src/models/blog_post/feed_item_meta.dart';
-import 'package:accessboard_models/src/models/design/custom_design.dart';
+import 'package:accessboard_models/src/models/design/flutter_custom_design.dart';
 import 'package:accessboard_models/src/models/feed/feed_item.dart';
 import 'package:accessboard_models/src/models/localized_string/localized_string.dart';
 import 'package:accessboard_models/src/models/target_group.dart/target_group.dart';
@@ -14,7 +14,7 @@ class BlogPost extends FeedItem {
   final FeedItemMeta meta;
   final List<dynamic>? quillDocData;
   final BlogPostCommentQuestion? feedbackQuestion;
-  final CustomDesign? customDesign;
+  final FlutterCustomDesign? customDesign;
   final List<TargetGroup> targetGroups;
   final List<String> commentIds;
 
@@ -54,7 +54,7 @@ class BlogPost extends FeedItem {
           ? BlogPostCommentQuestion.fromJson(json['feedbackQuestion'])
           : null,
       customDesign: json['customDesign'] != null
-          ? CustomDesign.fromJson(json['customDesign'])
+          ? FlutterCustomDesign.fromJson(json['customDesign'])
           : null,
       commentIds: json['commentIds'] as List<String>,
     );
@@ -103,7 +103,7 @@ class BlogPost extends FeedItem {
     String? htmlContent,
     FeedItemMeta? meta,
     BlogPostCommentQuestion? feedbackQuestion,
-    CustomDesign? customDesign,
+    FlutterCustomDesign? customDesign,
     List<Map<String, Object>>? quillDocData,
     List<TargetGroup>? targetGroups,
     List<String>? commentIds,
