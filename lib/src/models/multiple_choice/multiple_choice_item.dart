@@ -97,7 +97,7 @@ class MultipleChoiceQuestion {
   final String multipleChoiceQuestionId;
   final LocalizedString question;
   final List<MultipleChoiceAnswerChoice> choices;
-  final FlutterCustomDesign? customDesign;
+  final DartCustomDesign? customDesign;
 
   MultipleChoiceQuestion({
     required this.multipleChoiceQuestionId,
@@ -113,7 +113,7 @@ class MultipleChoiceQuestion {
       choices: List<MultipleChoiceAnswerChoice>.from(json['choices']
           .map((choice) => MultipleChoiceAnswerChoice.fromJson(choice))),
       customDesign: json['customDesign'] != null
-          ? FlutterCustomDesign.fromJson(json['customDesign'])
+          ? DartCustomDesign.fromJson(json['customDesign'])
           : null,
     );
   }
@@ -135,7 +135,7 @@ class MultipleChoiceQuestion {
     DateTime? updatedAt,
     DateTime? expiresAt,
     List<String>? multipleChoiceSelectionIds,
-    FlutterCustomDesign? customDesign,
+    DartCustomDesign? customDesign,
   }) {
     return MultipleChoiceQuestion(
       multipleChoiceQuestionId:

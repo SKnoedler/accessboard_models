@@ -1,5 +1,5 @@
 import 'package:accessboard_models/src/models/blog_post/feed_item_meta.dart';
-import 'package:accessboard_models/src/models/design/flutter_custom_design.dart';
+import 'package:accessboard_models/src/models/design/custom_design.dart';
 import 'package:accessboard_models/src/models/feed/feed_item.dart';
 import 'package:accessboard_models/src/models/localized_string/localized_string.dart';
 import 'package:accessboard_models/src/models/target_group.dart/target_group.dart';
@@ -9,7 +9,7 @@ class Poll extends FeedItem {
   final LocalizedString question; // Changed this line
   final List<PollChoice> choices;
   final FeedItemMeta meta;
-  final FlutterCustomDesign? customDesign;
+  final DartCustomDesign? customDesign;
   final List<TargetGroup> targetGroups;
 
   Poll({
@@ -39,7 +39,7 @@ class Poll extends FeedItem {
       choices: choices,
       meta: FeedItemMeta.fromJson(json['meta']),
       customDesign: json['customDesign'] != null
-          ? FlutterCustomDesign.fromJson(json['customDesign'])
+          ? DartCustomDesign.fromJson(json['customDesign'])
           : null,
     );
   }
@@ -83,7 +83,7 @@ class Poll extends FeedItem {
     List<PollChoice>? choices,
     DateTime? createdAt,
     DateTime? updatedAt,
-    FlutterCustomDesign? customDesign,
+    DartCustomDesign? customDesign,
     FeedItemMeta? meta,
   }) {
     return Poll(

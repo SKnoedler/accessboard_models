@@ -1,7 +1,7 @@
 import 'package:accessboard_models/src/models/blog_post/blog_post.dart';
 import 'package:accessboard_models/src/models/blog_post/blog_post_comment_question.dart';
 import 'package:accessboard_models/src/models/blog_post/feed_item_meta.dart';
-import 'package:accessboard_models/src/models/design/flutter_custom_design.dart';
+import 'package:accessboard_models/src/models/design/custom_design.dart';
 import 'package:accessboard_models/src/models/multiple_choice/multiple_choice_item.dart';
 import 'package:accessboard_models/src/models/poll/poll.dart';
 
@@ -132,7 +132,7 @@ class ExtendedPoll extends Poll {
       meta: FeedItemMeta.fromJson(json['meta']),
       isCompleted: json['isCompleted'] ?? false,
       customDesign: json['customDesign'] != null
-          ? FlutterCustomDesign.fromJson(json['customDesign'])
+          ? DartCustomDesign.fromJson(json['customDesign'])
           : null,
       isNew: false,
     );
@@ -267,7 +267,7 @@ class ExtendedBlogPost extends BlogPost {
           ? BlogPostCommentQuestion.fromJson(json['feedbackQuestion'])
           : null,
       customDesign: json['customDesign'] != null
-          ? FlutterCustomDesign.fromJson(json['customDesign'])
+          ? DartCustomDesign.fromJson(json['customDesign'])
           : null,
       isNew: false,
     );
